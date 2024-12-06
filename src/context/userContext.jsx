@@ -34,7 +34,11 @@ export function UserProvider({ children }) {
     },
   ]);
 
-  return <UserContext.Provider>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ users, setUsers }}>
+      {children}
+    </UserContext.Provider>
+  );
 }
 
 export function useUserContext() {

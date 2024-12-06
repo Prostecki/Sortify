@@ -2,7 +2,7 @@ import { useState, useRef, useContext, createContext } from "react";
 
 const ScheduleContext = createContext();
 
-export function ScheduleProvider() {
+export function ScheduleProvider({ children }) {
   return <ScheduleContext.Provider>{children}</ScheduleContext.Provider>;
 }
 
