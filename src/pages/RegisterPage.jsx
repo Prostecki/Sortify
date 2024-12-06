@@ -1,11 +1,11 @@
 import Nav from "../layout/Nav";
 import Form from "../components/Form";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   return (
     <>
       <Nav />
-      <h1>Log in Page</h1>
+      <h1>Register page</h1>
       <Form />
     </>
   );
