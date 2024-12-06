@@ -40,7 +40,7 @@ export function UserProvider({ children }) {
 export function useUserContext() {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error("Context error");
+    throw new Error("User context error");
   }
   return context;
 }
