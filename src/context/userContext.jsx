@@ -5,8 +5,8 @@ const UserContext = createContext();
 export function UserProvider({ children }) {
   const [users, setUsers] = useState([
     {
-      username: "",
-      password: "",
+      username: "user1",
+      password: "password1",
       todos: [
         {
           title: "Springa",
