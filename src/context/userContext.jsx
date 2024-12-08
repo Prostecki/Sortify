@@ -1,5 +1,5 @@
 import { useState, useRef, useContext, createContext } from "react";
-import { useLocalStorage, useSessionStorage } from "../hooks/useStorage";
+import { useLocalStorage, useSessionStorage } from "../hooks/UseLocalStorage";
 
 const UserContext = createContext();
 export function UserProvider({ children }) {

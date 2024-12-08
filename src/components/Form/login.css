@@ -1,0 +1,30 @@
+.login-form {
+  @apply w-[24rem] h-auto flex flex-col items-center p-5 border-[0.5px] shadow-lg border-black rounded-md;
+}
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
+
+.login-button {
+  @apply border border-slate-600 px-5 my-5 bg-sortify text-white rounded-lg hover:scale-105 transition-all duration-300;
+}
+
+.login-input {
+  @apply border border-black drop-shadow-md p-1 my-2 rounded-lg;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+}
