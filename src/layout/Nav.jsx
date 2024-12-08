@@ -7,7 +7,7 @@ export default function Nav() {
   return (
     <>
       <nav className="navbar">
-        <Link to="/">
+        <Link to="/dashboard">
           <Logo />
         </Link>
         <div className="nav-right-position">
