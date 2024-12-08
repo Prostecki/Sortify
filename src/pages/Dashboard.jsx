@@ -1,6 +1,6 @@
 import Nav from "../layout/Nav";
 
-export default function HomePage() {
+export default function Dashboard() {
   return (
     <>
       <Nav />
