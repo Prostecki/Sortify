@@ -1,13 +1,32 @@
+import Logo from "./Logo";
 import { Link } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
+import { PiUserListFill } from "react-icons/pi";
+import { useAccount } from "../hooks/useAccount";
+import { useNavigate } from "react-router-dom";
+
 export default function Nav() {
+  const navigate = useNavigate();
+  const { handleLogOut } = useAccount(navigate);
   return (
     <>
-      <nav className="flex text-[40px] gap-[20px] justify-center">
-        <Link to="/">Home</Link>
-        <Link to="/login">Log in</Link>
-        <Link to="/register">Register</Link>
-        <Link to="/profile">Profile</Link>
+      <nav className="navbar">
+        <Link to="/dashboard">
+          <Logo />
+        </Link>
+        <div className="nav-right-position">
+          <button onClick={handleLogOut} className="logoutbtn">
+            <MdLogout size={17} className="mr-1" /> Logout
+          </button>
+          <Link to="/profile">
+            <PiUserListFill size={40} className="profile-icon" />
+          </Link>
+        </div>
       </nav>
     </>
   );
 }
+
+// Dark mode kan vi applicera i slutet ifall det passar.
+
+// Lägger till ytterliggare länkar längre in projektet. ( Tasks, Planner, Habits )
