@@ -2,8 +2,12 @@ import Logo from "./Logo";
 import { Link } from "react-router-dom";
 import { MdLogout } from "react-icons/md";
 import { PiUserListFill } from "react-icons/pi";
+import { useAccount } from "../hooks/useAccount";
+import { useNavigate } from "react-router-dom";
 
 export default function Nav() {
+  const navigate = useNavigate();
+  const { handleLogOut } = useAccount(navigate);
   return (
     <>
       <nav className="navbar">
@@ -11,7 +15,7 @@ export default function Nav() {
           <Logo />
         </Link>
         <div className="nav-right-position">
-          <button className="logoutbtn">
+          <button onClick={handleLogOut} className="logoutbtn">
             <MdLogout size={17} className="mr-1" /> Logout
           </button>
           <Link to="/profile">
