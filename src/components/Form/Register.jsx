@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { section } from "motion/react-client";
 
-export default function Register() {
+export default function Register({ closeModal }) {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -43,25 +44,38 @@ export default function Register() {
   };
 
   return (
-    <section>
-      <h1>Welcome and Sign up!</h1>
-      <input
-        type="text"
-        placeholder="Enter username"
-        value={registerUsername}
-        onChange={(e) => setRegisterUsername(e.target.value)}
-        className="login-input"
-      />
-      <input
-        type="password"
-        placeholder="Enter password"
-        value={registerPassword}
-        onChange={(e) => setRegisterPassword(e.target.value)}
-        className="login-input"
-      />
-      <button className="login-button" onClick={handleRegister}>
-        Register
-      </button>
+    <section className="absolute inset-0 w-full h-full bg-black/60 flex flex-col items-center justify-center">
+      <div className="max-w-80 min-w-40 bg-white p-5 h-auto flex flex-col items-center">
+        <h1>Welcome and Sign up!</h1>
+        <button className="login-button text-center" onClick={closeModal}>
+          X
+        </button>
+        <input
+          type="text"
+          placeholder="Enter username"
+          value={registerUsername}
+          onChange={(e) => setRegisterUsername(e.target.value)}
+          className="login-input"
+        />
+        <input
+          type="password"
+          placeholder="Enter password"
+          value={registerPassword}
+          onChange={(e) => setRegisterPassword(e.target.value)}
+          className="login-input"
+        />
+        <button className="login-button" onClick={handleRegister}>
+          Register
+        </button>
+        {errorMessage ? (
+          <h1 className={`text-red-500 mt-5 ${shake ? "shake" : ""}`}>
+            {errorMessage}
+          </h1>
+        ) : (
+          ""
+        )}
+        {successfulMessage ?? <h1>{successfulMessage}</h1>}
+      </div>
     </section>
   );
 }

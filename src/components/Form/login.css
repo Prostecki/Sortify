@@ -6,7 +6,7 @@
 }
 
 .login-button {
-  @apply border border-slate-600 px-5 my-5 bg-sortify text-white rounded-lg hover:scale-105 transition-all duration-300;
+  @apply border border-slate-600 px-5 my-5 bg-red-700 text-white rounded-lg hover:scale-105 transition-all duration-300;
 }
 
 .login-input {
