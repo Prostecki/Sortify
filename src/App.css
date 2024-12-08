@@ -11,7 +11,78 @@
   user-select: none;
 }
 
-#root {
-  margin: 0 auto;
-  text-align: center;
+/* LOGO */
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 50px;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.sortify {
+  font-weight: 700;
+  font-size: 2rem;
+  color: rgb(255, 255, 255);
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.sortify:hover {
+  filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
+    drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
+}
+
+/* NAVIGATION BAR */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgb(133, 62, 244);
+  color: rgb(255, 255, 255);
+  height: 60px;
+  font-weight: 600;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  padding: 15px;
+}
+
+.nav-right-position {
+  display: flex;
+  gap: 20px;
+}
+
+.logoutbtn {
+  border: 0.8px solid rgb(240, 240, 240);
+  color: rgb(226, 226, 226);
+  font-size: 1rem;
+  padding: 5px 18px;
+  border-radius: 7px;
+  align-items: center;
+  display: flex;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.logoutbtn:hover {
+  color: rgb(255, 255, 255);
+  border: 0.9px solid white;
+  filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
+    drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
+}
+
+.profile-icon {
+  color: rgb(255, 255, 255);
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.profile-icon:hover {
+  filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
+    drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
 }

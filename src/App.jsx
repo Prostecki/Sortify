@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
+import Tasks from "./pages/Tasks";
+import Planner from "./pages/Planner";
+import Habits from "./pages/Habits";
 import { GlobalProvider } from "./context/GlobalProvider";
 import "./App.css";
 
@@ -12,9 +13,10 @@ function App() {
       <GlobalProvider>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
           <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/planner" element={<Planner />} />
+          <Route path="/habits" element={<Habits />} />
         </Routes>
       </GlobalProvider>
     </>
