@@ -1,15 +1,24 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
 import Dashboard from "./pages/Dashboard";
 import Tasks from "./pages/Tasks";
 import Planner from "./pages/Planner";
 import Habits from "./pages/Habits";
 import Onboarding from "./pages/Onboarding";
-// import { GlobalProvider } from "./context/GlobalProvider";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const savedIsLoggedIn = localStorage.getItem("isLoggedIn");
+    return savedIsLoggedIn === "true";
+  });
+
+  // This effect runs only when `isLoggedIn` changes
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", isLoggedIn.toString());
+  }, [isLoggedIn]);
+
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("formData");
     return savedData ? JSON.parse(savedData) : { username: "", password: "" };
@@ -20,13 +29,39 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<Onboarding setFormData={setFormData} formData={formData} />}
+          element={
+            isLoggedIn ? (
+              <Navigate to="/dashboard" replace />
+            ) : (
+              <Onboarding
+                setFormData={setFormData}
+                formData={formData}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            )
+          }
         />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/tasks" element={<Tasks />} />
-        <Route path="/planner" element={<Planner />} />
-        <Route path="/habits" element={<Habits />} />
+        {/* Private routes for logged users */}
+        <Route
+          path="/dashboard"
+          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/profile"
+          element={isLoggedIn ? <ProfilePage /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/tasks"
+          element={isLoggedIn ? <Tasks /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/planner"
+          element={isLoggedIn ? <Planner /> : <Navigate to="/" replace />}
+        />
+        <Route
+          path="/habits"
+          element={isLoggedIn ? <Habits /> : <Navigate to="/" replace />}
+        />
       </Routes>
     </>
   );
