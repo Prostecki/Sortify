@@ -5,7 +5,7 @@ import "./login.css";
 import { FaBoltLightning } from "react-icons/fa6";
 import { ImConnection } from "react-icons/im";
 
-export default function Form() {
+export default function Login({ setIsLoggedIn }) {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -22,6 +22,7 @@ export default function Form() {
     }
 
     let usersData = JSON.parse(localStorage.getItem("users"));
+    console.log("Users from localStorage after parsing:", usersData);
     let users = usersData ? usersData : [];
     //Kolla om det finns en anvandare med username + password
     let loggedInUser = users.find((user) => {
@@ -31,9 +32,11 @@ export default function Form() {
     // If successful
     if (loggedInUser) {
       localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
+      localStorage.setItem("isLoggedIn", "true");
       setUsername("");
       setPassword("");
       setErrorMessage("");
+      setIsLoggedIn(true);
       navigate("/dashboard");
     } else {
       setErrorMessage("User is not registered");

@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useAccount } from "../hooks/useAccount";
 import { useState, useEffect } from "react";
 
-export default function ProfilePage() {
+export default function ProfilePage({ setIsLoggedIn }) {
   const [username, setUsername] = useState(null);
   const navigate = useNavigate();
 
-  const { handleLogOut, deleteAccount } = useAccount(navigate);
+  const { handleLogOut, deleteAccount } = useAccount(navigate, setIsLoggedIn);
 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);

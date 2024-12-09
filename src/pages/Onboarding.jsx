@@ -5,7 +5,7 @@ import { FaHandshakeSimple } from "react-icons/fa6";
 import { FaStar } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 
-export default function Onboarding() {
+export default function Onboarding({ setIsLoggedIn }) {
   return (
     <>
       <div className="onboarding-page">
@@ -77,7 +77,7 @@ export default function Onboarding() {
           </h1>
         </div>
         <div className="login-bg">
-          <Login />
+          <Login setIsLoggedIn={setIsLoggedIn} />
         </div>
       </div>
     </>
