@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { section } from "motion/react-client";
+import "./login.css";
 
 export default function Register({ closeModal }) {
   const [registerUsername, setRegisterUsername] = useState("");
@@ -44,28 +44,31 @@ export default function Register({ closeModal }) {
   };
 
   return (
-    <section className="absolute inset-0 w-full h-full bg-black/60 flex flex-col items-center justify-center">
-      <div className="max-w-80 min-w-40 bg-white p-5 h-auto flex flex-col items-center">
-        <h1>Welcome and Sign up!</h1>
-        <button className="login-button text-center" onClick={closeModal}>
+    <section className="absolute inset-0  bg-black/60 flex flex-col items-center justify-center">
+      <div className="relative max-w-80 min-w-40 bg-white p-5 h-auto flex flex-col items-start">
+        <h1 className="font-bold text-2xl ">Register</h1>
+        <button
+          className="absolute right-8 top-6 font-bold"
+          onClick={closeModal}
+        >
           X
         </button>
         <input
           type="text"
-          placeholder="Enter username"
+          placeholder="Choose username"
           value={registerUsername}
           onChange={(e) => setRegisterUsername(e.target.value)}
           className="login-input"
         />
         <input
           type="password"
-          placeholder="Enter password"
+          placeholder="Choose password"
           value={registerPassword}
           onChange={(e) => setRegisterPassword(e.target.value)}
           className="login-input"
         />
-        <button className="login-button" onClick={handleRegister}>
-          Register
+        <button className="register-button" onClick={handleRegister}>
+          Sign up
         </button>
         {errorMessage ? (
           <h1 className={`text-red-500 mt-5 ${shake ? "shake" : ""}`}>

@@ -86,3 +86,116 @@
   filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
     drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
 }
+
+/* ONBOARDING PAGE */
+
+.onboarding-page {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgb(133, 62, 244);
+
+  filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
+    drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
+  gap: 50px;
+}
+
+.onboarding-logo {
+  height: 100px;
+  position: absolute;
+  right: 5%;
+  top: 2%;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
+    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 100px;
+  padding: 25px;
+}
+
+.version {
+  background-color: rgb(37, 221, 37);
+  max-width: fit-content;
+  padding: 3px 7px;
+  border-radius: 7px;
+  color: rgb(208, 255, 219);
+  font-weight: 600;
+  filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
+    drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
+  margin-bottom: 10px;
+}
+
+.intro-title {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.9rem;
+  color: white;
+  font-weight: 800;
+  letter-spacing: -0.016em;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.intro-description {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.89);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 10px;
+}
+
+.faded {
+  color: rgba(255, 255, 255, 0.301);
+}
+
+.span-flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: left;
+}
+
+.whychooseus {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  color: rgba(225, 225, 225, 0.8);
+  font-weight: 700;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+@media only screen and (max-width: 1000px) {
+  .whychooseus {
+    flex-direction: column;
+    justify-content: left;
+  }
+}
+
+.stars {
+  display: flex;
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+}
+
+.versiongithub {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ONBOARDING LOGIN COMPONENT */
+
+.login-bg {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 30px;
+}

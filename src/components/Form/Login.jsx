@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Register from "./Register";
 import "./login.css";
+import { FaBoltLightning } from "react-icons/fa6";
+import { ImConnection } from "react-icons/im";
 
 export default function Form() {
   const [userName, setUsername] = useState("");
@@ -45,12 +47,14 @@ export default function Form() {
 
   return (
     <>
-      <section className={`login-form`}>
-        <h1 className="text-3xl font-extrabold drop-shadow-md">Sign in!</h1>
+      <section className="login-form">
+        <h1 className="signin">
+          Connect <ImConnection size={40} className="ml-3 drop-shadow-md" />
+        </h1>
 
         <input
           type="text"
-          placeholder="Enter username"
+          placeholder="Username"
           value={userName}
           onChange={(e) => setUsername(e.target.value)}
           className="login-input"
@@ -58,29 +62,27 @@ export default function Form() {
 
         <input
           type="password"
-          placeholder="Enter password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="login-input"
         />
         <button className="login-button" onClick={handleLogin}>
-          Log in
+          Login
         </button>
         {errorMessage && (
           <p className={`text-red-500 ${shake ? "shake" : ""}`}>
             {errorMessage}
           </p>
         )}
-        <div className="register-container">
-          <h1 className="text-3xl font-bold drop-shadow-md mt-4">Register</h1>
-          <h4 className=" mt-1 font-medium drop-shadow-md">
-            No account? No worries! Click the button to begin
-          </h4>
+        <div>
+          <h4 className="m-2 font-semibold ">No account? Create one today!</h4>
           <button
-            className="login-button"
+            className="register-button"
             onClick={(e) => setShowRegister(true)}
           >
-            Create account
+            Create account{" "}
+            <FaBoltLightning size={17} className="ml-1 drop-shadow-md" />
           </button>
         </div>
         {showRegister && (
