@@ -1,6 +1,4 @@
 export const useAccount = (navigate, setIsLoggedIn) => {
-  console.log("setIsLoggedIn:", setIsLoggedIn);
-  console.log("navigate:", navigate);
   const handleLogOut = () => {
     console.log("logging out...");
     localStorage.removeItem("currentUser");

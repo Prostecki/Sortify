@@ -1,52 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Register from "./Register";
 import "./login.css";
 import { FaBoltLightning } from "react-icons/fa6";
 import { ImConnection } from "react-icons/im";
+import { useUserContext } from "../../context/UserContext";
 
-export default function Login({ setIsLoggedIn }) {
-  const [userName, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [shake, setShake] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
-
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    // Check if there are empty fields at least one of them
-    if (!userName.trim() || !password.trim()) {
-      setErrorMessage("Please fill in both username and password.");
-      return;
-    }
-
-    let usersData = JSON.parse(localStorage.getItem("users"));
-    console.log("Users from localStorage after parsing:", usersData);
-    let users = usersData ? usersData : [];
-    //Kolla om det finns en anvandare med username + password
-    let loggedInUser = users.find((user) => {
-      return user.username === userName && user.password === password;
-    });
-
-    // If successful
-    if (loggedInUser) {
-      localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-      localStorage.setItem("isLoggedIn", "true");
-      setUsername("");
-      setPassword("");
-      setErrorMessage("");
-      setIsLoggedIn(true);
-      navigate("/dashboard");
-    } else {
-      setErrorMessage("User is not registered");
-    }
-  };
-
-  const closeModal = () => {
-    setShowRegister(false);
-    console.log("closed?");
-  };
+export default function Login() {
+  const {
+    userName,
+    password,
+    errorMessage,
+    showRegister,
+    closeModal,
+    handleLogin,
+    setPassword,
+    setUsername,
+  } = useUserContext();
 
   return (
     <>

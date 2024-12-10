@@ -5,14 +5,14 @@ import Tasks from "./pages/Tasks";
 import Planner from "./pages/Planner";
 import Habits from "./pages/Habits";
 import Onboarding from "./pages/Onboarding";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./App.css";
+import { GlobalProvider } from "./context/GlobalProvider";
+
+import { UserProvider, useUserContext } from "./context/UserContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const savedIsLoggedIn = localStorage.getItem("isLoggedIn");
-    return savedIsLoggedIn === "true";
-  });
+  const { isLoggedIn, setIsLoggedIn } = useUserContext();
 
   // This effect runs only when `isLoggedIn` changes
   useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
   });
 
   return (
-    <>
+    <GlobalProvider>
       <Routes>
         <Route
           path="/"
@@ -75,7 +75,7 @@ function App() {
           element={isLoggedIn ? <Habits /> : <Navigate to="/" replace />}
         />
       </Routes>
-    </>
+    </GlobalProvider>
   );
 }
 
