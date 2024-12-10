@@ -1,5 +1,3 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Register from "./Register";
 import "./login.css";
 import { FaBoltLightning } from "react-icons/fa6";

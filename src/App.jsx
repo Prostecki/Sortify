@@ -5,11 +5,9 @@ import Tasks from "./pages/Tasks";
 import Planner from "./pages/Planner";
 import Habits from "./pages/Habits";
 import Onboarding from "./pages/Onboarding";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-import { GlobalProvider } from "./context/GlobalProvider";
-
-import { UserProvider, useUserContext } from "./context/UserContext";
+import { useUserContext } from "./context/UserContext";
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useUserContext();
@@ -25,7 +23,7 @@ function App() {
   });
 
   return (
-    <GlobalProvider>
+    <>
       <Routes>
         <Route
           path="/"
@@ -75,7 +73,7 @@ function App() {
           element={isLoggedIn ? <Habits /> : <Navigate to="/" replace />}
         />
       </Routes>
-    </GlobalProvider>
+    </>
   );
 }
 
