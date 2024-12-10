@@ -41,7 +41,7 @@ export default function ProfilePage({ setIsLoggedIn }) {
         </div>
 
         <button
-          className="px-2 border border-black rounded-lg drop-shadow-md bg-sortify text-white cursor-pointer"
+          className="px-2 border border-black text-black rounded-lg drop-shadow-md bg-sortify cursor-pointer"
           onClick={deleteAccount}
         >
           Delete Account
