@@ -7,12 +7,10 @@ import Habits from "./pages/Habits";
 import Onboarding from "./pages/Onboarding";
 import { useState, useEffect } from "react";
 import "./App.css";
+import { useUserContext } from "./context/UserContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    const savedIsLoggedIn = localStorage.getItem("isLoggedIn");
-    return savedIsLoggedIn === "true";
-  });
+  const { isLoggedIn, setIsLoggedIn } = useUserContext();
 
   // This effect runs only when `isLoggedIn` changes
   useEffect(() => {
