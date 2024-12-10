@@ -44,11 +44,23 @@ function App() {
         {/* Private routes for logged users */}
         <Route
           path="/dashboard"
-          element={isLoggedIn ? <Dashboard /> : <Navigate to="/" replace />}
+          element={
+            isLoggedIn ? (
+              <Dashboard setIsLoggedIn={setIsLoggedIn} />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
         />
         <Route
           path="/profile"
-          element={isLoggedIn ? <ProfilePage /> : <Navigate to="/" replace />}
+          element={
+            isLoggedIn ? (
+              <ProfilePage setIsLoggedIn={setIsLoggedIn} />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
         />
         <Route
           path="/tasks"

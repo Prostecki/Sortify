@@ -1,8 +1,13 @@
 export const useAccount = (navigate, setIsLoggedIn) => {
+  console.log("setIsLoggedIn:", setIsLoggedIn);
+  console.log("navigate:", navigate);
   const handleLogOut = () => {
     console.log("logging out...");
     localStorage.removeItem("currentUser");
     localStorage.setItem("isLoggedIn", "false");
+
+    setIsLoggedIn(false);
+    navigate("/");
   };
 
   const deleteAccount = () => {
@@ -17,10 +22,8 @@ export const useAccount = (navigate, setIsLoggedIn) => {
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.removeItem("currentUser");
 
-    // Обновляем статус логина
     localStorage.setItem("isLoggedIn", "false");
 
-    // Обновляем состояние isLoggedIn
     setIsLoggedIn(false);
 
     navigate("/");
