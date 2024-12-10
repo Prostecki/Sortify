@@ -65,6 +65,10 @@ export function UserProvider({ children }) {
         setIsLoggedIn,
         setUsername,
         setPassword,
+        shake,
+        setShake,
+        showRegister,
+        setShowRegister,
       }}
     >
       {children}

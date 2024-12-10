@@ -14,6 +14,8 @@ export default function Login() {
     handleLogin,
     setPassword,
     setUsername,
+    setShowRegister,
+    shake,
   } = useUserContext();
 
   return (
