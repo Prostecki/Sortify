@@ -3,7 +3,7 @@ import ProfilePage from "./pages/ProfilePage";
 import Dashboard from "./pages/Dashboard";
 import Tasks from "./pages/Tasks";
 import Planner from "./pages/Planner";
-import Habits from "./pages/Habits";
+import HabitsPage from "./pages/HabitsPage";
 import Onboarding from "./pages/Onboarding";
 import { useState, useEffect } from "react";
 import "./App.css";
@@ -70,7 +70,7 @@ function App() {
         />
         <Route
           path="/habits"
-          element={isLoggedIn ? <Habits /> : <Navigate to="/" replace />}
+          element={isLoggedIn ? <HabitsPage /> : <Navigate to="/" replace />}
         />
       </Routes>
     </>

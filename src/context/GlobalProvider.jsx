@@ -1,4 +1,9 @@
 import { UserProvider } from "./UserContext";
+import { HabitProvider } from "./habitContext";
 export function GlobalProvider({ children }) {
-  return <UserProvider>{children}</UserProvider>;
+  return (
+    <UserProvider>
+      <HabitProvider>{children}</HabitProvider>
+    </UserProvider>
+  );
 }
