@@ -16,7 +16,6 @@ export default function Dashboard({ setIsLoggedIn }) {
       <h1 className="text-center text-[3rem]">
         Overview showing user activity. Minimalistic.
       </h1>
-      <EventCalendar />
     </>
   );
 }
