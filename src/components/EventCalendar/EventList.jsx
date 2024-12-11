@@ -1,4 +1,6 @@
-export default function EventList({ events, onDeleteEvent }) {
+import { useEventCalendarContext } from "../../context/eventCalendarContext";
+export default function EventList() {
+  const { events, onDeleteEvent } = useEventCalendarContext();
   return (
     <ul>
       {events.map((event) => (
