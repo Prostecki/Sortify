@@ -1,28 +1,8 @@
 import { useState } from "react";
-export default function EventForm({ onAddEvent }) {
-  const [name, setName] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!name || !start || !end) {
-      alert("Fill all fields.");
-      return;
-    }
-
-    const newEvent = {
-      id: Date.now(),
-      name,
-      start,
-      end,
-    };
-
-    onAddEvent(newEvent);
-    setName("");
-    setStart("");
-    setEnd("");
-  };
+import { useEventCalendarContext } from "../../context/eventCalendarContext";
+export default function EventForm() {
+  const { handleSubmit, name, setName, start, setStart, end, setEnd } =
+    useEventCalendarContext();
 
   return (
     <form onSubmit={handleSubmit}>
