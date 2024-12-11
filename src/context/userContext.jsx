@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +15,24 @@ export function UserProvider({ children }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [shake, setShake] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [quote, setQuote] = useState([]);
+  const [error, setError] = useState(null);
+
+  const getQuote = async () => {
+    try {
+      const response = await fetch(
+        "https://api.breakingbadquotes.xyz/v1/quotes"
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP Error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+      setQuote(data || []);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -69,6 +87,8 @@ export function UserProvider({ children }) {
         setShake,
         showRegister,
         setShowRegister,
+        getQuote,
+        quote,
       }}
     >
       {children}
