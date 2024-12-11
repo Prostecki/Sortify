@@ -10,6 +10,8 @@ export function UserProvider({ children }) {
     return savedIsLoggedIn === "true";
   });
 
+  const [user, setUser] = useState(null);
+  const [events, setEvents] = useState([]);
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -36,6 +38,29 @@ export function UserProvider({ children }) {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const savedIsLoggedIn = localStorage.getItem("isLoggedIn");
+    if (savedIsLoggedIn === "true") {
+      const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+      setUser(savedUser);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      const savedEvents =
+        JSON.parse(localStorage.getItem(`events_${user.id}`)) || [];
+      setEvents(savedEvents);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem(`events_${user.id}`, JSON.stringify(events));
+    }
+  }, [events, user]);
+
   const handleLogin = () => {
     // Check if there are empty fields at least one of them
     if (!userName.trim() || !password.trim()) {
@@ -43,22 +68,19 @@ export function UserProvider({ children }) {
       return;
     }
 
-    let usersData = JSON.parse(localStorage.getItem("users"));
-    console.log("Users from localStorage after parsing:", usersData);
-    let users = usersData ? usersData : [];
-    //Kolla om det finns en anvandare med username + password
-    let loggedInUser = users.find((user) => {
-      return user.username === userName && user.password === password;
-    });
+    const usersData = JSON.parse(localStorage.getItem("users")) || [];
+    const loggedInUser = usersData.find(
+      (user) => user.username === userName && user.password === password
+    );
 
     // If successful
     if (loggedInUser) {
       localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
       localStorage.setItem("isLoggedIn", "true");
+      setIsLoggedIn(true);
       setUsername("");
       setPassword("");
       setErrorMessage("");
-      setIsLoggedIn(true);
       navigate("/dashboard");
     } else {
       setErrorMessage("User is not registered");
@@ -76,7 +98,6 @@ export function UserProvider({ children }) {
         userName,
         password,
         errorMessage,
-        showRegister,
         closeModal,
         handleLogin,
         isLoggedIn,
@@ -89,6 +110,10 @@ export function UserProvider({ children }) {
         setShowRegister,
         getQuote,
         quote,
+        user,
+        setUser,
+        events,
+        setEvents,
       }}
     >
       {children}

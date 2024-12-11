@@ -10,12 +10,15 @@ import "./App.css";
 import { useUserContext } from "./context/UserContext";
 
 function App() {
-  const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  const { isLoggedIn, setIsLoggedIn, user } = useUserContext();
 
   // This effect runs only when `isLoggedIn` changes
   useEffect(() => {
     localStorage.setItem("isLoggedIn", isLoggedIn.toString());
-  }, [isLoggedIn]);
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [isLoggedIn, user]);
 
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("formData");

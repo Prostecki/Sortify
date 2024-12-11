@@ -1,4 +1,4 @@
-import EventCalendar from "../components/EventCalendar/EventCalendar";
+import { useUserContext } from "../context/UserContext";
 import Nav from "../layout/Nav";
 
 export default function Dashboard({ setIsLoggedIn }) {

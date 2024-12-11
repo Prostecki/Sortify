@@ -1,5 +1,5 @@
-import { useState, useRef, useContext, createContext } from "react";
-import EventCalendar from "../components/EventCalendar/EventCalendar";
+import { useState, useRef, useContext, useEffect, createContext } from "react";
+import { useUserContext } from "./UserContext";
 
 const EventCalendarContext = createContext();
 
@@ -10,12 +10,27 @@ export function EventCalendarProvider({ children }) {
   const [events, setEvents] = useState([]);
   const [filter, setFilter] = useState("upcoming");
 
+  const { user } = useUserContext();
+
+  useEffect(() => {
+    if (user) {
+      const savedEvents = localStorage.getItem(user.id);
+      setEvents(savedEvents ? JSON.parse(savedEvents) : []);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user && events.length > 0) {
+      localStorage.setItem(user.id, JSON.stringify(events));
+    }
+  }, [events, user]);
+
   const addEvent = (event) => {
-    setEvents([...events, event]);
+    setEvents((prevEvents) => [...prevEvents, event]);
   };
 
   const deleteEvent = (id) => {
-    setEvents(events.filter((event) => event.id !== id));
+    setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
   };
 
   const handleSubmit = (e) => {
@@ -25,11 +40,18 @@ export function EventCalendarProvider({ children }) {
       return;
     }
 
+    if (!user) {
+      alert("Please log in..");
+      return;
+    }
+
     const newEvent = {
       id: Date.now(),
       name,
       start,
       end,
+      userName: user.username,
+      userId: user.id,
     };
 
     addEvent(newEvent);
@@ -39,11 +61,14 @@ export function EventCalendarProvider({ children }) {
   };
 
   const filteredEvents = events.filter((event) => {
+    const eventStart = new Date(event.start);
+    const now = new Date();
     if (filter === "upcoming") {
-      return new Date(event.start) > new Date();
-    } else {
-      return new Date(event.start) <= new Date();
+      return eventStart > now;
+    } else if (filter === "past") {
+      return eventStart <= now;
     }
+    return true; // Возвращаем все события, если фильтр не установлен
   });
 
   return (
@@ -57,9 +82,9 @@ export function EventCalendarProvider({ children }) {
         deleteEvent,
         events,
         filter,
-        addEvent,
-        filteredEvents,
         setFilter,
+        filteredEvents,
+        addEvent,
         setStart,
         setName,
       }}
