@@ -288,6 +288,19 @@
   margin-top: 2px;
 }
 
+.deadline-input {
+  outline: none;
+  text-transform: uppercase;
+  border: 1px solid rgb(169, 169, 169);
+  padding: 5px;
+  border-radius: 5px;
+  height: 40px;
+  width: 9rem;
+  filter: drop-shadow(0 10px 8px rgba(131, 131, 131, 0.04))
+    drop-shadow(0 4px 3px rgba(159, 159, 159, 0.1));
+  margin-top: 2px;
+}
+
 .submittaskbtn {
   display: flex;
   align-items: center;
@@ -295,7 +308,7 @@
   font-weight: 500;
   background-color: rgb(133, 62, 244);
   padding: 5px 25px;
-  margin-top: 3rem;
+  margin-top: 2rem;
   border-radius: 5px;
   filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
     drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));

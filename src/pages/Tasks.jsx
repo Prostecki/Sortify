@@ -1,13 +1,8 @@
 import Nav from "../layout/Nav";
 import { FaTasks } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
-import { BiTask } from "react-icons/bi";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { RiListSettingsLine } from "react-icons/ri";
 import { BsCalendarCheck } from "react-icons/bs";
-import { MdAddCircleOutline } from "react-icons/md";
-import { FiEdit } from "react-icons/fi";
-import { AiOutlineInfoCircle } from "react-icons/ai";
 import { IoMdAddCircle } from "react-icons/io";
 import { useState } from "react";
 import { SiTask } from "react-icons/si";
@@ -84,7 +79,7 @@ export default function Tasks() {
               <option value="7">Finance</option>
             </select>
             <hr className="mt-3 drop-shadow-sm" />
-            <div className="flex gap-10 ">
+            <div className="flex items-center justify-center gap-10 ">
               <div className="">
                 <h1 className="flex gap-2 items-center font-semibold text-2xl drop-shadow-sm">
                   {" "}
@@ -94,7 +89,7 @@ export default function Tasks() {
                   type="date"
                   min="2024-12-01"
                   required
-                  className="uppercase mt-2"
+                  className="deadline-input"
                 />
               </div>
 
@@ -106,6 +101,7 @@ export default function Tasks() {
                 <input
                   type="number"
                   min="1"
+                  max="10000"
                   placeholder="Enter minutes"
                   className="minutes-input"
                   required
