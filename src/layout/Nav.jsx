@@ -5,9 +5,9 @@ import { PiUserListFill } from "react-icons/pi";
 import { useAccount } from "../hooks/useAccount";
 import { useNavigate } from "react-router-dom";
 
-export default function Nav() {
+export default function Nav({ setIsLoggedIn }) {
   const navigate = useNavigate();
-  const { handleLogOut } = useAccount(navigate);
+  const { handleLogOut } = useAccount(navigate, setIsLoggedIn);
   return (
     <>
       <nav className="navbar">

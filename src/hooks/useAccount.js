@@ -1,6 +1,10 @@
-export const useAccount = (navigate) => {
+export const useAccount = (navigate, setIsLoggedIn) => {
   const handleLogOut = () => {
-    sessionStorage.removeItem("currentUser");
+    console.log("logging out...");
+    localStorage.removeItem("currentUser");
+    localStorage.setItem("isLoggedIn", "false");
+
+    setIsLoggedIn(false);
     navigate("/");
   };
 
@@ -11,9 +15,15 @@ export const useAccount = (navigate) => {
       return;
     }
     let users = JSON.parse(localStorage.getItem("users"));
+
     users = users.filter((user) => user.username !== currentUser.username);
     localStorage.setItem("users", JSON.stringify(users));
-    sessionStorage.removeItem("currentUser");
+    localStorage.removeItem("currentUser");
+
+    localStorage.setItem("isLoggedIn", "false");
+
+    setIsLoggedIn(false);
+
     navigate("/");
   };
 

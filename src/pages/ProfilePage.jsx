@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useAccount } from "../hooks/useAccount";
 import { useState, useEffect } from "react";
 
-export default function ProfilePage() {
+export default function ProfilePage({ setIsLoggedIn }) {
   const [username, setUsername] = useState(null);
+  // const [quote, setQuote] = useState(null);
+  // const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const { handleLogOut, deleteAccount } = useAccount(navigate);
+  const { deleteAccount } = useAccount(navigate, setIsLoggedIn);
 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -15,7 +17,6 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    console.log("currentUser from localStorage:", currentUser);
 
     if (currentUser) {
       setUsername(currentUser.username);
@@ -23,6 +24,29 @@ export default function ProfilePage() {
       console.log("No user logged in");
     }
   }, []);
+
+  // useEffect(() => {
+  //   const getQuote = async () => {
+  //     try {
+  //       const response = await fetch("https://api.quotable.io/random", {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       });
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP Error! Status: ${response.status}`);
+  //       }
+  //       const data = await response.json();
+  //       console.log(data.content);
+  //       setQuote(data.content);
+  //     } catch (error) {
+  //       setError(error.message);
+  //     }
+  //   };
+  //   getQuote();
+  // }, []);
+
   return (
     <>
       <Nav />
@@ -38,10 +62,15 @@ export default function ProfilePage() {
               {username ? capitalize(username) : "No user logged in"}
             </span>
           </h1>
+          {/* {error ? (
+            <p>Error: {error}</p>
+          ) : (
+            <p>{quote ? quote : "Loading quote..."}</p>
+          )} */}
         </div>
 
         <button
-          className="px-2 border border-black rounded-lg drop-shadow-md bg-sortify text-white cursor-pointer"
+          className="px-2 border border-black text-black rounded-lg drop-shadow-md bg-sortify cursor-pointer"
           onClick={deleteAccount}
         >
           Delete Account
