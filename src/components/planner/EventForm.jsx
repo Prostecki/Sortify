@@ -1,11 +1,7 @@
 import { useState } from "react";
-<<<<<<< HEAD:src/components/planner/EventForm.jsx
-import { useEventCalendarContext } from "../../context/EventCalendarContext";
-=======
 import { useUserContext } from "../../context/UserContext";
 import { useEventCalendarContext } from "../../context/eventCalendarContext";
 import { div } from "motion/react-client";
->>>>>>> d88b17f006a5e28b3f57e0c4d2e806fcde44d65a:src/components/EventCalendar/EventForm.jsx
 export default function EventForm() {
   const {
     handleSubmit,
