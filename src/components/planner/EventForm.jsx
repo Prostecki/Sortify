@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useUserContext } from "../../context/UserContext";
-import { useEventCalendarContext } from "../../context/eventCalendarContext";
+import { useEventCalendarContext } from "../../context/EventCalendarContext";
 import { div } from "motion/react-client";
 export default function EventForm() {
   const {

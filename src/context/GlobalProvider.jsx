@@ -1,9 +1,12 @@
 import { UserProvider } from "./UserContext";
-import { HabitProvider } from "./habitContext";
+import { HabitProvider } from "./HabitContext";
+import { EventCalendarProvider } from "./EventCalendarContext";
 export function GlobalProvider({ children }) {
   return (
     <UserProvider>
-      <HabitProvider>{children}</HabitProvider>
+      <EventCalendarProvider>
+        <HabitProvider>{children}</HabitProvider>
+      </EventCalendarProvider>
     </UserProvider>
   );
 }
