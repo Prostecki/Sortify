@@ -110,10 +110,20 @@ export function UserProvider({ children }) {
         setShowRegister,
         getQuote,
         quote,
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        activeUser,
+=======
+>>>>>>> Stashed changes
         user,
         setUser,
         events,
         setEvents,
+<<<<<<< Updated upstream
+=======
+>>>>>>> d88b17f006a5e28b3f57e0c4d2e806fcde44d65a
+>>>>>>> Stashed changes
       }}
     >
       {children}
