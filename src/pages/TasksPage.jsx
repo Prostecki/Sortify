@@ -9,8 +9,7 @@ import { SiTask } from "react-icons/si";
 import { LuBadgeInfo } from "react-icons/lu";
 import { MdOutlineCategory } from "react-icons/md";
 
-<<<<<<< HEAD:src/pages/Tasks.jsx
-export default function Tasks() {
+export default function TasksPage() {
   const [isVisible, setIsVisible] = useState(false);
 
   function handleVisibility() {
@@ -117,8 +116,4 @@ export default function Tasks() {
       </div>
     </>
   );
-=======
-export default function TasksPage() {
-  return <Nav />;
->>>>>>> 5f701eb9a9eddfa9cbd2c8f05bf5073d82c715c2:src/pages/TasksPage.jsx
 }
