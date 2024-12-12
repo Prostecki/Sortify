@@ -1,26 +1,7 @@
 import EventList from "./EventList";
 import EventForm from "./EventForm";
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/components/planner/EventCalendar.jsx
 import { useState } from "react";
-import { useEventCalendarContext } from "../../context/EventCalendarContext";
-========
-=======
-<<<<<<< HEAD:src/components/planner/EventCalendar.jsx
-import { useState } from "react";
-import { useEventCalendarContext } from "../../context/EventCalendarContext";
-=======
->>>>>>> 390bf5237a4713838879847c968565702365c5f9
-import { useState, useEffect } from "react";
 import { useEventCalendarContext } from "../../context/eventCalendarContext";
-import { useUserContext } from "../../context/UserContext";
-import { EventCalendarProvider } from "../../context/eventCalendarContext";
-
-<<<<<<< HEAD
->>>>>>>> 390bf5237a4713838879847c968565702365c5f9:src/components/EventCalendar/EventCalendar.jsx
-=======
->>>>>>> d88b17f006a5e28b3f57e0c4d2e806fcde44d65a:src/components/EventCalendar/EventCalendar.jsx
->>>>>>> 390bf5237a4713838879847c968565702365c5f9
 export default function EventCalendar() {
   const { filter, setFilter } = useEventCalendarContext();
   const { user } = useUserContext();

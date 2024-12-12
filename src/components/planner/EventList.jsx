@@ -1,20 +1,5 @@
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/components/planner/EventList.jsx
-import { useEventCalendarContext } from "../../context/EventCalendarContext";
-========
 import { useEventCalendarContext } from "../../context/eventCalendarContext";
 import { useUserContext } from "../../context/UserContext";
-
->>>>>>>> 390bf5237a4713838879847c968565702365c5f9:src/components/EventCalendar/EventList.jsx
-=======
-<<<<<<< HEAD:src/components/planner/EventList.jsx
-import { useEventCalendarContext } from "../../context/EventCalendarContext";
-=======
-import { useEventCalendarContext } from "../../context/eventCalendarContext";
-import { useUserContext } from "../../context/UserContext";
-
->>>>>>> d88b17f006a5e28b3f57e0c4d2e806fcde44d65a:src/components/EventCalendar/EventList.jsx
->>>>>>> 390bf5237a4713838879847c968565702365c5f9
 export default function EventList() {
   const { filteredEvents, deleteEvent } = useEventCalendarContext();
   const { user } = useUserContext();
