@@ -1,3 +1,4 @@
+import EventCalendar from "../components/planner/EventCalendar";
 import { useState, useRef, useContext, useEffect, createContext } from "react";
 import { useUserContext } from "./UserContext";
 
