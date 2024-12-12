@@ -322,3 +322,22 @@
 .submittaskbtn:active {
   transform: scale(0.98);
 }
+
+.hidetaskbtn {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-color: rgb(92, 168, 255);
+  color: rgb(239, 239, 239);
+  font-weight: 500;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
+    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+  font-size: 1.3rem;
+  padding: 5px;
+}
+
+.hidetaskbtn:hover {
+  background-color: rgb(132, 189, 255);
+}

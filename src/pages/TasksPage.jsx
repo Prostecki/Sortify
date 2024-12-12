@@ -4,15 +4,16 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsCalendarCheck } from "react-icons/bs";
 import { IoMdAddCircle } from "react-icons/io";
-import { useState } from "react";
 import { SiTask } from "react-icons/si";
 import { LuBadgeInfo } from "react-icons/lu";
 import { MdOutlineCategory } from "react-icons/md";
+import { useState } from "react";
+import { BiHide } from "react-icons/bi";
 
 export default function TasksPage() {
   const [isVisible, setIsVisible] = useState(false);
 
-  function handleVisibility() {
+  function showForm() {
     setIsVisible(!isVisible);
   }
 
@@ -28,7 +29,7 @@ export default function TasksPage() {
           <span className="text-sky-500"> activities. </span>
         </p>
         {!isVisible ? (
-          <button onClick={handleVisibility} className="addtaskbtn">
+          <button onClick={showForm} className="addtaskbtn">
             ADD TASK
             <IoMdAddCircle className="ml-1" size={21} />
           </button>
@@ -110,6 +111,9 @@ export default function TasksPage() {
             </div>
             <button type="submit" className="submittaskbtn">
               <AiOutlinePlus size={22} />
+            </button>
+            <button className="hidetaskbtn" onClick={showForm}>
+              <BiHide size={25} color="white" />
             </button>
           </form>
         )}
