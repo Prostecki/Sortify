@@ -1,10 +1,12 @@
 import { useContext, createContext, useState, useEffect } from "react";
-
+import { useLocalStorage } from "../hooks/useStorage";
 import { useNavigate } from "react-router-dom";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
+  const { getItemL } = useLocalStorage();
+
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const savedIsLoggedIn = localStorage.getItem("isLoggedIn");
     return savedIsLoggedIn === "true";
@@ -17,6 +19,9 @@ export function UserProvider({ children }) {
   const [showRegister, setShowRegister] = useState(false);
   const [quote, setQuote] = useState([]);
   const [error, setError] = useState(null);
+  const [activeUser, setActiveUser] = useState(
+    () => getItemL("currentUser") ?? {}
+  );
 
   const getQuote = async () => {
     try {
@@ -89,6 +94,7 @@ export function UserProvider({ children }) {
         setShowRegister,
         getQuote,
         quote,
+        activeUser,
       }}
     >
       {children}

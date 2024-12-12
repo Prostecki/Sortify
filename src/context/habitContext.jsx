@@ -8,13 +8,13 @@ import {
 } from "react";
 
 import { useLocalStorage } from "../hooks/useStorage";
+import { useUserContext } from "./userContext";
 
 const HabitContext = createContext();
 
 export function HabitProvider({ children }) {
-  const habitTitleRef = useRef();
-
-  const { getItemL, setItemL } = useLocalStorage();
+  const { activeUser } = useUserContext();
+  const { setItemL, getItemL } = useLocalStorage();
 
   const [habits, setHabits] = useState([]);
   const [priority, setPriority] = useState("");
@@ -25,9 +25,8 @@ export function HabitProvider({ children }) {
   const [trackAmount, setTrackAmount] = useState(false);
   const [trackHabits, setTrackHabits] = useState(false);
   const [showAddHabits, setShowAddHabits] = useState(false);
-  const [activeUser, setActiveUser] = useState(
-    () => getItemL("currentUser") ?? {}
-  );
+
+  const habitTitleRef = useRef();
 
   const allUsers = getItemL("users", []);
 
