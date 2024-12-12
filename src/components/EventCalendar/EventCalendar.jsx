@@ -6,7 +6,7 @@ import { useUserContext } from "../../context/UserContext";
 import { EventCalendarProvider } from "../../context/eventCalendarContext";
 
 export default function EventCalendar() {
-  const { setFilter } = useEventCalendarContext();
+  const { filter, setFilter } = useEventCalendarContext();
   const { user } = useUserContext();
 
   const [tasks, setTasks] = useState(() => {
@@ -23,34 +23,32 @@ export default function EventCalendar() {
   }, [tasks, user]);
 
   return (
-    <EventCalendarProvider>
-      <div className="flex flex-col items-center gap-5 p-6 bg-gray-100 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold text-center text-gray-800">
-          Event Calendar
-        </h1>
+    <div className="flex flex-col items-center gap-5 p-6 bg-gray-100 rounded-lg shadow-md">
+      <h1 className="text-3xl font-bold text-center text-gray-800">
+        Event Calendar
+      </h1>
 
-        {/* Add event */}
-        <EventForm />
+      {/* Add event */}
+      <EventForm />
 
-        {/* Filter buttons */}
-        <div className="mt-4">
-          <button
-            onClick={() => setFilter("upcoming")}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mr-2"
-          >
-            Future events
-          </button>
-          <button
-            onClick={() => setFilter("past")}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-          >
-            Past events
-          </button>
-        </div>
-
-        {/* Event list */}
-        <EventList />
+      {/* Filter buttons */}
+      <div className="mt-4">
+        <button
+          onClick={() => setFilter("upcoming")}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mr-2"
+        >
+          Future events
+        </button>
+        <button
+          onClick={() => setFilter("past")}
+          className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+        >
+          Past events
+        </button>
       </div>
-    </EventCalendarProvider>
+
+      {/* Event list */}
+      <EventList />
+    </div>
   );
 }

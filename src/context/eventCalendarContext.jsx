@@ -9,6 +9,7 @@ export function EventCalendarProvider({ children }) {
   const [end, setEnd] = useState("");
   const [events, setEvents] = useState([]);
   const [filter, setFilter] = useState("upcoming");
+  const [filteredEvents, setFilteredEvents] = useState([]);
 
   const { user } = useUserContext();
 
@@ -60,16 +61,21 @@ export function EventCalendarProvider({ children }) {
     setEnd("");
   };
 
-  const filteredEvents = events.filter((event) => {
-    const eventStart = new Date(event.start);
+  useEffect(() => {
     const now = new Date();
-    if (filter === "upcoming") {
-      return eventStart > now;
-    } else if (filter === "past") {
-      return eventStart <= now;
-    }
-    return true; // Возвращаем все события, если фильтр не установлен
-  });
+    setFilteredEvents(
+      events.filter((event) => {
+        const eventStart = new Date(event.start);
+        if (filter === "upcoming") {
+          return eventStart > now;
+        } else if (filter === "past") {
+          console.log(event);
+          return eventStart <= now;
+        }
+        return true;
+      })
+    );
+  }, [events, filter]);
 
   return (
     <EventCalendarContext.Provider

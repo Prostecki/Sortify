@@ -4,7 +4,6 @@ import { useUserContext } from "../../context/UserContext";
 export default function EventList() {
   const { filteredEvents, deleteEvent } = useEventCalendarContext();
   const { user } = useUserContext();
-  console.log(filteredEvents); // Добавьте это для отладки
 
   return (
     <div className="flex">
