@@ -1,6 +1,7 @@
 import EventList from "./EventList";
 import EventForm from "./EventForm";
 import { useState } from "react";
+import { useUserContext } from "../../context/UserContext";
 import { useEventCalendarContext } from "../../context/eventCalendarContext";
 export default function EventCalendar() {
   const { filter, setFilter } = useEventCalendarContext();
