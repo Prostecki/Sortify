@@ -1,4 +1,7 @@
-export const useAccount = (navigate, setIsLoggedIn) => {
+import { useUserContext } from "../context/UserContext";
+
+export const useAccount = (navigate) => {
+  const { setIsLoggedIn } = useUserContext();
   const handleLogOut = () => {
     console.log("logging out...");
     localStorage.removeItem("currentUser");

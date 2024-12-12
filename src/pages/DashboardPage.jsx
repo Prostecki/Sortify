@@ -1,4 +1,16 @@
+<<<<<<< HEAD:src/pages/DashboardPage.jsx
 // import EventCalendar from "../components/planner/EventCalendar";
+=======
+<<<<<<< Updated upstream:src/pages/Dashboard.jsx
+import { useUserContext } from "../context/UserContext";
+=======
+<<<<<<< HEAD:src/pages/DashboardPage.jsx
+// import EventCalendar from "../components/planner/EventCalendar";
+=======
+import { useUserContext } from "../context/UserContext";
+>>>>>>> d88b17f006a5e28b3f57e0c4d2e806fcde44d65a:src/pages/Dashboard.jsx
+>>>>>>> Stashed changes:src/pages/DashboardPage.jsx
+>>>>>>> 390bf5237a4713838879847c968565702365c5f9:src/pages/Dashboard.jsx
 import Nav from "../layout/Nav";
 
 export default function DashboardPage({ setIsLoggedIn }) {

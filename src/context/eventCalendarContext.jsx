@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import { useState, useRef, useContext, createContext } from "react";
 import EventCalendar from "../components/planner/EventCalendar";
+=======
+import { useState, useRef, useContext, useEffect, createContext } from "react";
+import { useUserContext } from "./UserContext";
+>>>>>>> 390bf5237a4713838879847c968565702365c5f9
 
 const EventCalendarContext = createContext();
 
@@ -9,13 +14,29 @@ export function EventCalendarProvider({ children }) {
   const [end, setEnd] = useState("");
   const [events, setEvents] = useState([]);
   const [filter, setFilter] = useState("upcoming");
+  const [filteredEvents, setFilteredEvents] = useState([]);
+
+  const { user } = useUserContext();
+
+  useEffect(() => {
+    if (user) {
+      const savedEvents = localStorage.getItem(user.id);
+      setEvents(savedEvents ? JSON.parse(savedEvents) : []);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user && events.length > 0) {
+      localStorage.setItem(user.id, JSON.stringify(events));
+    }
+  }, [events, user]);
 
   const addEvent = (event) => {
-    setEvents([...events, event]);
+    setEvents((prevEvents) => [...prevEvents, event]);
   };
 
   const deleteEvent = (id) => {
-    setEvents(events.filter((event) => event.id !== id));
+    setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
   };
 
   const handleSubmit = (e) => {
@@ -25,11 +46,18 @@ export function EventCalendarProvider({ children }) {
       return;
     }
 
+    if (!user) {
+      alert("Please log in..");
+      return;
+    }
+
     const newEvent = {
       id: Date.now(),
       name,
       start,
       end,
+      userName: user.username,
+      userId: user.id,
     };
 
     addEvent(newEvent);
@@ -38,13 +66,21 @@ export function EventCalendarProvider({ children }) {
     setEnd("");
   };
 
-  const filteredEvents = events.filter((event) => {
-    if (filter === "upcoming") {
-      return new Date(event.start) > new Date();
-    } else {
-      return new Date(event.start) <= new Date();
-    }
-  });
+  useEffect(() => {
+    const now = new Date();
+    setFilteredEvents(
+      events.filter((event) => {
+        const eventStart = new Date(event.start);
+        if (filter === "upcoming") {
+          return eventStart > now;
+        } else if (filter === "past") {
+          console.log(event);
+          return eventStart <= now;
+        }
+        return true;
+      })
+    );
+  }, [events, filter]);
 
   return (
     <EventCalendarContext.Provider
@@ -57,9 +93,9 @@ export function EventCalendarProvider({ children }) {
         deleteEvent,
         events,
         filter,
-        addEvent,
-        filteredEvents,
         setFilter,
+        filteredEvents,
+        addEvent,
         setStart,
         setName,
       }}
