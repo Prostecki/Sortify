@@ -1,7 +1,7 @@
-import EventCalendar from "../components/EventCalendar/EventCalendar";
+// import EventCalendar from "../components/planner/EventCalendar";
 import Nav from "../layout/Nav";
 
-export default function Dashboard({ setIsLoggedIn }) {
+export default function DashboardPage({ setIsLoggedIn }) {
   return (
     <>
       <Nav setIsLoggedIn={setIsLoggedIn} />

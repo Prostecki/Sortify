@@ -1,4 +1,4 @@
-import { useHabitContext } from "../../context/habitContext";
+import { useHabitContext } from "../../context/HabitContext";
 import { motion, AnimatePresence } from "motion/react";
 import { RxCross2 } from "react-icons/rx";
 import { RiResetLeftLine } from "react-icons/ri";

@@ -1,4 +1,4 @@
-import { useEventCalendarContext } from "../../context/eventCalendarContext";
+import { useEventCalendarContext } from "../../context/EventCalendarContext";
 export default function EventList() {
   const { events, onDeleteEvent } = useEventCalendarContext();
   return (

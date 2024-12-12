@@ -1,5 +1,5 @@
 import { useState, useRef, useContext, createContext } from "react";
-import EventCalendar from "../components/EventCalendar/EventCalendar";
+import EventCalendar from "../components/planner/EventCalendar";
 
 const EventCalendarContext = createContext();
 

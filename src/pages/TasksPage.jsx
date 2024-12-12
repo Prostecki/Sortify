@@ -1,5 +1,5 @@
 import Nav from "../layout/Nav";
 
-export default function Tasks() {
+export default function TasksPage() {
   return <Nav />;
 }

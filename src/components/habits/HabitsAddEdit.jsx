@@ -1,6 +1,6 @@
 import { MdOutlinePlaylistAdd, MdEditNote } from "react-icons/md";
 
-import { useHabitContext } from "../../context/habitContext";
+import { useHabitContext } from "../../context/HabitContext";
 
 export default function HabitsAddEdit() {
   const { handleShowAddHabits, handleEdit } = useHabitContext();

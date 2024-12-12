@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useEventCalendarContext } from "../../context/eventCalendarContext";
+import { useEventCalendarContext } from "../../context/EventCalendarContext";
 export default function EventForm() {
   const { handleSubmit, name, setName, start, setStart, end, setEnd } =
     useEventCalendarContext();

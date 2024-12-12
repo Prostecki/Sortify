@@ -2,7 +2,7 @@ import Nav from "../layout/Nav";
 import Habits from "../components/habits/Habits";
 import HabitsForm from "../components/habits/HabitsForm";
 import HabitsSettings from "../components/habits/HabitsSettings";
-import { useHabitContext } from "../context/habitContext";
+import { useHabitContext } from "../context/HabitContext";
 import { AnimatePresence } from "motion/react";
 
 export default function HabitsPage() {

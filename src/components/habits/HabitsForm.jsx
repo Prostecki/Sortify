@@ -1,4 +1,4 @@
-import { useHabitContext } from "../../context/habitContext";
+import { useHabitContext } from "../../context/HabitContext";
 
 export default function HabitsForm() {
   const { handlePriority, habitTitleRef, addHabit, handleShowAddHabits } =

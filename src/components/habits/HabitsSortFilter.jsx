@@ -1,4 +1,4 @@
-import { useHabitContext } from "../../context/habitContext";
+import { useHabitContext } from "../../context/HabitContext";
 import { FaSortAmountDownAlt, FaSortAmountUpAlt } from "react-icons/fa";
 
 export default function HabitsSortFilter() {
