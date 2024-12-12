@@ -11,6 +11,7 @@ export function EventCalendarProvider({ children }) {
   const [events, setEvents] = useState([]);
   const [filter, setFilter] = useState("upcoming");
   const [filteredEvents, setFilteredEvents] = useState([]);
+  const [error, setError] = useState("");
 
   const { user } = useUserContext();
 
@@ -38,12 +39,12 @@ export function EventCalendarProvider({ children }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !start || !end) {
-      alert("Fill all fields.");
+      setError("You need to fill all fields");
       return;
     }
 
     if (!user) {
-      alert("Please log in..");
+      setError("Please, Log In...");
       return;
     }
 
@@ -94,6 +95,8 @@ export function EventCalendarProvider({ children }) {
         addEvent,
         setStart,
         setName,
+        error,
+        setError,
       }}
     >
       {children}

@@ -22,7 +22,7 @@ export default function EventCalendar() {
   }, [tasks, user]);
 
   return (
-    <div className="flex flex-col items-center gap-5 p-6 bg-gray-100 rounded-lg shadow-md">
+    <div className="flex flex-col items-center gap-5 p-6 rounded-lg">
       <h1 className="text-3xl font-bold text-center text-gray-800">
         Event Calendar
       </h1>
