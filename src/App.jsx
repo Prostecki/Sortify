@@ -1,21 +1,24 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProfilePage from "./pages/ProfilePage";
-import Dashboard from "./pages/Dashboard";
-import Tasks from "./pages/Tasks";
-import Planner from "./pages/Planner";
-import Habits from "./pages/Habits";
-import Onboarding from "./pages/Onboarding";
+import DashboardPage from "./pages/DashboardPage";
+import TasksPage from "./pages/TasksPage";
+import EventCalendarPage from "./pages/EventCalendarPage";
+import HabitsPage from "./pages/HabitsPage";
+import OnboardingPage from "./pages/OnboardingPage";
 import { useState, useEffect } from "react";
 import "./App.css";
 import { useUserContext } from "./context/UserContext";
 
 function App() {
-  const { isLoggedIn, setIsLoggedIn } = useUserContext();
+  const { isLoggedIn, setIsLoggedIn, user } = useUserContext();
 
   // This effect runs only when `isLoggedIn` changes
   useEffect(() => {
     localStorage.setItem("isLoggedIn", isLoggedIn.toString());
-  }, [isLoggedIn]);
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    }
+  }, [isLoggedIn, user]);
 
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("formData");
@@ -31,7 +34,7 @@ function App() {
             isLoggedIn ? (
               <Navigate to="/dashboard" replace />
             ) : (
-              <Onboarding
+              <OnboardingPage
                 setFormData={setFormData}
                 formData={formData}
                 setIsLoggedIn={setIsLoggedIn}
@@ -44,7 +47,7 @@ function App() {
           path="/dashboard"
           element={
             isLoggedIn ? (
-              <Dashboard setIsLoggedIn={setIsLoggedIn} />
+              <DashboardPage setIsLoggedIn={setIsLoggedIn} />
             ) : (
               <Navigate to="/" replace />
             )
@@ -62,15 +65,17 @@ function App() {
         />
         <Route
           path="/tasks"
-          element={isLoggedIn ? <Tasks /> : <Navigate to="/" replace />}
+          element={isLoggedIn ? <TasksPage /> : <Navigate to="/" replace />}
         />
         <Route
-          path="/planner"
-          element={isLoggedIn ? <Planner /> : <Navigate to="/" replace />}
+          path="/eventcalendar"
+          element={
+            isLoggedIn ? <EventCalendarPage /> : <Navigate to="/" replace />
+          }
         />
         <Route
           path="/habits"
-          element={isLoggedIn ? <Habits /> : <Navigate to="/" replace />}
+          element={isLoggedIn ? <HabitsPage /> : <Navigate to="/" replace />}
         />
       </Routes>
     </>

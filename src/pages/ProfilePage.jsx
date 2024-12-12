@@ -2,11 +2,18 @@ import Nav from "../layout/Nav";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "../hooks/useAccount";
 import { useState, useEffect } from "react";
+import { useUserContext } from "../context/UserContext";
 
 export default function ProfilePage({ setIsLoggedIn }) {
+  const { error, quote, getQuote } = useUserContext();
   const [username, setUsername] = useState(null);
-  // const [quote, setQuote] = useState(null);
-  // const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      getQuote();
+    }, 500);
+  }, []);
+
   const navigate = useNavigate();
 
   const { deleteAccount } = useAccount(navigate, setIsLoggedIn);
@@ -25,52 +32,44 @@ export default function ProfilePage({ setIsLoggedIn }) {
     }
   }, []);
 
-  // useEffect(() => {
-  //   const getQuote = async () => {
-  //     try {
-  //       const response = await fetch("https://api.quotable.io/random", {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       });
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP Error! Status: ${response.status}`);
-  //       }
-  //       const data = await response.json();
-  //       console.log(data.content);
-  //       setQuote(data.content);
-  //     } catch (error) {
-  //       setError(error.message);
-  //     }
-  //   };
-  //   getQuote();
-  // }, []);
-
   return (
     <>
       <Nav />
       <section className="flex flex-col gap-5 items-center h-screen">
-        <h1 className="text-center text-[3rem]"> Profile </h1>
-        <h1 className="text-center text-[3rem]"> Button to go to Dashboard</h1>
-        <h1 className="text-center text-[3rem]"> Fill in any other info</h1>
-        <h1 className="text-center text-[3rem]">Delete & Logout btn</h1>
         <div className="flex flex-col ">
-          <h1 className="text-4xl font-bold">
-            Tjena,{" "}
-            <span className="account-name">
+          <h1 className="text-center text-5xl my-5">
+            Greetings,{" "}
+            <span className="">
               {username ? capitalize(username) : "No user logged in"}
             </span>
           </h1>
-          {/* {error ? (
+          {error ? (
             <p>Error: {error}</p>
           ) : (
-            <p>{quote ? quote : "Loading quote..."}</p>
-          )} */}
+            <>
+              {Array.isArray(quote) && quote.length > 0 ? (
+                quote.map((item, i) => (
+                  <div key={i}>
+                    <blockquote className="italic font-bold text-center border border-slate-400 rounded-lg px-5 py-2 my-5">
+                      The quote of day: {item.quote}
+                    </blockquote>
+                  </div>
+                ))
+              ) : (
+                <div className="flex items-center gap-2 justify-center my-5">
+                  <img
+                    className="w-9 text-center animate-spin"
+                    src="/src/assets/loading.png"
+                  />
+                  <p>Loading..</p>
+                </div>
+              )}
+            </>
+          )}
         </div>
 
         <button
-          className="px-2 border border-black text-black rounded-lg drop-shadow-md bg-sortify cursor-pointer"
+          className="px-5 py-1 text-xl border border-black text-white font-bold rounded-lg drop-shadow-md bg-sortify cursor-pointer hover:scale-105 hover:bg-slate-500 transition-all duration-200"
           onClick={deleteAccount}
         >
           Delete Account

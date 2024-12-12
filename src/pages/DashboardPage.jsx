@@ -1,7 +1,7 @@
-import EventCalendar from "../components/EventCalendar/EventCalendar";
+import { useUserContext } from "../context/UserContext";
 import Nav from "../layout/Nav";
 
-export default function Dashboard({ setIsLoggedIn }) {
+export default function DashboardPage({ setIsLoggedIn }) {
   return (
     <>
       <Nav setIsLoggedIn={setIsLoggedIn} />
@@ -16,7 +16,6 @@ export default function Dashboard({ setIsLoggedIn }) {
       <h1 className="text-center text-[3rem]">
         Overview showing user activity. Minimalistic.
       </h1>
-      <EventCalendar />
     </>
   );
 }
