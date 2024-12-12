@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { useState, useRef, useContext, createContext } from "react";
-import EventCalendar from "../components/planner/EventCalendar";
-=======
 import { useState, useRef, useContext, useEffect, createContext } from "react";
 import { useUserContext } from "./UserContext";
->>>>>>> d88b17f006a5e28b3f57e0c4d2e806fcde44d65a
 
 const EventCalendarContext = createContext();
 
