@@ -7,10 +7,16 @@ import TodoList from "../components/todos/TodoList";
 
 export default function TasksPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const [tasks, setTasks] = useState([]);
 
   function showForm() {
     setIsVisible(!isVisible);
   }
+
+  const addTask = (newTask) => {
+    setTasks([...tasks, newTask]);
+    setIsVisible(false);
+  };
 
   return (
     <>
@@ -29,9 +35,9 @@ export default function TasksPage() {
             <IoMdAddCircle className="ml-1" size={21} />
           </button>
         ) : (
-          <TodoForm showForm={showForm} />
+          <TodoForm showForm={showForm} addTask={addTask} />
         )}
-        {!isVisible ? <TodoList /> : ""}
+        <TodoList tasks={tasks} />
       </div>
     </>
   );

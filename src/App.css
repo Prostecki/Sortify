@@ -348,3 +348,21 @@
 .hidetaskbtn:hover {
   background-color: rgb(132, 189, 255);
 }
+
+.all-tasks-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 55vh;
+  margin-top: 1rem;
+  background-color: rgb(255, 255, 255);
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
+    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+  padding: 2rem;
+}
+
+.each-task-container {
+  border: 1px solid black;
+  padding: 5px;
+}
