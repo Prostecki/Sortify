@@ -57,6 +57,13 @@
   gap: 20px;
 }
 
+.nav-center-position {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .logoutbtn {
   border: 0.8px solid rgb(240, 240, 240);
   color: rgb(226, 226, 226);
