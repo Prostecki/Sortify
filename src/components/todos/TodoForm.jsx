@@ -115,7 +115,6 @@ export default function TodoForm({ showForm, addTask }) {
           <BiHide size={25} color="white" />
         </button>
       </form>
-      <TodoList tasks={tasks} />
     </>
   );
 }
