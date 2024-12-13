@@ -1,56 +1,79 @@
-import { useHabitContext } from "../../context/HabitContext";
+import { useHabitContext } from "../../context/habitContext";
+import { useThemeContext } from "../../context/ThemeContext";
 import { FaSortAmountDownAlt, FaSortAmountUpAlt } from "react-icons/fa";
 
-export default function HabitsSortFilter() {
-  const {
-    reverseHabits,
-    handleSort,
-    sort,
-    sortAscending,
-    filter,
-    handleFilter,
-  } = useHabitContext();
+export function HabitsSort() {
+  const { handleSort, sort } = useHabitContext();
+  const { darkMode } = useThemeContext();
   return (
-    <>
-      <section className="mr-[-40px] text-[30px] flex">
-        <figure
-          onClick={() => reverseHabits()}
-          className="flex justify-center items-center bg-habitWhite shadow-habitShadow rounded-full w-[55px] h-[55px] cursor-pointer"
-        >
-          {sortAscending ? <FaSortAmountDownAlt /> : <FaSortAmountUpAlt />}
-        </figure>
-        <section className="ml-[25px] bg-habitWhite shadow-habitShadow rounded-[6px] w-[180px] h-[55px] flex justify-center">
-          <select
-            className="bg-habitWhite w-[140px] text-center cursor-pointer"
-            defaultValue=""
-            onChange={handleSort}
-            value={sort}
-          >
-            <option value="" disabled>
-              Sort
-            </option>
-            <option value="date">Date</option>
-            <option value="priority">Priority</option>
-            <option value="amount">Amount</option>
-          </select>
-        </section>
-        <section className="ml-[25px] bg-habitWhite shadow-habitShadow rounded-[6px] w-[180px] h-[55px] flex justify-center">
-          <select
-            className="bg-habitWhite w-[140px] text-center cursor-pointer"
-            defaultValue=""
-            onChange={handleFilter}
-            value={filter}
-          >
-            <option value="" disabled>
-              Filter
-            </option>
-            <option value="all">All</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </select>
-        </section>
-      </section>
-    </>
+    <section
+      className={`${
+        darkMode ? "bg-[#141414] text-white" : "bg-habitWhite"
+      } w-[180px] h-[55px] flex justify-center text-[2rem]  shadow-habitShadow rounded-[6px]  `}
+    >
+      <select
+        className={`${
+          darkMode ? "bg-[#141414] " : "bg-habitWhite"
+        } w-[140px] text-center cursor-pointer focus:outline-none`}
+        defaultValue=""
+        onChange={handleSort}
+        value={sort}
+      >
+        <option value="" disabled>
+          Sort
+        </option>
+        <option value="date">Date</option>
+        <option value="priority">Priority</option>
+        <option value="amount">Amount</option>
+      </select>
+    </section>
+  );
+}
+
+export function HabitsSortDirection() {
+  const { sortAscending, reverseHabits } = useHabitContext();
+  const { darkMode } = useThemeContext();
+  return (
+    <figure
+      onClick={() => reverseHabits()}
+      className={`${
+        darkMode ? "bg-[#141414] text-white" : "bg-habitWhite"
+      } flex justify-center items-center  shadow-habitShadow rounded-full w-[55px] h-[55px] cursor-pointer`}
+    >
+      {sortAscending ? (
+        <FaSortAmountDownAlt size={30} />
+      ) : (
+        <FaSortAmountUpAlt size={30} />
+      )}
+    </figure>
+  );
+}
+
+export function HabitsFilter() {
+  const { handleFilter, filter } = useHabitContext();
+  const { darkMode } = useThemeContext();
+  return (
+    <section
+      className={`${
+        darkMode ? "bg-[#141414] text-white" : "bg-habitWhite"
+      } w-[180px] h-[55px] flex justify-center text-[2rem] shadow-habitShadow rounded-[6px]  `}
+    >
+      <select
+        className={`${
+          darkMode ? "bg-[#141414] " : "bg-habitWhite"
+        } w-[140px] text-center cursor-pointer focus:outline-none`}
+        defaultValue=""
+        onChange={handleFilter}
+        value={filter}
+      >
+        <option value="" disabled>
+          Filter
+        </option>
+        <option value="all">All</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </section>
   );
 }

@@ -129,6 +129,7 @@ export function HabitProvider({ children }) {
   const handleSort = (e) => setSort(e.target.value);
 
   const reverseHabits = () => {
+    setHabits((prevHabits) => [...prevHabits].reverse());
     setSortAscending((prev) => !prev);
   };
 
@@ -161,8 +162,8 @@ export function HabitProvider({ children }) {
       updatedHabits = updatedHabits.filter((habit) => habit.priority === "Low");
     }
 
-    setHabits(sortAscending ? updatedHabits.reverse() : updatedHabits);
-  }, [sort, filter, trackAmount, trackHabits, sortAscending]);
+    setHabits(updatedHabits);
+  }, [sort, filter, trackHabits, trackAmount]);
 
   const handleEdit = () => {
     setEdit((prev) => !prev);
