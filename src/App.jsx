@@ -67,6 +67,7 @@ function App() {
           path="/tasks"
           element={isLoggedIn ? <TasksPage /> : <Navigate to="/" replace />}
         />
+
         <Route
           path="/eventcalendar"
           element={

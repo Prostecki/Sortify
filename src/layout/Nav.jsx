@@ -14,6 +14,11 @@ export default function Nav({ setIsLoggedIn }) {
         <Link to="/dashboard">
           <Logo />
         </Link>
+        <div className="nav-center-position">
+          <Link to="/eventcalendar"> Events </Link>
+          <Link to="/habits"> Habits</Link>
+          <Link to="/tasks"> Tasks</Link>
+        </div>
         <div className="nav-right-position">
           <button onClick={handleLogOut} className="logoutbtn">
             <MdLogout size={17} className="mr-1" /> Logout

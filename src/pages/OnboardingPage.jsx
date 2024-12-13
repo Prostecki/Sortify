@@ -2,8 +2,7 @@ import Login from "../components/auth/Login";
 import { SiSimpleanalytics } from "react-icons/si";
 import { IoHeartCircleSharp } from "react-icons/io5";
 import { FaHandshakeSimple } from "react-icons/fa6";
-import { FaStar } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import { FaStar, FaGithub } from "react-icons/fa";
 
 export default function OnboardingPage({ setIsLoggedIn }) {
   return (
