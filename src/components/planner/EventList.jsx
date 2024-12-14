@@ -36,7 +36,7 @@ export default function EventList() {
 
   return (
     <section className="flex flex-col ml-5 max-sm:ml-5">
-      <ul className="w-full flex flex-col gap-6">
+      <ul className="w-max flex flex-col gap-6">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
             <li

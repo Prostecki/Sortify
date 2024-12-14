@@ -8,7 +8,7 @@ export default function EventForm() {
   const { user } = useUserContext();
 
   return (
-    <div className="bg-eventsGrey h-screen max-sm:h-full p-4">
+    <div className="bg-eventsGrey h-screen max-sm:w-screen max-sm:h-full p-4">
       {user ? (
         <form
           onSubmit={handleSubmit}
