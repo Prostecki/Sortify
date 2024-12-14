@@ -2,25 +2,18 @@ import { useUserContext } from "../../context/UserContext";
 import { useEventCalendarContext } from "../../context/EventCalendarContext";
 import { div } from "motion/react-client";
 export default function EventForm() {
-  const {
-    handleSubmit,
-    name,
-    start,
-    end,
-    setName,
-    setStart,
-    setEnd,
-    deleteEvent,
-    filteredEvents,
-    error,
-  } = useEventCalendarContext();
+  const { handleSubmit, name, start, end, setName, setStart, setEnd, error } =
+    useEventCalendarContext();
 
   const { user } = useUserContext();
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
+    <div className="bg-eventsGrey h-screen max-sm:w-screen max-sm:h-full p-4">
       {user ? (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 drop-shadow-xl"
+        >
           <h2 className="text-2xl font-bold text-gray-800">Add a New Event</h2>
 
           {/* Event Name */}
