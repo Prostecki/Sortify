@@ -49,27 +49,27 @@ export default function EventList() {
             >
               {editingEventId === event.id ? (
                 <div className="flex flex-col justify-evenly items-center sm:w-full relative sm:flex-row max-sm:items-center">
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-5 max-sm:flex-wrap max-sm:w-full">
                     <input
                       type="text"
                       value={newName}
                       onChange={(e) => setNewName(e.target.value)}
-                      className="border px-2 py-1 rounded w-max sm:w-auto"
+                      className="border px-2 py-1 rounded w-full sm:w-auto"
                     />
                     <input
                       type="datetime-local"
                       value={newStart}
                       onChange={(e) => setNewStart(e.target.value)}
-                      className="border px-2 py-1 rounded w-[90%] sm:w-auto"
+                      className="border px-2 py-1 rounded w-full sm:w-auto"
                     />
                     <input
                       type="datetime-local"
                       value={newEnd}
                       onChange={(e) => setNewEnd(e.target.value)}
-                      className="border px-2 py-1 rounded w-[90%] sm:w-auto"
+                      className="border px-2 py-1 rounded w-full sm:w-auto"
                     />
                   </div>
-                  <div className="flex flex-col gap-5 mt-2 sm:mt-0">
+                  <div className="flex flex-col gap-5 mt-2 max-sm:flex-row max-sm:mt-5">
                     <button
                       onClick={() => handleSave(event.id)}
                       className="px-4 py-2 bg-green-500 w-[8rem] text-white rounded hover:bg-green-600"

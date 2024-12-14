@@ -21,8 +21,8 @@ export default function EventCalendar() {
   }, [tasks, user]);
 
   return (
-    <section className="flex flex-col sm:flex-row">
-      <div className="flex flex-col sm:flex sm:justify-center bg-eventsGrey relative">
+    <section className="flex flex-col items-center sm:flex-row">
+      <div className="flex flex-col w-full sm:flex sm:justify-center bg-eventsGrey relative">
         <h1 className="text-3xl font-bold text-center text-gray-800 mt-5">
           Event Calendar
         </h1>
