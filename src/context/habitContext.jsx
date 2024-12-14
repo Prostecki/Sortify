@@ -173,7 +173,7 @@ export function HabitProvider({ children }) {
   };
 
   useEffect(() => {
-    console.log(showAddHabits);
+    // console.log(showAddHabits);
   }, [showAddHabits]);
 
   return (

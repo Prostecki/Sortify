@@ -5,7 +5,6 @@ export default function EventCalendarPage() {
   return (
     <>
       <Nav />
-
       <EventCalendar />
     </>
   );
