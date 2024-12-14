@@ -8,11 +8,11 @@ export default function EventForm() {
   const { user } = useUserContext();
 
   return (
-    <div className="bg-eventsGrey h-screen max-sm:h-full max-sm:w-screen p-4">
+    <div className="bg-eventsGrey h-screen max-sm:h-full p-4">
       {user ? (
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 drop-shadow-lg"
+          className="flex flex-col gap-4 drop-shadow-xl"
         >
           <h2 className="text-2xl font-bold text-gray-800">Add a New Event</h2>
 

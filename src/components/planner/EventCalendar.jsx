@@ -26,6 +26,7 @@ export default function EventCalendar() {
         <h1 className="text-3xl font-bold text-center text-gray-800 mt-5">
           Event Calendar
         </h1>
+        <hr className="h-[2px] text-center w-[90%] my-2 m-auto bg-slate-500" />
         <EventForm />
       </div>
       <div className="flex flex-col">

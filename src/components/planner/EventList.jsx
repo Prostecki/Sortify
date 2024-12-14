@@ -48,35 +48,37 @@ export default function EventList() {
               key={event.id}
             >
               {editingEventId === event.id ? (
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <input
-                    type="text"
-                    value={newName}
-                    onChange={(e) => setNewName(e.target.value)}
-                    className="border px-2 py-1 rounded w-full sm:w-auto"
-                  />
-                  <input
-                    type="datetime-local"
-                    value={newStart}
-                    onChange={(e) => setNewStart(e.target.value)}
-                    className="border px-2 py-1 rounded w-full sm:w-auto"
-                  />
-                  <input
-                    type="datetime-local"
-                    value={newEnd}
-                    onChange={(e) => setNewEnd(e.target.value)}
-                    className="border px-2 py-1 rounded w-full sm:w-auto"
-                  />
-                  <div className="flex gap-2 mt-2 sm:mt-0">
+                <div className="flex flex-col justify-evenly items-center sm:w-full relative sm:flex-row max-sm:items-center">
+                  <div className="flex flex-col gap-5">
+                    <input
+                      type="text"
+                      value={newName}
+                      onChange={(e) => setNewName(e.target.value)}
+                      className="border px-2 py-1 rounded w-max sm:w-auto"
+                    />
+                    <input
+                      type="datetime-local"
+                      value={newStart}
+                      onChange={(e) => setNewStart(e.target.value)}
+                      className="border px-2 py-1 rounded w-[90%] sm:w-auto"
+                    />
+                    <input
+                      type="datetime-local"
+                      value={newEnd}
+                      onChange={(e) => setNewEnd(e.target.value)}
+                      className="border px-2 py-1 rounded w-[90%] sm:w-auto"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-5 mt-2 sm:mt-0">
                     <button
                       onClick={() => handleSave(event.id)}
-                      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                      className="px-4 py-2 bg-green-500 w-[8rem] text-white rounded hover:bg-green-600"
                     >
                       Save
                     </button>
                     <button
                       onClick={() => setEditingEventId(null)}
-                      className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+                      className="px-4 py-2 bg-gray-500 w-[8rem] text-white rounded hover:bg-gray-600"
                     >
                       Cancel
                     </button>
