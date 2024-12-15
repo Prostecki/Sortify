@@ -10,6 +10,9 @@ export default {
       },
       boxShadow: {
         habitShadow: "0 2px 5px rgba(0,0,0, 0.3)",
+        priorityLow: "0 0 20px rgba(46, 183, 18, 0.7)",
+        priorityMedium: "0 0 20px rgba(237, 157, 78, 0.7)",
+        priorityHigh: "0 0 20px rgba(227,95,83, 0.7)",
       },
     },
   },

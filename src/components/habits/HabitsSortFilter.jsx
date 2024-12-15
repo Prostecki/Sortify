@@ -8,24 +8,30 @@ export function HabitsSort() {
   return (
     <section
       className={`${
-        darkMode ? "bg-[#141414] text-white" : "bg-habitWhite"
-      } w-[180px] h-[55px] flex justify-center text-[2rem]  shadow-habitShadow rounded-[6px]  `}
+        darkMode ? "bg-[rgb(20,20,20)] text-white" : "bg-habitWhite"
+      } w-[210px] h-[55px] flex justify-center text-[2rem] cursor-pointer  shadow-habitShadow rounded-[6px]  `}
     >
-      <select
-        className={`${
-          darkMode ? "bg-[#141414] " : "bg-habitWhite"
-        } w-[140px] text-center cursor-pointer focus:outline-none`}
-        defaultValue=""
-        onChange={handleSort}
-        value={sort}
-      >
-        <option value="" disabled>
-          Sort
-        </option>
-        <option value="date">Date</option>
-        <option value="priority">Priority</option>
-        <option value="amount">Amount</option>
-      </select>
+      <section className="flex justify-center items-center mr-[5px]">
+        <HabitsSortDirection />
+      </section>
+
+      <section className="flex ">
+        <select
+          className={`${
+            darkMode ? "bg-[rgb(20,20,20)] " : "bg-habitWhite"
+          } w-[140px] text-center cursor-pointer focus:outline-none`}
+          defaultValue=""
+          onChange={handleSort}
+          value={sort}
+        >
+          <option value="" disabled>
+            Sort
+          </option>
+          <option value="date">Date</option>
+          <option value="priority">Priority</option>
+          <option value="amount">Amount</option>
+        </select>
+      </section>
     </section>
   );
 }
@@ -38,7 +44,7 @@ export function HabitsSortDirection() {
       onClick={() => reverseHabits()}
       className={`${
         darkMode ? "bg-[#141414] text-white" : "bg-habitWhite"
-      } flex justify-center items-center  shadow-habitShadow rounded-full w-[55px] h-[55px] cursor-pointer`}
+      } flex justify-center items-center my-auto   shadow-habitShadow rounded-full w-[45px] h-[45px]  cursor-pointer`}
     >
       {sortAscending ? (
         <FaSortAmountDownAlt size={30} />
@@ -55,12 +61,12 @@ export function HabitsFilter() {
   return (
     <section
       className={`${
-        darkMode ? "bg-[#141414] text-white" : "bg-habitWhite"
-      } w-[180px] h-[55px] flex justify-center text-[2rem] shadow-habitShadow rounded-[6px]  `}
+        darkMode ? "bg-[rgb(20,20,20)] text-white" : "bg-habitWhite"
+      } w-[180px] h-[55px] flex justify-center text-[2rem] shadow-habitShadow rounded-[6px] cursor-pointer `}
     >
       <select
         className={`${
-          darkMode ? "bg-[#141414] " : "bg-habitWhite"
+          darkMode ? "bg-[rgb(20,20,20)] " : "bg-habitWhite"
         } w-[140px] text-center cursor-pointer focus:outline-none`}
         defaultValue=""
         onChange={handleFilter}

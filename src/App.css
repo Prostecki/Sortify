@@ -366,3 +366,15 @@
   border: 1px solid black;
   padding: 5px;
 }
+
+.habit-priority {
+  transition: 0.2s;
+}
+
+.habit-priority:hover {
+  transform: scale(1.05);
+}
+
+.peer-checked:shadow-high {
+  box-shadow: 0 0 100px rgba(255, 0, 0, 1);
+}

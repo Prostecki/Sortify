@@ -46,11 +46,20 @@ export default function Habits() {
                 <section className="flex ml-[50px] items-end h-full w-full my-1">
                   <h2 className="flex text-[20px]">
                     Completed&nbsp;&nbsp;&nbsp;
-                    <BiMinus onClick={() => handleAmount(index, "decrement")} />
-                    <span onClick={() => handleAmount(index, "reset")}>
+                    <BiMinus
+                      onClick={() => handleAmount(index, "decrement")}
+                      className="cursor-pointer"
+                    />
+                    <span
+                      onClick={() => handleAmount(index, "reset")}
+                      className="cursor-pointer"
+                    >
                       {h.amount}
                     </span>
-                    <BiPlus onClick={() => handleAmount(index, "increment")} />
+                    <BiPlus
+                      onClick={() => handleAmount(index, "increment")}
+                      className="cursor-pointer"
+                    />
                   </h2>
                 </section>
                 <hr
@@ -68,19 +77,16 @@ export default function Habits() {
               <AnimatePresence>
                 {edit && (
                   <motion.figure
+                    onClick={() => deleteHabit(index)}
                     initial={{ zIndex: -20, y: -40, scale: 0.5, opacity: 1 }}
                     animate={{ zIndex: 1, y: 0, scale: 1 }}
                     exit={{ scale: 0.5, opacity: 0, y: -40 }}
                     style={{ color: "rgba(0, 0, 0, 0.9)" }}
                     className={`${
                       darkMode ? "bg-[rgb(20,20,20)]" : "bg-habitWhite"
-                    } w-[50px] h-[25px] mt-[10px] flex justify-center  shadow-habitShadow rounded-[4px]`}
+                    } w-[50px] h-[25px] mt-[10px] flex justify-center cursor-pointer  shadow-habitShadow rounded-[4px]`}
                   >
-                    <IoMdClose
-                      color={darkMode && "white"}
-                      onClick={() => deleteHabit(index)}
-                      size={25}
-                    />
+                    <IoMdClose color={darkMode && "white"} size={25} />
                   </motion.figure>
                 )}
               </AnimatePresence>

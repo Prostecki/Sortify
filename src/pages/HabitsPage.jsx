@@ -15,7 +15,7 @@ import { AnimatePresence } from "motion/react";
 import { CgDarkMode } from "react-icons/cg";
 
 export default function HabitsPage() {
-  const { showAddHabits } = useHabitContext();
+  const { showAddHabits, habits } = useHabitContext();
   const { handleDarkMode, darkMode } = useThemeContext();
   return (
     <>
@@ -24,7 +24,7 @@ export default function HabitsPage() {
         <h1
           className={`${
             darkMode && "text-white"
-          } text-[3rem] text-center font-[700] mt-[40px]`}
+          } w-fit border-b-4 mx-auto border-[#ffdc65]  text-[3rem] text-center font-[700] mt-[40px]`}
         >
           Habits
         </h1>
@@ -40,15 +40,26 @@ export default function HabitsPage() {
             <HabitsEdit key="habits-edit" />
           </section>
           <section className="flex flex-wrap gap-[20px] mx-10">
-            <HabitsSortDirection key="habits-sort-direction" />
             <HabitsSort key="habits-sort" />
             <HabitsFilter key="habits-filter" />
           </section>
         </section>
         <section className="flex flex-wrap max-w-[1150px] mx-auto gap-[50px] my-[100px]">
-          <Habits key="habits" />
+          {habits.length > 0 ? (
+            <Habits key="habits" />
+          ) : (
+            <p
+              className={`${
+                darkMode && "text-white"
+              } text-[20px] mx-auto mt-[-50px]`}
+            >
+              You have no habbits, add one by clicking new habit.
+            </p>
+          )}
         </section>
-        {showAddHabits && <HabitsForm key="habits-form" />}
+        <AnimatePresence>
+          {showAddHabits && <HabitsForm key="habits-form" />}
+        </AnimatePresence>
       </AnimatePresence>
     </>
   );

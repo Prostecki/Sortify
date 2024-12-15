@@ -72,6 +72,7 @@ export function HabitProvider({ children }) {
       habitTitleRef.current.value = "";
 
       setTrackHabits((prev) => !prev);
+      setShowAddHabits(false);
     } else {
       alert("Please enter a title and choose a desired priority");
     }
