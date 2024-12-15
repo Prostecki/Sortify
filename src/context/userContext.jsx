@@ -116,7 +116,6 @@ export function UserProvider({ children }) {
         getQuote,
         quote,
         activeUser,
-        activeUser,
         user,
         setUser,
         events,

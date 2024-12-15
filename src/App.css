@@ -351,20 +351,42 @@
 
 .all-tasks-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 1.3rem;
   width: 100%;
-  min-height: 55vh;
   margin-top: 1rem;
   background-color: rgb(255, 255, 255);
-  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
-    drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
   padding: 2rem;
 }
 
 .each-task-container {
-  border: 1px solid black;
-  padding: 5px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr 0.3fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Detta med white-space är PROMPT. Hitta ingen annan lösning. Vet inte vad > div gör riktigt heller.Det får duga tillsvidare */
+
+.each-task-container > div {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.each-task-container:hover {
+  background-color: rgb(133, 62, 244);
+  color: white;
+  transition: 0.3s;
+  transform: scale(1.02);
+}
+
+.specific-task {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .habit-priority {

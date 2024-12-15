@@ -5,19 +5,23 @@ import { AiOutlinePlus, AiOutlineClockCircle } from "react-icons/ai";
 import { BsCalendarCheck } from "react-icons/bs";
 import { BiHide } from "react-icons/bi";
 import { useState } from "react";
-import TodoList from "./TodoList";
 
-export default function TodoForm({ showForm, addTask }) {
+export default function TodoForm({ showForm, updatedTasks }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [deadline, setDeadline] = useState("");
   const [estimation, setEstimation] = useState("");
-  const [tasks, setTasks] = useState([]);
 
-  function addTodo(e) {
+  function addTask(e) {
     e.preventDefault();
-    addTask({ title, description, category, deadline, estimation });
+    updatedTasks({
+      title,
+      description,
+      category,
+      deadline,
+      estimation,
+    });
     setTitle("");
     setDescription("");
     setCategory("");
@@ -27,7 +31,7 @@ export default function TodoForm({ showForm, addTask }) {
 
   return (
     <>
-      <form onSubmit={addTodo} className="all-task-inputs">
+      <form onSubmit={addTask} className="all-task-inputs">
         <div className="flex items-center">
           <SiTask size={25} color="gray" className="mr-2 drop-shadow-md" />
           <input
@@ -99,7 +103,7 @@ export default function TodoForm({ showForm, addTask }) {
               type="number"
               name="estimation"
               min="1"
-              max="10000"
+              max="1440"
               placeholder="Enter minutes"
               className="minutes-input"
               required

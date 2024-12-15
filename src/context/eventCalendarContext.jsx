@@ -19,6 +19,8 @@ export function EventCalendarProvider({ children }) {
     if (user) {
       const savedEvents = localStorage.getItem(user.id);
       setEvents(savedEvents ? JSON.parse(savedEvents) : []);
+      const parsedEvents = savedEvents ? JSON.parse(savedEvents) : [];
+      setEvents(parsedEvents.filter((event) => event && event.id));
     }
   }, [user]);
 
@@ -29,7 +31,11 @@ export function EventCalendarProvider({ children }) {
   }, [events, user]);
 
   const addEvent = (event) => {
-    setEvents((prevEvents) => [...prevEvents, event]);
+    setEvents((prevEvents) => {
+      const updatedEvents = [...prevEvents, event];
+      updatedEvents.sort((a, b) => new Date(a.start) - new Date(b.start));
+      return updatedEvents;
+    });
   };
 
   const deleteEvent = (id) => {
@@ -66,18 +72,27 @@ export function EventCalendarProvider({ children }) {
   useEffect(() => {
     const now = new Date();
     setFilteredEvents(
-      events.filter((event) => {
-        const eventStart = new Date(event.start);
-        if (filter === "upcoming") {
-          return eventStart > now;
-        } else if (filter === "past") {
-          console.log(event);
-          return eventStart <= now;
-        }
-        return true;
-      })
+      events
+        .filter((event) => event?.start)
+        .filter((event) => {
+          if (!event || !event.start) return false;
+          const eventStart = new Date(event.start);
+          return filter === "upcoming"
+            ? eventStart > now
+            : filter === "past"
+            ? eventStart <= now
+            : true;
+        })
     );
   }, [events, filter]);
+
+  const updateEvents = (id, updatedFields) => {
+    setEvents((prevEvents) =>
+      prevEvents.map((event) =>
+        event.id === id ? { ...event, ...updatedFields } : event
+      )
+    );
+  };
 
   return (
     <EventCalendarContext.Provider
@@ -93,6 +108,7 @@ export function EventCalendarProvider({ children }) {
         setFilter,
         filteredEvents,
         addEvent,
+        updateEvents,
         setStart,
         setName,
         error,
