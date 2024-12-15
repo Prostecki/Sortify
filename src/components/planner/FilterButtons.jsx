@@ -2,16 +2,16 @@ import { useEventCalendarContext } from "../../context/EventCalendarContext";
 export default function FilterButtons() {
   const { setFilter } = useEventCalendarContext();
   return (
-    <div className="my-5 flex max-sm:flex-row flex-row max-w-[25rem] gap-5 ml-5 justify-center">
+    <div className="event-filter-buttons-container">
       <button
         onClick={() => setFilter("upcoming")}
-        className="w-[10rem] px-4 py-2 bg-eventsYellow text-black rounded hover:bg-blue-600 mr-2"
+        className="event-filter-future-button"
       >
         Future events
       </button>
       <button
         onClick={() => setFilter("past")}
-        className="w-[10rem] px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
+        className="event-filter-past-button"
       >
         Past events
       </button>

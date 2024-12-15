@@ -35,50 +35,50 @@ export default function EventList() {
   };
 
   return (
-    <section className="flex flex-col ml-5 max-sm:ml-5">
-      <ul className="w-max flex flex-col gap-6">
+    <section className="event-list-container">
+      <ul className="event-list-elements-container">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
             <li
-              className={`border drop-shadow-md p-5 rounded-xl ${
+              className={`event-list-element ${
                 new Date(event.start) < new Date()
                   ? "text-gray-500"
                   : "text-black"
-              } bg-white transition-all sm:shadow-lg`}
+              } `}
               key={event.id}
             >
               {editingEventId === event.id ? (
-                <div className="flex flex-col justify-evenly items-center sm:w-full relative sm:flex-row max-sm:items-center">
-                  <div className="flex flex-col gap-5 max-sm:flex-wrap max-sm:w-full">
+                <div className="event-list-editing-container">
+                  <div className="event-list-editing-inputs-container">
                     <input
                       type="text"
                       value={newName}
                       onChange={(e) => setNewName(e.target.value)}
-                      className="border px-2 py-1 rounded w-full sm:w-auto"
+                      className="editing-input"
                     />
                     <input
                       type="datetime-local"
                       value={newStart}
                       onChange={(e) => setNewStart(e.target.value)}
-                      className="border px-2 py-1 rounded w-full sm:w-auto"
+                      className="editing-input"
                     />
                     <input
                       type="datetime-local"
                       value={newEnd}
                       onChange={(e) => setNewEnd(e.target.value)}
-                      className="border px-2 py-1 rounded w-full sm:w-auto"
+                      className="editing-input"
                     />
                   </div>
-                  <div className="flex flex-col gap-5 mt-2 max-sm:flex-row max-sm:mt-5">
+                  <div className="event-list-editing-buttons-container">
                     <button
                       onClick={() => handleSave(event.id)}
-                      className="px-4 py-2 bg-green-500 w-[8rem] text-white rounded hover:bg-green-600"
+                      className="editing-button bg-green-500 hover:bg-green-600"
                     >
                       Save
                     </button>
                     <button
                       onClick={() => setEditingEventId(null)}
-                      className="px-4 py-2 bg-gray-500 w-[8rem] text-white rounded hover:bg-gray-600"
+                      className="editing-button bg-gray-500 hover:bg-gray-600"
                     >
                       Cancel
                     </button>
@@ -88,23 +88,23 @@ export default function EventList() {
                 <>
                   <h3
                     onClick={() => handleEdit(event)}
-                    className="font-semibold cursor-pointer mb-2 text-lg sm:text-xl p-1 text-start hover:bg-eventsBlue hover:text-white rounded-lg"
+                    className="event-list-name"
                   >
                     {event.name}
                   </h3>
-                  <p className="text-sm sm:text-base">
+                  <p className="event-list-date">
                     Start: {new Date(event.start).toLocaleString()} - End:{" "}
                     {new Date(event.end).toLocaleString()}
                   </p>
                   <div>
-                    <p className="text-sm text-gray-600">
+                    <p className="event-list-added-by">
                       Added by:{" "}
                       {event.userId === user?.id ? user?.username : "Unknown"}
                     </p>
                   </div>
                   <button
                     onClick={() => deleteEvent(event.id)}
-                    className="mt-2 px-4 py-2 bg-eventsRed text-white rounded hover:bg-red-600"
+                    className="event-list-delete-button"
                   >
                     Delete
                   </button>
@@ -113,7 +113,7 @@ export default function EventList() {
             </li>
           ))
         ) : (
-          <p className="text-gray-500 text-center">
+          <p className="event-list-noevents-message">
             No events found for the selected filter.
           </p>
         )}
