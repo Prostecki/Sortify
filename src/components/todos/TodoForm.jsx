@@ -16,6 +16,8 @@ export default function TodoForm({ showForm, updatedTasks }) {
   function addTask(e) {
     e.preventDefault();
     updatedTasks({
+      id: Date.now(),
+      status: false,
       title,
       description,
       category,
