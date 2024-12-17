@@ -65,7 +65,6 @@ export default function TodoForm({ showForm, updatedTasks }) {
         <select
           className="text-center uppercase font-semibold bg-gray-100 p-2 cursor-pointer drop-shadow-sm"
           name="category"
-          id="categories"
           required
           value={category}
           onChange={(e) => setCategory(e.target.value)}

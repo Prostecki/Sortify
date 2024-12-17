@@ -18,6 +18,20 @@ export default function TasksPage() {
     setIsVisible(false);
   };
 
+  const statusCheck = (id) => {
+    const updatedTasks = tasks.map((task) =>
+      task.id === id ? { ...task, status: !task.status } : task
+    );
+    setTasks(updatedTasks);
+    setItemL("tasks", updatedTasks);
+  };
+
+  const deleteTask = (id) => {
+    const allTasks = tasks.filter((task) => task.id !== id);
+    setTasks(allTasks);
+    setItemL("tasks", allTasks);
+  };
+
   function showForm() {
     setIsVisible(!isVisible);
   }
@@ -41,7 +55,7 @@ export default function TasksPage() {
         ) : (
           <TodoForm showForm={showForm} updatedTasks={updatedTasks} />
         )}
-        <TodoList tasks={tasks} />
+        <TodoList tasks={tasks} status={statusCheck} deleteTask={deleteTask} />
       </div>
     </>
   );
