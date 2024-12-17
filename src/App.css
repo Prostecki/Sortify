@@ -385,13 +385,6 @@
   }
 }
 
-/* Detta med white-space är PROMPT. Hitta ingen annan lösning. Vet inte vad > div gör riktigt heller. Det får duga tillsvidare */
-
-.each-task-container > div {
-  white-space: nowrap;
-  overflow: hidden;
-}
-
 .each-task-container:hover {
   color: white;
   transition: 0.3s;
