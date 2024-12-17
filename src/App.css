@@ -361,11 +361,28 @@
 
 .each-task-container {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr 2fr 0.3fr 0.3fr;
+  grid-template-columns: 3fr 3fr 3fr 2fr 0.3fr 0.3fr;
   align-items: center;
   gap: 2rem;
   padding: 1.5rem;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (max-width: 1000px) {
+  .each-task-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 2rem;
+  }
+
+  .each-task-container h1 {
+    text-align: center;
+    font-weight: bold;
+    color: rgb(231, 231, 231);
+    font-size: 1.4rem;
+    filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.04))
+      drop-shadow(0 4px 3px rgba(0, 0, 0, 0.1));
+  }
 }
 
 /* Detta med white-space är PROMPT. Hitta ingen annan lösning. Vet inte vad > div gör riktigt heller. Det får duga tillsvidare */
@@ -379,13 +396,6 @@
   color: white;
   transition: 0.3s;
   transform: scale(1.02);
-}
-
-.specific-task {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
 }
 
 .completed {

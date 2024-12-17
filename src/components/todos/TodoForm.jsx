@@ -42,6 +42,7 @@ export default function TodoForm({ showForm, updatedTasks }) {
             className="task-input"
             required
             placeholder="Enter your task"
+            maxLength={20}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
