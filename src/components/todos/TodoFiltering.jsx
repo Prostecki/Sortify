@@ -23,7 +23,7 @@ export default function TodoFiltering() {
               Status
             </option>
             <option value="">Completed</option>
-            <option value="">Incompleted</option>
+            <option value="">In progress</option>
           </select>
           <select name="category" className="filtering-select">
             <option disabled selected>
