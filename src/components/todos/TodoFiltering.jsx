@@ -1,8 +1,40 @@
 import { useState } from "react";
 import { BiFilter } from "react-icons/bi";
 
-export default function TodoFiltering() {
+export default function TodoFiltering({ tasks, filtersort }) {
   const [filtering, setFiltering] = useState(false);
+
+  const handleChange = (event) => {
+    let filtered = [...tasks];
+    let filterType = event.target.name;
+    let filterValue = event.target.value;
+
+    if (filterType === "status") {
+      if (filterValue !== "all") {
+        filtered = filtered.filter((task) =>
+          filterValue === "completed" ? task.status : !task.status
+        );
+      }
+    }
+
+    if (filterType === "category") {
+      if (filterValue !== "all") {
+        filtered = filtered.filter((task) => task.category === filterValue);
+      }
+    }
+
+    if (filterType === "sort") {
+      if (filterValue === "deadline") {
+        filtered.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+      } else if (filterValue === "estimation") {
+        filtered.sort((a, b) => a.estimation - b.estimation);
+      } else if (filterValue === "status") {
+        filtered.sort((a, b) => b.status - a.status);
+      }
+    }
+
+    filtersort(filtered);
+  };
 
   const displayFiltering = () => {
     setFiltering(!filtering);
@@ -18,17 +50,21 @@ export default function TodoFiltering() {
       </button>
       {filtering && (
         <div className="filtering-container">
-          <select name="status" className="filtering-select">
-            <option disabled selected>
-              Status
-            </option>
-            <option value="">Completed</option>
-            <option value="">In progress</option>
+          <select
+            name="status"
+            className="filtering-select"
+            onChange={handleChange}
+          >
+            <option value="all">Status</option>
+            <option value="completed">Completed</option>
+            <option value="progress">In progress</option>
           </select>
-          <select name="category" className="filtering-select">
-            <option disabled selected>
-              Category
-            </option>
+          <select
+            name="category"
+            className="filtering-select"
+            onChange={handleChange}
+          >
+            <option value="all">Categories</option>
             <option value="Health">Health</option>
             <option value="Household">Household</option>
             <option value="Work">Work</option>
@@ -36,13 +72,15 @@ export default function TodoFiltering() {
             <option value="Social">Social</option>
             <option value="Finance">Finance</option>
           </select>
-          <select name="sort" className="filtering-select">
-            <option disabled selected>
-              Sort
-            </option>
-            <option value="">Deadline</option>
-            <option value="">Estimation</option>
-            <option value="">Status</option>
+          <select
+            name="sort"
+            className="filtering-select"
+            onChange={handleChange}
+          >
+            <option value="none">Sort</option>
+            <option value="deadline">Deadline</option>
+            <option value="estimation">Estimation</option>
+            <option value="status">Status</option>
           </select>
         </div>
       )}
