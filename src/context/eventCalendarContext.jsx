@@ -1,12 +1,4 @@
-import EventCalendar from "../components/planner/EventCalendar";
-import {
-  useState,
-  useRef,
-  useMemo,
-  useContext,
-  useEffect,
-  createContext,
-} from "react";
+import { useState, useMemo, useContext, useEffect, createContext } from "react";
 import { useUserContext } from "./UserContext";
 import { useLocalStorage } from "../hooks/useStorage";
 
