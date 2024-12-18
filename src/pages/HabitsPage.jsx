@@ -44,7 +44,7 @@ export default function HabitsPage() {
             <HabitsFilter key="habits-filter" />
           </section>
         </section>
-        <section className="flex flex-wrap max-w-[1150px] mx-auto gap-[50px] my-[100px]">
+        <section className="flex flex-wrap justify-center  mx-auto gap-[50px] my-[100px]">
           {habits.length > 0 ? (
             <Habits key="habits" />
           ) : (
