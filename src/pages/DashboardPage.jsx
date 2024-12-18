@@ -36,9 +36,6 @@ export default function DashboardPage({ setIsLoggedIn }) {
   return (
     <>
       <Nav setIsLoggedIn={setIsLoggedIn} />
-      <h1 className="text-center text-[3rem]">
-        Overview showing user activity. Minimalistic.
-      </h1>
       {username ? (
         <h1 className="text-4xl font-bold text-center my-5">{`Hello, ${capitalize(
           username
