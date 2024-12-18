@@ -5,6 +5,7 @@ import { IoMdAddCircle } from "react-icons/io";
 import TodoForm from "../components/todos/TodoForm";
 import TodoList from "../components/todos/TodoList";
 import { useLocalStorage } from "../hooks/useStorage";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function TasksPage() {
   const { getItemL, setItemL } = useLocalStorage();
@@ -19,6 +20,17 @@ export default function TasksPage() {
   };
 
   const statusCheck = (id) => {
+    const task = tasks.find((task) => task.id === id);
+    if (!task.status) {
+      toast.success("Task completed! 🎉", {
+        duration: 2000,
+        position: "top-center",
+        style: {
+          background: "#4ade80",
+          color: "white",
+        },
+      });
+    }
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, status: !task.status } : task
     );
@@ -30,6 +42,14 @@ export default function TasksPage() {
     const allTasks = tasks.filter((task) => task.id !== id);
     setTasks(allTasks);
     setItemL("tasks", allTasks);
+    toast("Task deleted! 🗑️", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "red",
+        color: "white",
+      },
+    });
   };
 
   function showForm() {
@@ -40,6 +60,7 @@ export default function TasksPage() {
     <>
       <Nav />
       <div className="task-container">
+        <Toaster />
         <h1 className="task-title">
           Tasks <FaTasks size={40} />
         </h1>
