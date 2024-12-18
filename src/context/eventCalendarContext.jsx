@@ -12,6 +12,10 @@ export function EventCalendarProvider({ children }) {
   const [filter, setFilter] = useState("upcoming");
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [error, setError] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newStart, setNewStart] = useState("");
+  const [newEnd, setNewEnd] = useState("");
+  const [editingEventId, setEditingEventId] = useState(null);
 
   const { user } = useUserContext();
 
@@ -94,6 +98,28 @@ export function EventCalendarProvider({ children }) {
     );
   };
 
+  const handleSave = (id) => {
+    if (!newName.trim() || !newStart.trim() || !newEnd.trim()) return;
+
+    updateEvents(id, {
+      name: newName,
+      start: newStart,
+      end: newEnd,
+    });
+
+    setEditingEventId(null);
+    setNewName("");
+    setNewStart("");
+    setNewEnd("");
+  };
+
+  const handleEdit = (event) => {
+    setEditingEventId(event.id);
+    setNewName(event.name);
+    setNewStart(event.start);
+    setNewEnd(event.end);
+  };
+
   return (
     <EventCalendarContext.Provider
       value={{
@@ -113,6 +139,16 @@ export function EventCalendarProvider({ children }) {
         setName,
         error,
         setError,
+        newName,
+        newStart,
+        newEnd,
+        setNewName,
+        setNewStart,
+        setNewEnd,
+        handleSave,
+        editingEventId,
+        setEditingEventId,
+        handleEdit,
       }}
     >
       {children}

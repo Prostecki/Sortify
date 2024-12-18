@@ -1,38 +1,18 @@
 import { useState } from "react";
 import { useEventCalendarContext } from "../../context/EventCalendarContext";
 import { useUserContext } from "../../context/UserContext";
+import EventEditionForm from "./EventEditingForm";
 
 export default function EventList() {
-  const { filteredEvents, deleteEvent, updateEvents } =
-    useEventCalendarContext();
+  const {
+    filteredEvents,
+    deleteEvent,
+    updateEvents,
+    editingEventId,
+    handleEdit,
+  } = useEventCalendarContext();
+
   const { user } = useUserContext();
-
-  const [editingEventId, setEditingEventId] = useState(null);
-  const [newName, setNewName] = useState("");
-  const [newStart, setNewStart] = useState("");
-  const [newEnd, setNewEnd] = useState("");
-
-  const handleEdit = (event) => {
-    setEditingEventId(event.id);
-    setNewName(event.name);
-    setNewStart(event.start);
-    setNewEnd(event.end);
-  };
-
-  const handleSave = (id) => {
-    if (!newName.trim() || !newStart.trim() || !newEnd.trim()) return;
-
-    updateEvents(id, {
-      name: newName,
-      start: newStart,
-      end: newEnd,
-    });
-
-    setEditingEventId(null);
-    setNewName("");
-    setNewStart("");
-    setNewEnd("");
-  };
 
   return (
     <section className="event-list-container">
@@ -48,42 +28,7 @@ export default function EventList() {
               key={event.id}
             >
               {editingEventId === event.id ? (
-                <div className="event-list-editing-container">
-                  <div className="event-list-editing-inputs-container">
-                    <input
-                      type="text"
-                      value={newName}
-                      onChange={(e) => setNewName(e.target.value)}
-                      className="editing-input"
-                    />
-                    <input
-                      type="datetime-local"
-                      value={newStart}
-                      onChange={(e) => setNewStart(e.target.value)}
-                      className="editing-input"
-                    />
-                    <input
-                      type="datetime-local"
-                      value={newEnd}
-                      onChange={(e) => setNewEnd(e.target.value)}
-                      className="editing-input"
-                    />
-                  </div>
-                  <div className="event-list-editing-buttons-container">
-                    <button
-                      onClick={() => handleSave(event.id)}
-                      className="editing-button bg-green-500 hover:bg-green-600"
-                    >
-                      Save
-                    </button>
-                    <button
-                      onClick={() => setEditingEventId(null)}
-                      className="editing-button bg-gray-500 hover:bg-gray-600"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
+                <EventEditionForm />
               ) : (
                 <>
                   <h3
