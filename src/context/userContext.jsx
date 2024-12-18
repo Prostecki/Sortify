@@ -87,6 +87,7 @@ export function UserProvider({ children }) {
       setPassword("");
       setErrorMessage("");
       navigate("/dashboard");
+      setTimeout(() => location.reload(), 10);
     } else {
       setErrorMessage("User is not registered");
     }
