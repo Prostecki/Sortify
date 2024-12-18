@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./login.css";
+import "./Login.css";
+import { useUserContext } from "../../context/UserContext";
 
-export default function Register({ closeModal }) {
+export default function Register() {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successfulMessage, setSuccessfulMessage] = useState(false);
   const [shake, setShake] = useState(false);
 
-  const navigate = useNavigate();
+  const { closeModal } = useUserContext();
 
   const handleRegister = () => {
     if (!registerUsername.trim() || !registerPassword.trim()) {
@@ -44,7 +44,7 @@ export default function Register({ closeModal }) {
   };
 
   return (
-    <section className="absolute inset-0  bg-black/60 flex flex-col items-center justify-center">
+    <section className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
       <div className="relative max-w-80 min-w-40 bg-white p-5 h-auto flex flex-col items-start">
         <h1 className="font-bold text-2xl ">Register</h1>
         <button

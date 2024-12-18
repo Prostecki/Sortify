@@ -1,5 +1,5 @@
 import Register from "./Register";
-import "./login.css";
+import "./Login.css";
 import { FaBoltLightning } from "react-icons/fa6";
 import { ImConnection } from "react-icons/im";
 import { useUserContext } from "../../context/UserContext";
@@ -10,7 +10,6 @@ export default function Login() {
     password,
     errorMessage,
     showRegister,
-    closeModal,
     handleLogin,
     setPassword,
     setUsername,
@@ -58,9 +57,7 @@ export default function Login() {
             <FaBoltLightning size={17} className="ml-1 drop-shadow-md" />
           </button>
         </div>
-        {showRegister && (
-          <Register showRegister={showRegister} closeModal={closeModal} />
-        )}
+        {showRegister && <Register />}
       </section>
     </>
   );

@@ -2,8 +2,17 @@ import { useUserContext } from "../../context/UserContext";
 import { useEventCalendarContext } from "../../context/EventCalendarContext";
 import { div } from "motion/react-client";
 export default function EventForm() {
-  const { handleSubmit, name, start, end, setName, setStart, setEnd, error } =
-    useEventCalendarContext();
+  const {
+    handleSubmit,
+    name,
+    start,
+    end,
+    setName,
+    setStart,
+    setEnd,
+    error,
+    shake,
+  } = useEventCalendarContext();
 
   const { user } = useUserContext();
 
@@ -49,6 +58,7 @@ export default function EventForm() {
               className="event-form-input"
               type="datetime-local"
               value={end}
+              min={start || ""}
               onChange={(e) => setEnd(e.target.value)}
             />
           </div>
@@ -62,7 +72,13 @@ export default function EventForm() {
           add events.
         </p>
       )}
-      {error ? <h1 className="animate-bounce">{error}</h1> : <p></p>}
+      {error ? (
+        <h1 className={`text-red-500 text-center mt-5 ${shake ? "shake" : ""}`}>
+          {error}
+        </h1>
+      ) : (
+        <p>{""}</p>
+      )}
     </div>
   );
 }

@@ -92,3 +92,11 @@
   font-weight: 600;
   color: rgb(47, 47, 47);
 }
+
+.registation-outer {
+  @apply absolute inset-0  bg-black/60 flex flex-col items-center justify-center;
+}
+
+.registation-inner {
+  @apply relative max-w-80 min-w-40 bg-white p-5 h-auto flex flex-col items-start;
+}
