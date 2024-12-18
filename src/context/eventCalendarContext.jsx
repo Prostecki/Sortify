@@ -1,10 +1,11 @@
-import EventCalendar from "../components/planner/EventCalendar";
-import { useState, useRef, useContext, useEffect, createContext } from "react";
+import { useState, useMemo, useContext, useEffect, createContext } from "react";
 import { useUserContext } from "./UserContext";
+import { useLocalStorage } from "../hooks/useStorage";
 
 const EventCalendarContext = createContext();
 
 export function EventCalendarProvider({ children }) {
+  const { activeUser } = useUserContext();
   const [name, setName] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -17,22 +18,19 @@ export function EventCalendarProvider({ children }) {
   const [newEnd, setNewEnd] = useState("");
   const [editingEventId, setEditingEventId] = useState(null);
 
-  const { user } = useUserContext();
+  const { getItemL, setItemL } = useLocalStorage();
+  const allUsers = getItemL("users", []);
+
+  const findUser = useMemo(
+    () => allUsers.findIndex((user) => user.username === activeUser?.username),
+    [allUsers, activeUser]
+  );
 
   useEffect(() => {
-    if (user) {
-      const savedEvents = localStorage.getItem(user.id);
-      setEvents(savedEvents ? JSON.parse(savedEvents) : []);
-      const parsedEvents = savedEvents ? JSON.parse(savedEvents) : [];
-      setEvents(parsedEvents.filter((event) => event && event.id));
+    if (activeUser && findUser !== -1) {
+      setEvents(allUsers[findUser]?.events || []);
     }
-  }, [user]);
-
-  useEffect(() => {
-    if (user && events.length > 0) {
-      localStorage.setItem(user.id, JSON.stringify(events));
-    }
-  }, [events, user]);
+  }, [activeUser, findUser]);
 
   const addEvent = (event) => {
     setEvents((prevEvents) => {
@@ -43,7 +41,13 @@ export function EventCalendarProvider({ children }) {
   };
 
   const deleteEvent = (id) => {
-    setEvents((prevEvents) => prevEvents.filter((event) => event.id !== id));
+    const updatedEvents = events.filter((event) => event.id !== id);
+
+    const updatedUsers = allUsers.map((user, i) =>
+      i === findUser ? { ...user, events: updatedEvents } : user
+    );
+    setItemL("users", updatedUsers);
+    setEvents(updatedEvents);
   };
 
   const handleSubmit = (e) => {
@@ -53,21 +57,26 @@ export function EventCalendarProvider({ children }) {
       return;
     }
 
-    if (!user) {
-      setError("Please, Log In...");
-      return;
-    }
-
     const newEvent = {
       id: Date.now(),
       name,
       start,
       end,
-      userName: user.username,
-      userId: user.id,
     };
 
+    const updatedUser = {
+      ...allUsers[findUser],
+      events: [...(allUsers[findUser].events || []), newEvent],
+    };
+
+    const updatedUsers = [
+      ...allUsers.slice(0, findUser),
+      updatedUser,
+      ...allUsers.slice(findUser + 1),
+    ];
+    setItemL("users", updatedUsers);
     addEvent(newEvent);
+
     setName("");
     setStart("");
     setEnd("");
@@ -90,22 +99,22 @@ export function EventCalendarProvider({ children }) {
     );
   }, [events, filter]);
 
-  const updateEvents = (id, updatedFields) => {
-    setEvents((prevEvents) =>
-      prevEvents.map((event) =>
-        event.id === id ? { ...event, ...updatedFields } : event
-      )
-    );
-  };
-
   const handleSave = (id) => {
     if (!newName.trim() || !newStart.trim() || !newEnd.trim()) return;
 
-    updateEvents(id, {
-      name: newName,
-      start: newStart,
-      end: newEnd,
-    });
+    const updatedEvents = events.map((event) =>
+      event.id === id
+        ? { ...event, name: newName, start: newStart, end: newEnd }
+        : event
+    );
+
+    setEvents(updatedEvents);
+
+    const updatedUsers = allUsers.map((user, i) =>
+      i === findUser ? { ...user, events: updatedEvents } : user
+    );
+
+    setItemL("users", updatedUsers);
 
     setEditingEventId(null);
     setNewName("");
@@ -134,7 +143,7 @@ export function EventCalendarProvider({ children }) {
         setFilter,
         filteredEvents,
         addEvent,
-        updateEvents,
+
         setStart,
         setName,
         error,

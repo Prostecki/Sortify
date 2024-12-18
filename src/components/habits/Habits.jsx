@@ -21,7 +21,7 @@ export default function Habits() {
             exit={{ opacity: 0 }}
             className={` ${showAddHabits ? "-z-10" : ""} ${
               darkMode && "text-white"
-            } w-[250px] h-[285px] flex justify-center`}
+            } w-[250px] h-[285px] flex justify-center `}
             key={index}
           >
             <section className=" items-center flex flex-col leading-none">
@@ -44,19 +44,21 @@ export default function Habits() {
                   </h1>
                 </section>
                 <section className="flex ml-[50px] items-end h-full w-full my-1">
-                  <h2 className="flex text-[20px]">
+                  <h2 className="flex items-center text-[20px]">
                     Completed&nbsp;&nbsp;&nbsp;
                     <BiMinus
+                      size={30}
                       onClick={() => handleAmount(index, "decrement")}
                       className="cursor-pointer"
                     />
                     <span
                       onClick={() => handleAmount(index, "reset")}
-                      className="cursor-pointer"
+                      className="cursor-pointer text-[30px]"
                     >
                       {h.amount}
                     </span>
                     <BiPlus
+                      size={30}
                       onClick={() => handleAmount(index, "increment")}
                       className="cursor-pointer"
                     />
