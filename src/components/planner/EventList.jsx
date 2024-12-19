@@ -58,7 +58,7 @@ export default function EventList() {
             </li>
           ))
         ) : (
-          <p className="event-list-noevents-message">
+          <p className="event-list-no-events-message">
             No events found for the selected filter.
           </p>
         )}

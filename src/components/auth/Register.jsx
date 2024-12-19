@@ -1,83 +1,71 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./login.css";
+import "./Login.css";
+import { useUserContext } from "../../context/UserContext";
+import { IoCloseOutline } from "react-icons/io5";
+import InputField from "./InputField";
+import CheckboxField from "./CheckboxField";
+import RegisterButtons from "./RegisterButtons";
+import Message from "./Message";
 
-export default function Register({ closeModal }) {
-  const [registerUsername, setRegisterUsername] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successfulMessage, setSuccessfulMessage] = useState(false);
-  const [shake, setShake] = useState(false);
-
-  const navigate = useNavigate();
-
-  const handleRegister = () => {
-    if (!registerUsername.trim() || !registerPassword.trim()) {
-      setErrorMessage("Both username and password are required.");
-      setShake(false);
-      setTimeout(() => setShake(true), 10);
-      return;
-    }
-
-    const newUser = {
-      username: registerUsername,
-      password: registerPassword,
-    };
-
-    const usersData = localStorage.getItem("users");
-    const users = usersData ? JSON.parse(usersData) : [];
-
-    if (users.find((user) => user.username === registerUsername)) {
-      alert("Username already exists. Please choose a different one.");
-      return;
-    }
-
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    setRegisterUsername("");
-    setRegisterPassword("");
-    setSuccessfulMessage("Registration successful! You can now log in.");
-    setTimeout(() => {
-      closeModal();
-    }, 1500);
-  };
+export default function Register() {
+  const {
+    closeModal,
+    registerUsername,
+    registerPassword,
+    registerTerms,
+    errorMessage,
+    shake,
+    successfulMessage,
+    setRegisterUsername,
+    setRegisterPassword,
+    setRegisterTerms,
+  } = useUserContext();
 
   return (
-    <section className="absolute inset-0  bg-black/60 flex flex-col items-center justify-center">
-      <div className="relative max-w-80 min-w-40 bg-white p-5 h-auto flex flex-col items-start">
-        <h1 className="font-bold text-2xl ">Register</h1>
-        <button
-          className="absolute right-8 top-6 font-bold"
-          onClick={closeModal}
-        >
-          X
+    <section className="section-container">
+      <div className="register-container">
+        <div className="flex flex-col items-center gap-3 mb-5">
+          <h1 className="register-title">Register</h1>{" "}
+          <p className="text-center text-slate-400">
+            Create an account with us
+          </p>
+        </div>
+        <button className="close-button" onClick={closeModal}>
+          <IoCloseOutline className="text-slate-200 hover:text-slate-800 duration-300 transition-all w-8 h-8" />
         </button>
-        <input
-          type="text"
-          placeholder="Choose username"
-          value={registerUsername}
-          onChange={(e) => setRegisterUsername(e.target.value)}
-          className="login-input"
-        />
-        <input
-          type="password"
-          placeholder="Choose password"
-          value={registerPassword}
-          onChange={(e) => setRegisterPassword(e.target.value)}
-          className="login-input"
-        />
-        <button className="register-button" onClick={handleRegister}>
-          Sign up
-        </button>
-        {errorMessage ? (
-          <h1 className={`text-red-500 mt-5 ${shake ? "shake" : ""}`}>
-            {errorMessage}
-          </h1>
-        ) : (
-          ""
-        )}
-        {successfulMessage ?? <h1>{successfulMessage}</h1>}
+        <div className="input-container">
+          <InputField
+            type="text"
+            placeholder="Enter username"
+            value={registerUsername}
+            onChange={(e) => setRegisterUsername(e.target.value)}
+            className="login-input"
+          />
+          <InputField
+            type="password"
+            placeholder="Enter password"
+            value={registerPassword}
+            onChange={(e) => setRegisterPassword(e.target.value)}
+            className="login-input"
+          />
+          <CheckboxField
+            checked={registerTerms}
+            onChange={(e) => setRegisterTerms(e.target.checked)}
+            className="w-4"
+          />
+        </div>
+        <RegisterButtons />
+        <hr className="w-full" />
+        <Message message={errorMessage} type="error" shake={shake} />
+        <Message message={successfulMessage} type="success" />
+        <p className="text-sm text-center text-gray-500">
+          Already have an account?{" "}
+          <button onClick={closeModal}>
+            <a className="text-sm text-blue-600 hover:underline cursor-pointer">
+              Log in
+            </a>
+          </button>
+        </p>
       </div>
     </section>
   );

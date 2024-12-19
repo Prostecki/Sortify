@@ -28,18 +28,12 @@ export function HabitProvider({ children }) {
 
   const habitTitleRef = useRef();
 
-  // Hämtar alla användare från localstorage och placerar dom i allUsers, är de inte tillgängliga blir det en tom lista.
   const allUsers = getItemL("users", []);
-
-  // Kollar igenom alla användare och jämför med aktiva användaren för att hitta rätt användare och körs endast när antingen allUsers eller activeUser uppdateras.
 
   const findUser = useMemo(
     () => allUsers.findIndex((user) => user.username === activeUser?.username),
     [allUsers, activeUser]
   );
-
-  // Sätter habits till tidigare habits (om det finns) annars tom lista.
-  // Koden körs endast om det finns en aktiv användare och findUser hittas
 
   useEffect(() => {
     if (activeUser && findUser !== -1) {
@@ -56,6 +50,7 @@ export function HabitProvider({ children }) {
 
     if (habitTitle !== "" && priority !== "") {
       const newHabit = {
+        id: Date.now(),
         title: habitTitle,
         amount: 0,
         priority: priority,
@@ -66,8 +61,6 @@ export function HabitProvider({ children }) {
         ...allUsers[findUser],
         habits: [...(allUsers[findUser].habits || []), newHabit],
       };
-
-      // Behålla plats på användaren
 
       const updatedUsers = [
         ...allUsers.slice(0, findUser),
@@ -81,7 +74,6 @@ export function HabitProvider({ children }) {
 
       setTrackHabits((prev) => !prev);
       setShowAddHabits(false);
-      setEdit(false);
     } else {
       alert("Please enter a title and choose a desired priority");
     }
@@ -101,8 +93,6 @@ export function HabitProvider({ children }) {
   const handleShowAddHabits = () => {
     setShowAddHabits((prev) => !prev);
   };
-
-  // Om operation handleAmount är increment ökar antalet, är det decrement minskas det annars nollställs det (klicka på antalet)
 
   const handleAmount = (index, operation) => {
     const updatedHabits = habits.map((habit, i) =>
@@ -125,7 +115,6 @@ export function HabitProvider({ children }) {
           }
         : habit
     );
-    // Letar igenom alla användare och ser till att uppdatera habits för den aktiva användaren.
     const updatedUsers = allUsers.map((user, i) =>
       i === findUser ? { ...user, habits: updatedHabits } : user
     );
@@ -135,16 +124,11 @@ export function HabitProvider({ children }) {
     setTrackAmount((prev) => !prev);
   };
 
-  // En form av mappning för priority för att lättare sortera eftersom den ska sortera för själva prioriteten och inte första bokstaven i prioriteten.
-  // Samtidigt som man tydligt fattar att high = 1 och low = 3.
-
   const defPriority = { High: 1, Medium: 2, Low: 3 };
 
   const handleFilter = (e) => setFilter(e.target.value);
 
   const handleSort = (e) => setSort(e.target.value);
-
-  // När man trycker på ikonen för descending/ascending sort bredvid sort knappen så byter den sorteringsriktning.
 
   const reverseHabits = () => {
     setHabits((prevHabits) => [...prevHabits].reverse());
@@ -183,11 +167,17 @@ export function HabitProvider({ children }) {
     setHabits(updatedHabits);
   }, [sort, filter, trackHabits, trackAmount]);
 
-  // Reglerar redigeringsläge för habits, när aktiverat är det möjligt att radera habits.
-
   const handleEdit = () => {
     setEdit((prev) => !prev);
   };
+
+  const resetEdit = () => {
+    setEdit(false);
+  };
+
+  useEffect(() => {
+    // console.log(showAddHabits);
+  }, [showAddHabits]);
 
   return (
     <HabitContext.Provider
@@ -216,8 +206,6 @@ export function HabitProvider({ children }) {
     </HabitContext.Provider>
   );
 }
-
-// Gör så att man kan skriva useHabitContext() i stället för useContext(HabitContext) + error hantering som förklarar direkt vilken kontext som orsakar problem.
 
 export function useHabitContext() {
   const context = useContext(HabitContext);
