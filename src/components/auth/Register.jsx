@@ -44,13 +44,10 @@ export default function Register() {
   };
 
   return (
-    <section className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center">
-      <div className="relative max-w-80 min-w-40 bg-white p-5 h-auto flex flex-col items-start">
-        <h1 className="font-bold text-2xl ">Register</h1>
-        <button
-          className="absolute right-8 top-6 font-bold"
-          onClick={closeModal}
-        >
+    <section className="section-container">
+      <div className="register-container">
+        <h1 className="register-title">Register</h1>
+        <button className="close-button" onClick={closeModal}>
           X
         </button>
         <input
