@@ -97,6 +97,7 @@ export default function TodoDetail({ task, editing }) {
               onChange={handleChange}
               className="edit-input"
               min={0}
+              max={1440}
               placeholder="minutes"
             />
           </div>
