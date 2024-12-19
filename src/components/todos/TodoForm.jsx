@@ -52,6 +52,7 @@ export default function TodoForm({ showForm, updatedTasks }) {
           <input
             type="textarea"
             name="description"
+            maxLength={150}
             className="task-input"
             required
             placeholder="Enter a description"

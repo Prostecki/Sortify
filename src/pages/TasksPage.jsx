@@ -84,7 +84,12 @@ export default function TasksPage() {
         ) : (
           <TodoForm showForm={showForm} updatedTasks={updatedTasks} />
         )}
-        <TodoList tasks={tasks} status={statusCheck} deleteTask={deleteTask} />
+        <TodoList
+          tasks={tasks}
+          status={statusCheck}
+          deleteTask={deleteTask}
+          setTasks={setTasks}
+        />
       </div>
     </>
   );
