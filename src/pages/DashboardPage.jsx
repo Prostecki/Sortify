@@ -69,11 +69,14 @@ export default function DashboardPage() {
             <div key={event.id}>{event.name}</div>
           ))}
         </div>
-        <div className="flex flex-col items-center gap-4 bg-purple-300 w-full">
+        <div className="flex flex-col items-center gap-4 bg-purple-300 w-full pb-10">
           <h1 className="text-4xl font-bold tracking-wide">Your habits</h1>
           {habits.slice(0, 3).map((habit) => (
             <div key={habit.id}>{habit.name}</div>
           ))}
+        </div>
+        <div className="flex flex-col items-center gap-4 bg-green-600 pb-20 w-full">
+          <h1 className="text-4xl font-bold tracking-wide">Your Todos</h1>
         </div>
       </section>
     </>
