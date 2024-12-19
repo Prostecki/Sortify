@@ -11,7 +11,7 @@ export default function DashboardPage({ setIsLoggedIn }) {
   useEffect(() => {
     const fetchQuote = async () => {
       try {
-        const response = await fetch("https://api.quotable.io/random");
+        const response = await fetch("https://dummyjson.com/quotes/random");
         const data = await response.json();
         console.log(data);
         setQuote(data);
@@ -44,7 +44,7 @@ export default function DashboardPage({ setIsLoggedIn }) {
         <p>User is not defined</p>
       )}
       {quote ? (
-        <h1 className="text-xl text-center my-5">{`${quote.author} said: ${quote.content}`}</h1>
+        <h1 className="text-xl text-center my-5">{`${quote.author} said: ${quote.quote}`}</h1>
       ) : (
         <div className="flex items-center gap-2 w-full justify-center">
           <img

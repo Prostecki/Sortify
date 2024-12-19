@@ -8,55 +8,18 @@ import RegisterButtons from "./RegisterButtons";
 import Message from "./Message";
 
 export default function Register() {
-  const [registerUsername, setRegisterUsername] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
-  const [registerTerms, setRegisterTerms] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successfulMessage, setSuccessfulMessage] = useState(false);
-  const [shake, setShake] = useState(false);
-
-  const { closeModal } = useUserContext();
-
-  const handleRegister = () => {
-    if (
-      !registerUsername.trim() ||
-      !registerPassword.trim() ||
-      !registerTerms
-    ) {
-      setErrorMessage("You must fill in all the fields.");
-      setShake(false);
-      setTimeout(() => setShake(true), 10);
-      return;
-    }
-
-    const newUser = {
-      username: registerUsername,
-      password: registerPassword,
-    };
-
-    const usersData = localStorage.getItem("users");
-    const users = usersData ? JSON.parse(usersData) : [];
-
-    if (users.find((user) => user.username === registerUsername)) {
-      alert("Username already exists. Please choose a different one.");
-      return;
-    }
-
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    setRegisterUsername("");
-    setRegisterPassword("");
-    setErrorMessage("");
-    setSuccessfulMessage("Registration successful! You can now log in.");
-    setTimeout(() => {
-      closeModal();
-    }, 1500);
-  };
-
-  const handleGoogleRegister = () => {
-    alert("Just shows here. No actual functionality.");
-  };
+  const {
+    closeModal,
+    registerUsername,
+    registerPassword,
+    registerTerms,
+    errorMessage,
+    shake,
+    successfulMessage,
+    setRegisterUsername,
+    setRegisterPassword,
+    setRegisterTerms,
+  } = useUserContext();
 
   return (
     <section className="section-container">
@@ -91,10 +54,7 @@ export default function Register() {
             className="w-4"
           />
         </div>
-        <RegisterButtons
-          onRegister={handleRegister}
-          onGoogleRegister={handleGoogleRegister}
-        />
+        <RegisterButtons />
         <hr className="w-full" />
         <Message message={errorMessage} type="error" shake={shake} />
         <Message message={successfulMessage} type="success" />
