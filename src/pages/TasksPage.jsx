@@ -17,6 +17,14 @@ export default function TasksPage() {
     setTasks(updatedTasksArray);
     setItemL("tasks", updatedTasksArray);
     setIsVisible(false);
+    toast("Task is added 📦 ", {
+      duration: 2000,
+      position: "top-center",
+      style: {
+        background: "rgb(59, 130, 246)",
+        color: "white",
+      },
+    });
   };
 
   const statusCheck = (id) => {
@@ -26,7 +34,7 @@ export default function TasksPage() {
         duration: 2000,
         position: "top-center",
         style: {
-          background: "#4ade80",
+          background: "rgb(74, 222, 128)",
           color: "white",
         },
       });

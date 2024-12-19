@@ -1,4 +1,3 @@
-import { SlOptions } from "react-icons/sl";
 import { FaCircle } from "react-icons/fa";
 import { FaRedo } from "react-icons/fa";
 import { IoIosCheckmarkCircle } from "react-icons/io";
