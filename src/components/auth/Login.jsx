@@ -1,5 +1,5 @@
 import Register from "./Register";
-import "./login.css";
+import "./Login.css";
 import { FaBoltLightning } from "react-icons/fa6";
 import { ImConnection } from "react-icons/im";
 import { useUserContext } from "../../context/UserContext";
@@ -10,11 +10,10 @@ export default function Login() {
     password,
     errorMessage,
     showRegister,
-    closeModal,
     handleLogin,
     setPassword,
     setUsername,
-    setShowRegister,
+    handleShowRegister,
     shake,
   } = useUserContext();
 
@@ -50,17 +49,12 @@ export default function Login() {
         )}
         <div>
           <h4 className="m-2 font-semibold ">No account? Create one today!</h4>
-          <button
-            className="register-button"
-            onClick={(e) => setShowRegister(true)}
-          >
+          <button className="register-button" onClick={handleShowRegister}>
             Create account{" "}
             <FaBoltLightning size={17} className="ml-1 drop-shadow-md" />
           </button>
         </div>
-        {showRegister && (
-          <Register showRegister={showRegister} closeModal={closeModal} />
-        )}
+        {showRegister && <Register />}
       </section>
     </>
   );

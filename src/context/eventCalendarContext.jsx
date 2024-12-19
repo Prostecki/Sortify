@@ -17,6 +17,7 @@ export function EventCalendarProvider({ children }) {
   const [newStart, setNewStart] = useState("");
   const [newEnd, setNewEnd] = useState("");
   const [editingEventId, setEditingEventId] = useState(null);
+  const [shake, setShake] = useState(true);
 
   const { getItemL, setItemL } = useLocalStorage();
   const allUsers = getItemL("users", []);
@@ -54,6 +55,8 @@ export function EventCalendarProvider({ children }) {
     e.preventDefault();
     if (!name || !start || !end) {
       setError("You need to fill all fields");
+      setShake(false);
+      setTimeout(() => setShake(true), 10);
       return;
     }
 
@@ -80,6 +83,7 @@ export function EventCalendarProvider({ children }) {
     setName("");
     setStart("");
     setEnd("");
+    setError(null);
   };
 
   useEffect(() => {
@@ -143,7 +147,6 @@ export function EventCalendarProvider({ children }) {
         setFilter,
         filteredEvents,
         addEvent,
-
         setStart,
         setName,
         error,
@@ -158,6 +161,7 @@ export function EventCalendarProvider({ children }) {
         editingEventId,
         setEditingEventId,
         handleEdit,
+        shake,
       }}
     >
       {children}

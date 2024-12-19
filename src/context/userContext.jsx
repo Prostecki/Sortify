@@ -93,6 +93,13 @@ export function UserProvider({ children }) {
     }
   };
 
+  const handleShowRegister = () => {
+    setShowRegister(false);
+    setTimeout(() => {
+      setShowRegister(true);
+    }, 100);
+  };
+
   const closeModal = () => {
     setShowRegister(false);
     console.log("closed?");
@@ -121,6 +128,7 @@ export function UserProvider({ children }) {
         setUser,
         events,
         setEvents,
+        handleShowRegister,
       }}
     >
       {children}

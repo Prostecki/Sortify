@@ -15,7 +15,7 @@
 }
 
 .event-form-outer {
-  @apply bg-eventsGrey h-screen max-sm:w-screen max-sm:h-full p-4;
+  @apply bg-eventsGrey min-h-screen max-sm:w-screen max-sm:h-full p-4;
 }
 
 .event-form-inner-form {
