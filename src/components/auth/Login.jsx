@@ -13,7 +13,7 @@ export default function Login() {
     handleLogin,
     setPassword,
     setUsername,
-    setShowRegister,
+    handleShowRegister,
     shake,
   } = useUserContext();
 
@@ -49,10 +49,7 @@ export default function Login() {
         )}
         <div>
           <h4 className="m-2 font-semibold ">No account? Create one today!</h4>
-          <button
-            className="register-button"
-            onClick={(e) => setShowRegister(true)}
-          >
+          <button className="register-button" onClick={handleShowRegister}>
             Create account{" "}
             <FaBoltLightning size={17} className="ml-1 drop-shadow-md" />
           </button>

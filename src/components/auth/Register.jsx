@@ -62,16 +62,14 @@ export default function Register() {
     <section className="section-container">
       <div className="register-container">
         <div className="flex flex-col items-center gap-3 mb-5">
-          <h1 className="register-title">Register</h1>
+          <h1 className="register-title">Register</h1>{" "}
           <p className="text-center text-slate-400">
             Create an account with us
           </p>
         </div>
-
         <button className="close-button" onClick={closeModal}>
           <IoCloseOutline className="text-slate-200 hover:text-slate-800 duration-300 transition-all w-8 h-8" />
         </button>
-
         <div className="input-container">
           <InputField
             type="text"
@@ -93,7 +91,6 @@ export default function Register() {
             className="w-4"
           />
         </div>
-
         <RegisterButtons
           onRegister={handleRegister}
           onGoogleRegister={handleGoogleRegister}
