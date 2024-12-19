@@ -1,21 +1,51 @@
 import Register from "./Register";
+import { Navigate } from "react-router-dom";
+import { useState } from "react";
 import "./Login.css";
 import { FaBoltLightning } from "react-icons/fa6";
 import { ImConnection } from "react-icons/im";
 import { useUserContext } from "../../context/UserContext";
 
 export default function Login() {
+  const [errorMessage, setErrorMessage] = useState("");
   const {
     userName,
     password,
-    errorMessage,
     showRegister,
-    handleLogin,
     setPassword,
     setUsername,
     handleShowRegister,
     shake,
+    setIsLoggedIn,
+    navigate,
   } = useUserContext();
+
+  const handleLogin = () => {
+    // Check if there are empty fields at least one of them
+    if (!userName.trim() || !password.trim()) {
+      setErrorMessage("Please fill in both username and password.");
+      return;
+    }
+
+    const usersData = JSON.parse(localStorage.getItem("users")) || [];
+    const loggedInUser = usersData.find(
+      (user) => user.username === userName && user.password === password
+    );
+
+    // If successful
+    if (loggedInUser) {
+      localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
+      localStorage.setItem("isLoggedIn", "true");
+      setIsLoggedIn(true);
+      setUsername("");
+      setPassword("");
+      setErrorMessage("");
+      navigate("/dashboard");
+      setTimeout(() => location.reload(), 10);
+    } else {
+      setErrorMessage("User is not registered");
+    }
+  };
 
   return (
     <>

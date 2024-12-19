@@ -47,19 +47,7 @@
 }
 
 .login-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px auto;
-  border-radius: 10px;
-  border: 1px solid rgb(169, 169, 169);
-  padding: 10px 15px;
-  font-weight: bold;
-  width: 100%;
-  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
-    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
-  font-size: 1rem;
-  background-color: rgb(255, 61, 71);
+  @apply flex justify-center items-center m-2.5 mx-auto rounded-lg border border-gray-400 p-2.5 font-bold w-full filter drop-shadow-lg text-base bg-red-500;
 }
 
 .login-button:hover {

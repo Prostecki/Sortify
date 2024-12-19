@@ -16,14 +16,18 @@ export function UserProvider({ children }) {
   const [events, setEvents] = useState([]);
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [shake, setShake] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [quote, setQuote] = useState([]);
   const [error, setError] = useState(null);
   const [activeUser, setActiveUser] = useState(
     () => getItemL("currentUser") ?? {}
   );
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [registerTerms, setRegisterTerms] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successfulMessage, setSuccessfulMessage] = useState(false);
+  const [shake, setShake] = useState(false);
 
   const getQuote = async () => {
     try {
@@ -66,33 +70,6 @@ export function UserProvider({ children }) {
     }
   }, [events, user]);
 
-  const handleLogin = () => {
-    // Check if there are empty fields at least one of them
-    if (!userName.trim() || !password.trim()) {
-      setErrorMessage("Please fill in both username and password.");
-      return;
-    }
-
-    const usersData = JSON.parse(localStorage.getItem("users")) || [];
-    const loggedInUser = usersData.find(
-      (user) => user.username === userName && user.password === password
-    );
-
-    // If successful
-    if (loggedInUser) {
-      localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-      localStorage.setItem("isLoggedIn", "true");
-      setIsLoggedIn(true);
-      setUsername("");
-      setPassword("");
-      setErrorMessage("");
-      navigate("/dashboard");
-      setTimeout(() => location.reload(), 10);
-    } else {
-      setErrorMessage("User is not registered");
-    }
-  };
-
   const handleShowRegister = () => {
     setShowRegister(false);
     setTimeout(() => {
@@ -105,6 +82,47 @@ export function UserProvider({ children }) {
     console.log("closed?");
   };
 
+  const handleRegister = () => {
+    if (
+      !registerUsername.trim() ||
+      !registerPassword.trim() ||
+      !registerTerms
+    ) {
+      setErrorMessage("You must fill in all the fields.");
+      setShake(false);
+      setTimeout(() => setShake(true), 10);
+      return;
+    }
+
+    const newUser = {
+      username: registerUsername,
+      password: registerPassword,
+    };
+
+    const usersData = localStorage.getItem("users");
+    const users = usersData ? JSON.parse(usersData) : [];
+
+    if (users.find((user) => user.username === registerUsername)) {
+      alert("Username already exists. Please choose a different one.");
+      return;
+    }
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    setRegisterUsername("");
+    setRegisterPassword("");
+    setErrorMessage("");
+    setSuccessfulMessage("Registration successful! You can now log in.");
+    setTimeout(() => {
+      closeModal();
+    }, 1500);
+  };
+
+  const handleGoogleRegister = () => {
+    alert("Just shows here. No actual functionality.");
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -112,7 +130,6 @@ export function UserProvider({ children }) {
         password,
         errorMessage,
         closeModal,
-        handleLogin,
         isLoggedIn,
         setIsLoggedIn,
         setUsername,
@@ -129,6 +146,18 @@ export function UserProvider({ children }) {
         events,
         setEvents,
         handleShowRegister,
+        handleRegister,
+        handleGoogleRegister,
+        registerUsername,
+        registerTerms,
+        registerPassword,
+        errorMessage,
+        shake,
+        successfulMessage,
+        setRegisterUsername,
+        setRegisterPassword,
+        setRegisterTerms,
+        navigate,
       }}
     >
       {children}
