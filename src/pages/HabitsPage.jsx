@@ -8,7 +8,7 @@ import {
 } from "../components/habits/HabitsSortFilter";
 
 import { HabitsNew, HabitsEdit } from "../components/habits/HabitsNewEdit";
-import { useHabitContext } from "../context/HabitContext";
+import { useHabitContext } from "../context/habitContext";
 import { useThemeContext } from "../context/ThemeContext";
 import { AnimatePresence } from "motion/react";
 

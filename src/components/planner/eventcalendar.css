@@ -98,6 +98,6 @@
   @apply mt-2 px-4 py-2 bg-eventsRed text-white rounded hover:bg-red-600;
 }
 
-.event-list-noevents-message {
+.event-list-no-events-message {
   @apply text-gray-500 text-center;
 }
