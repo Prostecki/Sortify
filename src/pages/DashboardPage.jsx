@@ -72,7 +72,7 @@ export default function DashboardPage() {
         <div className="flex flex-col items-center gap-4 bg-purple-300 w-full">
           <h1 className="text-4xl font-bold tracking-wide">Your habits</h1>
           {habits.slice(0, 3).map((habit) => (
-            <div key={habit.id}>{habit.name}</div>
+            <div key={habit.id}>{habit.title}</div>
           ))}
         </div>
       </section>

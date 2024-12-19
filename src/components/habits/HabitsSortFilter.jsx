@@ -20,7 +20,6 @@ export function HabitsSort() {
           className={`${
             darkMode ? "bg-[rgb(20,20,20)] " : "bg-habitWhite"
           } w-[140px] text-center cursor-pointer focus:outline-none`}
-          defaultValue=""
           onChange={handleSort}
           value={sort}
         >
@@ -68,7 +67,6 @@ export function HabitsFilter() {
         className={`${
           darkMode ? "bg-[rgb(20,20,20)] " : "bg-habitWhite"
         } w-[140px] text-center cursor-pointer focus:outline-none`}
-        defaultValue=""
         onChange={handleFilter}
         value={filter}
       >
