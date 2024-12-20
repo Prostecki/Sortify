@@ -129,9 +129,6 @@ export default function DashboardPage() {
             </Link>
           </div>
         </div>
-        <div className="flex flex-col items-center gap-4 bg-green-600 pb-20 w-full">
-          <h1 className="text-4xl font-bold tracking-wide">Your Todos</h1>
-        </div>
       </section>
     </>
   );
