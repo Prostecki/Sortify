@@ -95,7 +95,7 @@ export default function DashboardPage() {
               ))
             ) : (
               <p className="font-medium text-xl mt-20">
-                You're all done with your Tasks! 🎉
+                You&apos;re all done with your Tasks!🎉
               </p>
             )}
             <Link to="/tasks" className="tasks-btn ">
@@ -106,11 +106,14 @@ export default function DashboardPage() {
             <h1 className="text-4xl font-bold drop-shadow-sm mt-7 text-gray-50 mb-10">
               Top Habits
             </h1>
-            {habits.slice(0, 3).map((habit) => (
-              <div className="each-habit" key={habit.id}>
-                🔥 {habit.title}
-              </div>
-            ))}
+            {habits
+              .sort((a, b) => b.amount - a.amount)
+              .slice(0, 3)
+              .map((habit) => (
+                <div className="each-habit" key={habit.id}>
+                  🔥 {habit.title}
+                </div>
+              ))}
             <Link to="/habits" className="habits-btn">
               Go to Habits
             </Link>

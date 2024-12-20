@@ -605,11 +605,11 @@
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
 }
 
 .task-stats:hover {
   transform: scale(1.02);
-  transition: 1s;
 }
 
 .each-task {
@@ -635,11 +635,11 @@
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
 }
 
 .events-stats:hover {
   transform: scale(1.02);
-  transition: 1s;
 }
 
 .each-event {
@@ -665,11 +665,11 @@
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
 }
 
 .habits-stats:hover {
   transform: scale(1.02);
-  transition: 1s;
 }
 
 .each-habit {

@@ -74,6 +74,7 @@ export function HabitProvider({ children }) {
 
       setTrackHabits((prev) => !prev);
       setShowAddHabits(false);
+      setEdit(false);
     } else {
       alert("Please enter a title and choose a desired priority");
     }
@@ -169,10 +170,6 @@ export function HabitProvider({ children }) {
 
   const handleEdit = () => {
     setEdit((prev) => !prev);
-  };
-
-  const resetEdit = () => {
-    setEdit(false);
   };
 
   useEffect(() => {
