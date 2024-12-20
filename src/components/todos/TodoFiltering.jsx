@@ -55,7 +55,10 @@ export default function TodoFiltering({ tasks, filtersort }) {
             className="filtering-select"
             onChange={handleChange}
           >
-            <option value="all">Status</option>
+            <option selected disabled>
+              Filter
+            </option>
+            <option value="all">All</option>
             <option value="completed">Completed</option>
             <option value="progress">In progress</option>
           </select>
@@ -64,7 +67,10 @@ export default function TodoFiltering({ tasks, filtersort }) {
             className="filtering-select"
             onChange={handleChange}
           >
-            <option value="all">Categories</option>
+            <option selected disabled>
+              Categories
+            </option>
+            <option value="all">All</option>
             <option value="Health">Health</option>
             <option value="Household">Household</option>
             <option value="Work">Work</option>
@@ -77,7 +83,10 @@ export default function TodoFiltering({ tasks, filtersort }) {
             className="filtering-select"
             onChange={handleChange}
           >
-            <option value="none">Sort</option>
+            <option selected disabled>
+              Sort
+            </option>
+            <option value="none">None</option>
             <option value="deadline">Deadline</option>
             <option value="estimation">Estimation</option>
             <option value="status">Status</option>

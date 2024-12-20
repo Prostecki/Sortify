@@ -12,7 +12,7 @@ export default function RegisterButtons() {
         className="bg-slate-400 register-button duration-300"
         onClick={handleGoogleRegister}
       >
-        <FcGoogle className="mr-2" /> Continue with google
+        <FcGoogle className="mr-2" /> Continue with Google
       </button>
     </div>
   );

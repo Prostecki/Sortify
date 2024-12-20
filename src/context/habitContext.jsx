@@ -50,6 +50,7 @@ export function HabitProvider({ children }) {
 
     if (habitTitle !== "" && priority !== "") {
       const newHabit = {
+        id: Date.now(),
         title: habitTitle,
         amount: 0,
         priority: priority,

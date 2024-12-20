@@ -21,7 +21,7 @@ export default function HabitsForm() {
           <figure className="flex w-[100%] justify-end mt-[15px] mr-[15px]">
             <IoMdClose
               onClick={handleShowAddHabits}
-              color={darkMode && "white"}
+              color={darkMode ? "white" : "black"}
               size={40}
               className="cursor-pointer"
             />

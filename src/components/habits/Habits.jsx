@@ -16,13 +16,13 @@ export default function Habits() {
       <AnimatePresence>
         {habits.map((h, index) => (
           <motion.section
+            key={h.id}
             initial={{ scale: 0.5 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ opacity: 0 }}
             className={` ${showAddHabits ? "-z-10" : ""} ${
               darkMode && "text-white"
             } w-[250px] h-[285px] flex justify-center `}
-            key={index}
           >
             <section className=" items-center flex flex-col leading-none">
               <section
@@ -88,7 +88,7 @@ export default function Habits() {
                       darkMode ? "bg-[rgb(20,20,20)]" : "bg-habitWhite"
                     } w-[50px] h-[25px] mt-[10px] flex justify-center cursor-pointer  shadow-habitShadow rounded-[4px]`}
                   >
-                    <IoMdClose color={darkMode && "white"} size={25} />
+                    <IoMdClose color={darkMode ? "white" : "black"} size={25} />
                   </motion.figure>
                 )}
               </AnimatePresence>

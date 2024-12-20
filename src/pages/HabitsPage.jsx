@@ -4,7 +4,6 @@ import HabitsForm from "../components/habits/HabitsForm";
 import {
   HabitsFilter,
   HabitsSort,
-  HabitsSortDirection,
 } from "../components/habits/HabitsSortFilter";
 
 import { HabitsNew, HabitsEdit } from "../components/habits/HabitsNewEdit";
@@ -20,33 +19,33 @@ export default function HabitsPage() {
   return (
     <>
       <AnimatePresence>
-        <Nav key="nav" />
+        <Nav />
         <h1
           className={`${
             darkMode && "text-white"
-          } w-fit border-b-4 mx-auto border-[#ffdc65]  text-[3rem] text-center font-[700] mt-[40px]`}
+          } w-fit border-b-[6px] mx-auto border-[#ffdc65]  text-[3rem] text-center font-[700] mt-[40px]`}
         >
           Habits
         </h1>
         <CgDarkMode
-          color={darkMode && "white"}
+          color={darkMode ? "white" : "black"}
           onClick={handleDarkMode}
           size={40}
           className="mx-auto"
         />
         <section className=" flex flex-wrap justify-center gap-[75px] mt-[50px]">
           <section className="flex flex-wrap gap-[20px] mx-10">
-            <HabitsNew key="habits-add" />
-            <HabitsEdit key="habits-edit" />
+            <HabitsNew />
+            <HabitsEdit />
           </section>
           <section className="flex flex-wrap gap-[20px] mx-10">
-            <HabitsSort key="habits-sort" />
-            <HabitsFilter key="habits-filter" />
+            <HabitsSort />
+            <HabitsFilter />
           </section>
         </section>
         <section className="flex flex-wrap justify-center  mx-auto gap-[50px] my-[100px]">
           {habits.length > 0 ? (
-            <Habits key="habits" />
+            <Habits />
           ) : (
             <p
               className={`${
@@ -57,9 +56,7 @@ export default function HabitsPage() {
             </p>
           )}
         </section>
-        <AnimatePresence>
-          {showAddHabits && <HabitsForm key="habits-form" />}
-        </AnimatePresence>
+        <AnimatePresence>{showAddHabits && <HabitsForm />}</AnimatePresence>
       </AnimatePresence>
     </>
   );
