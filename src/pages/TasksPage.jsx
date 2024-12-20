@@ -13,7 +13,7 @@ export default function TasksPage() {
   const [isVisible, setIsVisible] = useState(false);
 
   const updatedTasks = (newTask) => {
-    const updatedTasksArray = [newTask, ...tasks]; // Jag kör newTask först för att få den överst. Detta hjälper mig sortera senaste tre tillagda i Dashboarden.
+    const updatedTasksArray = [newTask, ...tasks]; // Jag kör newTask först för att få den senast tillagda överst. Detta hjälper mig visa senaste tre tillagda i Dashboarden.
     setTasks(updatedTasksArray);
     setItemL("tasks", updatedTasksArray);
     setIsVisible(false);
