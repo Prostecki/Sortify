@@ -17,6 +17,11 @@ export default function DashboardPage() {
   const [username, setUsername] = useState(null);
   const { getItemL } = useLocalStorage();
 
+  const upcomingEvents = events.filter((event) => {
+    const eventStart = new Date(event.start);
+    return eventStart >= new Date();
+  });
+
   // Då jag inte körde på Context så fetchar jag (Hasso) mina Tasks via localStorage.
   const tasks = getItemL("tasks", []);
   const incompleteTasks = tasks.filter((task) => !task.status);
@@ -123,7 +128,7 @@ export default function DashboardPage() {
             <h1 className="text-4xl font-bold drop-shadow-sm mt-7 text-gray-50 mb-10">
               Upcoming Events
             </h1>
-            {events.slice(0, 3).map((event) => (
+            {upcomingEvents.slice(0, 3).map((event) => (
               <div className="each-event" key={event.id}>
                 📆 {event.name}
               </div>
