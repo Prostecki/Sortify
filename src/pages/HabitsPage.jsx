@@ -23,7 +23,7 @@ export default function HabitsPage() {
         <h1
           className={`${
             darkMode && "text-white"
-          } w-fit border-b-4 mx-auto border-[#ffdc65]  text-[3rem] text-center font-[700] mt-[40px]`}
+          } w-fit border-b-[6px] mx-auto border-[#ffdc65]  text-[3rem] text-center font-[700] mt-[40px]`}
         >
           Habits
         </h1>
