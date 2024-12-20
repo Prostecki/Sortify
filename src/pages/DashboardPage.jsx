@@ -1,8 +1,9 @@
 import Nav from "../layout/Nav";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useUserContext } from "../context/UserContext";
 import { useEventCalendarContext } from "../context/EventCalendarContext";
 import { useHabitContext } from "../context/habitContext";
+
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useStorage";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,14 +17,26 @@ export default function DashboardPage() {
   const [quote, setQuote] = useState(null);
   const [username, setUsername] = useState(null);
   const { getItemL } = useLocalStorage();
+  const { activeUser } = useUserContext();
+
+  const allUsers = getItemL("users", []);
+
+  const findUser = useMemo(
+    () => allUsers.findIndex((user) => user.username === activeUser?.username),
+    [allUsers, activeUser]
+  );
 
   const upcomingEvents = events.filter((event) => {
     const eventStart = new Date(event.start);
     return eventStart >= new Date();
   });
 
+  useEffect(() => {
+    console.log("Tasks:", findUser?.tasks);
+  }, [findUser]);
+
   // Då jag inte körde på Context så fetchar jag (Hasso) mina Tasks via localStorage.
-  const tasks = getItemL("tasks", []);
+  const tasks = findUser !== -1 ? allUsers[findUser]?.tasks || [] : [];
   const incompleteTasks = tasks.filter((task) => !task.status);
   const recentIncompleteTasks = incompleteTasks.slice(0, 3);
 
@@ -70,7 +83,7 @@ export default function DashboardPage() {
         className="flex justify-center text-center items-center cursor-pointer "
       />
       <Nav setIsLoggedIn={setIsLoggedIn} />
-      <section className="dashboard-container">
+      <section className="dashboard-container mb-[300px]">
         <h1 className="dashboard-title">
           {" "}
           Dashboard <ImStatsBars />{" "}
@@ -104,7 +117,7 @@ export default function DashboardPage() {
                 You&apos;re all done with your Tasks!🎉
               </p>
             )}
-            <Link to="/tasks" className="tasks-btn ">
+            <Link to="/tasks" className="tasks-btn">
               Go to Tasks
             </Link>
           </div>
@@ -112,14 +125,23 @@ export default function DashboardPage() {
             <h1 className="text-4xl font-bold drop-shadow-sm mt-7 text-gray-50 mb-10">
               Top Habits
             </h1>
-            {habits
-              .sort((a, b) => b.amount - a.amount)
-              .slice(0, 3)
-              .map((habit) => (
-                <div className="each-habit" key={habit.id}>
-                  🔥 {habit.title}
-                </div>
-              ))}
+            {habits.length === 0 ? (
+              <p className="font-medium text-xl mt-20">
+                Start your first Habit today! 🚀
+              </p>
+            ) : (
+              habits
+                .sort((a, b) => b.amount - a.amount)
+                .slice(0, 3)
+                .map((habit) => (
+                  <div className="each-habit" key={habit.id}>
+                    <p>
+                      🔥 {habit.title} ({habit.amount})
+                    </p>
+                  </div>
+                ))
+            )}
+
             <Link to="/habits" className="habits-btn">
               Go to Habits
             </Link>
@@ -128,11 +150,16 @@ export default function DashboardPage() {
             <h1 className="text-4xl font-bold drop-shadow-sm mt-7 text-gray-50 mb-10">
               Upcoming Events
             </h1>
-            {upcomingEvents.slice(0, 3).map((event) => (
-              <div className="each-event" key={event.id}>
-                📆 {event.name}
-              </div>
-            ))}
+            {upcomingEvents.length === 0 ? (
+              <p className="font-medium text-xl mt-20">No upcoming events</p>
+            ) : (
+              upcomingEvents.slice(0, 3).map((event) => (
+                <div className="each-event" key={event.id}>
+                  📆 {event.name}
+                </div>
+              ))
+            )}
+
             <Link to="/eventcalendar" className="events-btn ">
               Go to Events
             </Link>

@@ -17,6 +17,7 @@ export default function Habits() {
         {habits.map((h, index) => (
           <motion.section
             key={h.id}
+            whileHover={{ scale: 1.05 }}
             initial={{ scale: 0.5 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ opacity: 0 }}

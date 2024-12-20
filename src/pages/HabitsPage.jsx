@@ -31,7 +31,7 @@ export default function HabitsPage() {
           color={darkMode ? "white" : "black"}
           onClick={handleDarkMode}
           size={40}
-          className="mx-auto"
+          className="mx-auto mt-[20px]"
         />
         <section className=" flex flex-wrap justify-center gap-[75px] mt-[50px]">
           <section className="flex flex-wrap gap-[20px] mx-10">
@@ -43,8 +43,8 @@ export default function HabitsPage() {
             <HabitsFilter />
           </section>
         </section>
-        <section className="flex flex-wrap justify-center  mx-auto gap-[50px] my-[100px]">
-          {habits.length > 0 ? (
+        <section className="flex flex-wrap justify-center max-w-[1450px]  mx-auto gap-[50px] my-[100px]">
+          {habits.length !== 0 ? (
             <Habits />
           ) : (
             <p

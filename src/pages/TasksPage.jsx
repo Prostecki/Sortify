@@ -1,22 +1,50 @@
 import Nav from "../layout/Nav";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { FaTasks } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import TodoForm from "../components/todos/TodoForm";
 import TodoList from "../components/todos/TodoList";
 import { useLocalStorage } from "../hooks/useStorage";
 import toast, { Toaster } from "react-hot-toast";
+import { AnimatePresence } from "motion/react";
+import { useUserContext } from "../context/UserContext";
 
 export default function TasksPage() {
+  const { activeUser } = useUserContext();
   const { getItemL, setItemL } = useLocalStorage();
-  const [tasks, setTasks] = useState(getItemL("tasks", []));
+  const [tasks, setTasks] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
 
+  const allUsers = getItemL("users", []);
+
+  const findUser = useMemo(
+    () => allUsers.findIndex((user) => user.username === activeUser?.username),
+    [allUsers, activeUser]
+  );
+
+  useEffect(() => {
+    if (activeUser && findUser !== -1) {
+      setTasks(allUsers[findUser].tasks || []);
+    }
+  }, [activeUser]);
+
   const updatedTasks = (newTask) => {
-    const updatedTasksArray = [newTask, ...tasks]; // Jag kör newTask först för att få den senast tillagda överst. Detta hjälper mig visa senaste tre tillagda i Dashboarden.
-    setTasks(updatedTasksArray);
-    setItemL("tasks", updatedTasksArray);
     setIsVisible(false);
+
+    const updatedUser = {
+      ...allUsers[findUser],
+      tasks: [...(allUsers[findUser].tasks || []), newTask],
+    };
+
+    const updatedUsers = [
+      ...allUsers.slice(0, findUser),
+      updatedUser,
+      ...allUsers.slice(findUser + 1),
+    ];
+    setTasks(updatedUser.tasks);
+
+    setItemL("users", updatedUsers);
+
     toast("Task is added 📦 ", {
       duration: 2000,
       position: "top-center",
@@ -42,14 +70,24 @@ export default function TasksPage() {
     const updatedTasks = tasks.map((task) =>
       task.id === id ? { ...task, status: !task.status } : task
     );
+
+    const updatedUsers = allUsers.map((user, i) =>
+      i === findUser ? { ...user, tasks: updatedTasks } : user
+    );
+    setItemL("users", updatedUsers);
     setTasks(updatedTasks);
-    setItemL("tasks", updatedTasks);
   };
 
   const deleteTask = (id) => {
-    const allTasks = tasks.filter((task) => task.id !== id);
-    setTasks(allTasks);
-    setItemL("tasks", allTasks);
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+
+    const updatedUsers = allUsers.map((user, i) =>
+      i === findUser ? { ...user, tasks: updatedTasks } : user
+    );
+    setItemL("users", updatedUsers);
+
+    setTasks(updatedTasks);
+
     toast("Task deleted! 🗑️", {
       duration: 2000,
       position: "top-center",
@@ -76,14 +114,16 @@ export default function TasksPage() {
           Plan, track, and manage your
           <span className="text-sky-500"> activities. </span>
         </p>
-        {!isVisible ? (
-          <button onClick={showForm} className="addtaskbtn">
-            ADD TASK
-            <IoMdAddCircle className="ml-1" size={21} />
-          </button>
-        ) : (
-          <TodoForm showForm={showForm} updatedTasks={updatedTasks} />
-        )}
+        <AnimatePresence>
+          {!isVisible ? (
+            <button onClick={showForm} className="addtaskbtn">
+              ADD TASK
+              <IoMdAddCircle className="ml-1" size={21} />
+            </button>
+          ) : (
+            <TodoForm showForm={showForm} updatedTasks={updatedTasks} />
+          )}
+        </AnimatePresence>
         <TodoList
           tasks={tasks}
           status={statusCheck}
