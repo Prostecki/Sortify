@@ -75,9 +75,10 @@ export default function DashboardPage() {
           <span className="text-orange-400">focus.</span>
         </p>
         {username ? (
-          <h1 className="text-3xl font-semibold text-center mt-6 mb-6 ">{`Hiya 👋🏼 ${capitalize(
-            username
-          )}`}</h1>
+          <h1 className="text-3xl font-semibold text-center mt-6 mb-6">
+            Hiya <span className="animate-wave inline-block mr-1">👋🏼</span>
+            {capitalize(username)}
+          </h1>
         ) : (
           <p>User is not defined</p>
         )}
