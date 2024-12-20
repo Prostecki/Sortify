@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useStorage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ImStatsBars } from "react-icons/im";
 
 export default function DashboardPage() {
   const { events } = useEventCalendarContext();
@@ -65,7 +66,14 @@ export default function DashboardPage() {
       />
       <Nav setIsLoggedIn={setIsLoggedIn} />
       <section className="dashboard-container">
-        <h1 className="dashboard-title"> Dashboard </h1>
+        <h1 className="dashboard-title">
+          {" "}
+          Dashboard <ImStatsBars />{" "}
+        </h1>
+        <p className="task-description mt-2">
+          A clear view of your priorities for ultimate{" "}
+          <span className="text-orange-400">focus.</span>
+        </p>
         {username ? (
           <h1 className="text-3xl font-semibold text-center mt-6 mb-6 ">{`Hiya 👋🏼 ${capitalize(
             username
@@ -86,7 +94,7 @@ export default function DashboardPage() {
                 </div>
               ))
             ) : (
-              <p className="font-medium mt-20">
+              <p className="font-medium text-xl mt-20">
                 You're all done with your Tasks! 🎉
               </p>
             )}
