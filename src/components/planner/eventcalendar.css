@@ -1,13 +1,26 @@
 .event-calendar {
-  @apply flex flex-col items-start sm:flex-row;
+  @apply flex flex-col items-center p-10 gap-5;
 }
 
 .event-form-container {
-  @apply flex flex-col w-max sm:flex sm:justify-center bg-eventsGrey relative;
+  @apply flex flex-col w-max sm:flex sm:justify-center relative;
+}
+
+.event-headline-box {
+  @apply flex items-center flex-col gap-1;
 }
 
 .event-headline {
-  @apply text-3xl font-bold text-center text-gray-800 mt-5;
+  @apply w-max text-5xl drop-shadow-2xl font-bold text-center text-customBlack mt-3;
+}
+
+.event-headline-box::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 6px;
+  background-color: rgb(133, 62, 244);
+  margin-top: 10px;
 }
 
 .event-content-container {
@@ -19,15 +32,15 @@
 }
 
 .event-form-inner-form {
-  @apply flex flex-col gap-4 drop-shadow-xl;
+  @apply flex flex-col gap-5 drop-shadow-xl max-sm:w-full mt-5;
 }
 
 .add-new-event-headline {
-  @apply text-2xl font-bold text-gray-800;
+  @apply text-2xl font-bold text-gray-800 text-center;
 }
 
 .event-form-label {
-  @apply block text-sm font-medium text-gray-700;
+  @apply block text-2xl font-medium text-gray-700;
 }
 
 .event-form-input {
@@ -100,4 +113,18 @@
 
 .event-list-no-events-message {
   @apply text-gray-500 text-center;
+}
+
+.event-form-container {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.event-form-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.event-form-container.visible {
+  opacity: 1;
+  pointer-events: all;
 }

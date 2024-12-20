@@ -4,6 +4,7 @@ export default {
     extend: {
       colors: {
         sortify: "rgb(133, 62, 244);",
+        customBlack: "rgb(14, 14, 14)",
       },
       backgroundColor: {
         habitWhite: "#F9F9F9",

@@ -1,4 +1,11 @@
-import { useState, useMemo, useContext, useEffect, createContext } from "react";
+import {
+  useState,
+  useMemo,
+  useRef,
+  useContext,
+  useEffect,
+  createContext,
+} from "react";
 import { useUserContext } from "./UserContext";
 import { useLocalStorage } from "../hooks/useStorage";
 
@@ -27,6 +34,11 @@ export function EventCalendarProvider({ children }) {
     [allUsers, activeUser]
   );
 
+  // Refs for input fields to focus on error
+  const nameRef = useRef(null);
+  const startRef = useRef(null);
+  const endRef = useRef(null);
+
   useEffect(() => {
     if (activeUser && findUser !== -1) {
       setEvents(allUsers[findUser]?.events || []);
@@ -53,10 +65,34 @@ export function EventCalendarProvider({ children }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !start || !end) {
+    // Validation for empty NAME field
+    if (!name) {
       setError("You need to fill all fields");
       setShake(false);
       setTimeout(() => setShake(true), 10);
+
+      // Set up a focus on the name input field
+      nameRef.current.focus();
+      return;
+    }
+    // Validation for empty START field
+    if (!start) {
+      setError("You need to fill all fields");
+      setShake(false);
+      setTimeout(() => setShake(true), 10);
+
+      // Set up a focus on the start date input field
+      startRef.current.focus();
+      return;
+    }
+    // Validation for empty END field
+    if (!end) {
+      setError("You need to fill all fields");
+      setShake(false);
+      setTimeout(() => setShake(true), 10);
+
+      // Set up a focus on the end date input field
+      endRef.current.focus();
       return;
     }
 
@@ -162,6 +198,9 @@ export function EventCalendarProvider({ children }) {
         setEditingEventId,
         handleEdit,
         shake,
+        nameRef,
+        startRef,
+        endRef,
       }}
     >
       {children}
