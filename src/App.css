@@ -605,7 +605,7 @@
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
-  transition: 0.5s;
+  transition: all 1s;
 }
 
 .task-stats:hover {
@@ -635,7 +635,7 @@
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
-  transition: 0.5s;
+  transition: all 1s;
 }
 
 .events-stats:hover {
@@ -665,7 +665,7 @@
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04), 0 4px 3px rgba(0, 0, 0, 0.1);
-  transition: 0.5s;
+  transition: all 1s;
 }
 
 .habits-stats:hover {
