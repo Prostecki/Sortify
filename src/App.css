@@ -556,6 +556,7 @@
   gap: 10px;
   text-align: center;
   flex-direction: column;
+  overflow: hidden;
 }
 
 /* HABITS */
