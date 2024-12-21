@@ -50,12 +50,13 @@ export default function EventList() {
               minute: "numeric",
               hour12: true,
             });
+
+            const isPastEvent = eventStartDate < new Date();
+
             return (
               <li
                 className={`event-list-element ${
-                  new Date(event.start) < new Date()
-                    ? "text-gray-500"
-                    : "text-black"
+                  isPastEvent ? "text-gray-500" : "text-black"
                 } `}
                 key={event.id}
               >
@@ -63,7 +64,11 @@ export default function EventList() {
                   <EventEditionForm />
                 ) : (
                   <>
-                    <div className="bg-sortify drop-shadow-xl flex flex-col justify-center shrink-0 items-center p-8 w-14 h-14 rounded-lg">
+                    <div
+                      className={`${
+                        isPastEvent ? "bg-slate-500" : "bg-sortify"
+                      } drop-shadow-xl flex flex-col justify-center shrink-0 items-center p-8 w-14 h-14 rounded-lg`}
+                    >
                       <div
                         className="text-2xl font-sans text-center drop-shadow-xl
                        text-white"
