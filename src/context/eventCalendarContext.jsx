@@ -121,7 +121,11 @@ export function EventCalendarProvider({ children }) {
     setStart("");
     setEnd("");
     setError(null);
+
+    //Hide form after adding event
     setShowForm(false);
+
+    // Show the add event button after adding event
     setShowAddEvent(true);
   };
 

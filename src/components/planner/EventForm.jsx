@@ -4,7 +4,11 @@ import { useRef } from "react";
 import { BiHide } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineEmojiEvents } from "react-icons/md";
-export default function EventForm({ handleForm, setShowForm, showAddEvent }) {
+export default function EventForm({
+  handleForm,
+  setShowForm,
+  setShowAddEvent,
+}) {
   const {
     handleSubmit,
     name,
