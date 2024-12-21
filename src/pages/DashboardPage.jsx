@@ -100,7 +100,7 @@ export default function DashboardPage() {
                 </div>
               ))
             ) : (
-              <p className="font-medium text-xl mt-20">
+              <p className="font-bold text-xl mt-20">
                 You&apos;re all done with your Tasks!🎉
               </p>
             )}
@@ -112,14 +112,20 @@ export default function DashboardPage() {
             <h1 className="text-4xl font-bold drop-shadow-sm mt-7 text-gray-50 mb-10">
               Top Habits
             </h1>
-            {habits
-              .sort((a, b) => b.amount - a.amount)
-              .slice(0, 3)
-              .map((habit) => (
-                <div className="each-habit" key={habit.id}>
-                  🔥 {habit.title}
-                </div>
-              ))}
+            {habits.length > 0 ? (
+              habits
+                .sort((a, b) => b.amount - a.amount)
+                .slice(0, 3)
+                .map((habit) => (
+                  <div className="each-habit" key={habit.id}>
+                    🔥 {habit.title}
+                  </div>
+                ))
+            ) : (
+              <p className="text-black text-xl font-bold drop-shadow-xl">
+                No habits to show! 🚫
+              </p>
+            )}
             <Link to="/habits" className="habits-btn">
               Go to Habits
             </Link>
@@ -128,11 +134,17 @@ export default function DashboardPage() {
             <h1 className="text-4xl font-bold drop-shadow-sm mt-7 text-gray-50 mb-10">
               Upcoming Events
             </h1>
-            {upcomingEvents.slice(0, 3).map((event) => (
-              <div className="each-event" key={event.id}>
-                📆 {event.name}
-              </div>
-            ))}
+            {upcomingEvents.length > 0 ? (
+              upcomingEvents.slice(0, 3).map((event) => (
+                <div className="each-event" key={event.id}>
+                  📆 {event.name}
+                </div>
+              ))
+            ) : (
+              <p className="text-black text-xl font-bold drop-shadow-xl">
+                No upcoming events! ✅
+              </p>
+            )}
             <Link to="/eventcalendar" className="events-btn ">
               Go to Events
             </Link>
