@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .section-container {
-  @apply absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center;
+  @apply h-[100vh] absolute inset-0 bg-black bg-opacity-60 flex flex-col items-center justify-center;
 }
 
 .register-container {
