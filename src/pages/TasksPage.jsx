@@ -33,7 +33,7 @@ export default function TasksPage() {
 
     const updatedUser = {
       ...allUsers[findUser],
-      tasks: [...(allUsers[findUser].tasks || []), newTask],
+      tasks: [newTask, ...(allUsers[findUser].tasks || [])], // newTask först för att alla Tasks ska hamna överst. Detta behövs i Dashboarden ( Top 3 senaste Tasks ).
     };
 
     const updatedUsers = [
