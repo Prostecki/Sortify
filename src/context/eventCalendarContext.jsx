@@ -25,6 +25,7 @@ export function EventCalendarProvider({ children }) {
   const [newEnd, setNewEnd] = useState("");
   const [editingEventId, setEditingEventId] = useState(null);
   const [shake, setShake] = useState(true);
+  const [showForm, setShowForm] = useState(false);
 
   const { getItemL, setItemL } = useLocalStorage();
   const allUsers = getItemL("users", []);
@@ -63,7 +64,7 @@ export function EventCalendarProvider({ children }) {
     setEvents(updatedEvents);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, setShowForm, setShowAddEvent) => {
     e.preventDefault();
     // Validation for empty NAME field
     if (!name) {
@@ -120,6 +121,8 @@ export function EventCalendarProvider({ children }) {
     setStart("");
     setEnd("");
     setError(null);
+    setShowForm(false);
+    setShowAddEvent(true);
   };
 
   useEffect(() => {

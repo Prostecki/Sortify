@@ -10,10 +10,12 @@ import "../../App.css";
 export default function EventCalendar() {
   const { error, setError } = useEventCalendarContext();
   const [showForm, setShowForm] = useState(false);
+  const [showAddEvent, setShowAddEvent] = useState(true);
 
   const handleForm = () => {
     setShowForm((prevShowForm) => !prevShowForm);
     setError(null);
+    setShowAddEvent((prevShowAddEvent) => !prevShowAddEvent);
   };
 
   return (
@@ -25,25 +27,22 @@ export default function EventCalendar() {
             <MdOutlineEventAvailable size={45} />
           </div>
         </div>
-        <button
-          style={{
-            opacity: showForm ? "0" : "1",
-            transition: "all 0.3s ease-in-out",
-          }}
-          onClick={handleForm}
-          className="addtaskbtn"
-        >
-          Add Event
-        </button>
-        <div
-          style={{
-            opacity: showForm ? "1" : "0",
-            transition: "all 0.5s ease-in-out",
-          }}
-          className={`event-form-container`}
-        >
-          <EventForm handleForm={handleForm} />
-        </div>
+        {showAddEvent ? (
+          <button onClick={handleForm} className="addtaskbtn">
+            Add Event
+          </button>
+        ) : (
+          ""
+        )}
+        {showForm ? (
+          <EventForm
+            handleForm={handleForm}
+            setShowForm={setShowForm}
+            setShowAddEvent={setShowAddEvent}
+          />
+        ) : (
+          ""
+        )}
       </div>
       <div className="event-form-container"></div>
       <div className="event-content-container">

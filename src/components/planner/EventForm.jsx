@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { BiHide } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineEmojiEvents } from "react-icons/md";
-export default function EventForm({ handleForm, showForm }) {
+export default function EventForm({ handleForm, setShowForm, showAddEvent }) {
   const {
     handleSubmit,
     name,
@@ -25,7 +25,10 @@ export default function EventForm({ handleForm, showForm }) {
   return (
     <>
       {user ? (
-        <form onSubmit={handleSubmit} className="event-form-inner-form">
+        <form
+          onSubmit={(e) => handleSubmit(e, setShowForm, setShowAddEvent)}
+          className="event-form-inner-form"
+        >
           <h2 className="add-new-event-headline">Add a New Event</h2>
           <div className="flex items-center gap-2">
             <MdOutlineEmojiEvents style={{ opacity: 0.5 }} size={40} />
