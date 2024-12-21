@@ -35,7 +35,6 @@ export default function DashboardPage() {
     console.log("Tasks:", findUser?.tasks);
   }, [findUser]);
 
-  // Då jag inte körde på Context så fetchar jag (Hasso) mina Tasks via localStorage.
   const tasks = findUser !== -1 ? allUsers[findUser]?.tasks || [] : [];
   const incompleteTasks = tasks.filter((task) => !task.status);
   const recentIncompleteTasks = incompleteTasks.slice(0, 3);
@@ -114,7 +113,7 @@ export default function DashboardPage() {
               ))
             ) : (
               <p className="font-medium text-xl mt-20">
-                You&apos;re all done with your Tasks!🎉
+                You&apos;re all done with your Tasks! 🎉
               </p>
             )}
             <Link to="/tasks" className="tasks-btn">
@@ -151,7 +150,7 @@ export default function DashboardPage() {
               Upcoming Events
             </h1>
             {upcomingEvents.length === 0 ? (
-              <p className="font-medium text-xl mt-20">No upcoming events</p>
+              <p className="font-medium text-xl mt-20">No upcoming events 📆</p>
             ) : (
               upcomingEvents.slice(0, 3).map((event) => (
                 <div className="each-event" key={event.id}>
