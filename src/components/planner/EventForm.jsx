@@ -31,9 +31,9 @@ export default function EventForm({
     <>
       <AnimatePresence>
         <motion.form
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.6 } }}
-          exit={{ x: 100 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "linear" }}
           className="event-form-inner-form"
           onSubmit={(e) => handleSubmit(e, setShowForm, setShowAddEvent)}
         >

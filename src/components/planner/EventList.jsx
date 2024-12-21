@@ -5,6 +5,7 @@ import EventEditionForm from "./EventEditingForm";
 import { MdAccessTime } from "react-icons/md";
 import { FaArrowRotateRight } from "react-icons/fa6";
 import { BsPencilSquare } from "react-icons/bs";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function EventList() {
   const capitalize = (str) => {
@@ -22,8 +23,8 @@ export default function EventList() {
   const { user } = useUserContext();
 
   return (
-    <section className="event-list-container">
-      <ul className="event-list-elements-container">
+    <ul className="event-list-elements-container">
+      <AnimatePresence>
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => {
             const eventStartDate = new Date(event.start);
@@ -31,7 +32,7 @@ export default function EventList() {
             const day = eventStartDate.toLocaleDateString("en-US", {
               weekday: "short",
             });
-            const date = eventStartDate.getDate();
+            const date = eventEndDate.getDate();
             const formattedStartDate = eventStartDate.toLocaleString("en-US", {
               weekday: "short",
               day: "numeric",
@@ -51,17 +52,28 @@ export default function EventList() {
               hour12: true,
             });
 
-            const isPastEvent = eventStartDate < new Date();
+            const isPastEvent =
+              eventStartDate < new Date() && eventEndDate < new Date();
 
             return (
-              <li
+              <motion.li
                 className={`event-list-element ${
                   isPastEvent ? "text-gray-500" : "text-black"
                 } `}
                 key={event.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 {editingEventId === event.id ? (
-                  <EventEditionForm />
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <EventEditionForm />
+                  </motion.div>
                 ) : (
                   <>
                     <div
@@ -119,7 +131,7 @@ export default function EventList() {
                     </div>
                   </>
                 )}
-              </li>
+              </motion.li>
             );
           })
         ) : (
@@ -127,7 +139,7 @@ export default function EventList() {
             No events found for the selected filter.
           </p>
         )}
-      </ul>
-    </section>
+      </AnimatePresence>
+    </ul>
   );
 }

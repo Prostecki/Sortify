@@ -128,19 +128,20 @@ export function EventCalendarProvider({ children }) {
 
   useEffect(() => {
     const now = new Date();
-    setFilteredEvents(
-      events
-        .filter((event) => event?.start)
-        .filter((event) => {
-          if (!event || !event.start) return false;
-          const eventStart = new Date(event.start);
-          return filter === "upcoming"
-            ? eventStart > now
-            : filter === "past"
-            ? eventStart <= now
-            : true;
-        })
-    );
+    const filtered = events.filter((event) => {
+      const eventStart = new Date(event.start);
+      const eventEnd = new Date(event.end);
+      if (filter === "upcoming") {
+        return eventEnd > now;
+      } else if (filter === "past") {
+        return eventStart < now && eventEnd < now;
+      } else {
+        return true;
+      }
+    });
+
+    const sorted = filtered.sort((a, b) => new Date(a.end) - new Date(b.end));
+    setFilteredEvents(sorted);
   }, [events, filter]);
 
   const handleSave = (id) => {

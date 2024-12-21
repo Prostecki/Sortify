@@ -22,9 +22,9 @@ export default function EventCalendar() {
     <section className="event-calendar">
       <div className="flex flex-col items-center">
         <div className="event-headline-box">
-          <div className="flex items-end">
-            <h1 className="event-headline">Event Calendar</h1>
-            <MdOutlineEventAvailable size={45} />
+          <div className="flex items-center sm:items-end justify-center max-sm:w-max">
+            <h1 className="event-headline max-sm:text-3xl">Event Calendar</h1>
+            <MdOutlineEventAvailable className="max-sm:w-[1.5rem]" size={45} />
           </div>
         </div>
         {showAddEvent ? (
