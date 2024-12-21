@@ -4,6 +4,7 @@ import { MdLogout } from "react-icons/md";
 import { useAccount } from "../hooks/useAccount";
 import { useNavigate } from "react-router-dom";
 import { CgUserlane } from "react-icons/cg";
+import profileIcon from "../assets/profileicon.png";
 
 export default function Nav({ setIsLoggedIn }) {
   const navigate = useNavigate();
@@ -30,7 +31,12 @@ export default function Nav({ setIsLoggedIn }) {
             <MdLogout size={22} className="mr-1" /> Sign out
           </button>
           <Link to="/profile">
-            <CgUserlane size={35} className="profile-icon" />
+            <img
+              src={profileIcon}
+              alt="profile icon"
+              className="profile-icon"
+            />
+            {/* <CgUserlane size={35} className="profile-icon" /> */}
           </Link>
         </div>
       </nav>
