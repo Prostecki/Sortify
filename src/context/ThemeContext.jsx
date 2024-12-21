@@ -1,28 +1,35 @@
-// import { useState, useRef, useContext, createContext } from "react";
-// const ThemeContext = createContext();
+import { useState, useContext, createContext, useEffect } from "react";
+import { useLocalStorage } from "../hooks/useStorage";
 
-// export function ThemeProvider({ children }) {
-//   // const [darkMode, setDarkMode] = useState(() => getItemL("darkmode") ?? false);
+const ThemeContext = createContext();
 
-//   const handleDarkMode = () => {
-//     setDarkMode((prev) => {
-//       const newMode = !prev;
-//       document.body.style.backgroundColor = newMode ? "rgb(10,10,10)" : "white";
-//       document.body.style.color = newMode ? "rgba(170,170,170)" : "black";
-//       return newMode;
-//     });
-//   };
-//   return (
-//     <ThemeContext.Provider value={{ darkMode, handleDarkMode }}>
-//       {children}
-//     </ThemeContext.Provider>
-//   );
-// }
+export function ThemeProvider({ children }) {
+  const { getItemL, setItemL } = useLocalStorage();
+  const [darkMode, setDarkMode] = useState(() => getItemL("darkmode") ?? false);
 
-// export function useThemeContext() {
-//   const context = useContext(ThemeContext);
-//   if (!context) {
-//     throw new Error("Theme context error");
-//   }
-//   return context;
-// }
+  const handleDarkMode = () => {
+    setDarkMode((prev) => {
+      const next = !prev;
+      setItemL("darkmode", next);
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    document.body.style.backgroundColor = darkMode ? "rgb(15,15,15)" : "white";
+  }, [darkMode]);
+
+  return (
+    <ThemeContext.Provider value={{ darkMode, handleDarkMode }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useThemeContext() {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error("Theme context error");
+  }
+  return context;
+}

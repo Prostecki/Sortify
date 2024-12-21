@@ -1,19 +1,16 @@
-// import { HabitProvider } from "./HabitContext";
-// import { ThemeProvider } from "./ThemeContext";
-// import { ScheduleProvider } from "./ScheduleContext";
-// import { TodoProvider } from "./TodoContext";
-// import { UserProvider } from "./UserContext";
+import { UserProvider } from "./UserContext";
+import { HabitProvider } from "./habitContext";
+import { EventCalendarProvider } from "./EventCalendarContext";
+import { ThemeProvider } from "./ThemeContext";
 
-// export function GlobalProvider({ children }) {
-//   return (
-//     <UserProvider>
-//       <ThemeProvider>
-//         <ScheduleProvider>
-//           <HabitProvider>
-//             <TodoProvider>{children}</TodoProvider>
-//           </HabitProvider>
-//         </ScheduleProvider>
-//       </ThemeProvider>
-//     </UserProvider>
-//   );
-// }
+export function GlobalProvider({ children }) {
+  return (
+    <UserProvider>
+      <ThemeProvider>
+        <EventCalendarProvider>
+          <HabitProvider>{children}</HabitProvider>
+        </EventCalendarProvider>
+      </ThemeProvider>
+    </UserProvider>
+  );
+}

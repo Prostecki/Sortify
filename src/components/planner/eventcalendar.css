@@ -1,0 +1,173 @@
+.event-calendar {
+  @apply flex flex-col items-center p-10 gap-5;
+}
+
+.event-form-container {
+  @apply flex flex-col w-max sm:flex sm:justify-center relative;
+}
+
+.event-headline-box {
+  @apply flex items-center flex-col gap-1;
+}
+
+.event-headline {
+  @apply w-max text-5xl drop-shadow-2xl font-bold text-center text-customBlack max-sm:mt-0 mt-3;
+}
+
+.event-headline-box::after {
+  content: "";
+  display: block;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+  width: 100%;
+  height: 0.4rem;
+  background-color: rgb(133, 62, 244);
+  margin-top: 10px;
+}
+
+.event-content-container {
+  @apply flex flex-col items-center gap-5;
+}
+
+.event-form-outer {
+  @apply bg-eventsGrey min-h-screen max-sm:w-screen max-sm:h-full p-4;
+}
+
+.event-form-inner-form {
+  @apply flex flex-col gap-5 drop-shadow-xl max-sm:w-full mt-5;
+}
+
+.add-new-event-headline {
+  @apply text-2xl font-bold text-gray-800 text-center;
+}
+
+.event-form-label {
+  @apply block text-2xl max-sm:w-[5rem] font-medium text-gray-700;
+}
+
+.event-form-input {
+  @apply w-full my-2 p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500;
+}
+
+.event-form-submit-button {
+  @apply w-full px-4 py-2 text-white bg-sortify rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.event-filter-future-button {
+  @apply w-[10rem] px-4 py-2 bg-customGreen tracking-wide duration-200 text-white rounded hover:bg-blue-600 mr-2;
+}
+
+.event-filter-past-button {
+  @apply w-[10rem] px-4 py-2 bg-customGrey duration-200 tracking-wide text-white rounded hover:bg-gray-600;
+}
+
+.event-filter-buttons-container {
+  @apply flex max-sm:flex-col flex-row max-w-[25rem] gap-5 justify-center;
+}
+
+.event-list-container {
+  @apply flex flex-col mt-10 drop-shadow-xl;
+}
+
+.event-list-elements-container {
+  @apply flex flex-col;
+}
+
+.event-list-element {
+  @apply p-5  max-sm:w-max flex justify-center relative items-center gap-5 bg-white transition-all;
+}
+
+.event-list-element:not(:last-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.event-list-editing-container {
+  @apply flex flex-col justify-evenly items-center sm:w-full relative sm:flex-row max-sm:items-center gap-4;
+}
+
+.event-list-editing-inputs-container {
+  @apply flex flex-col gap-5 max-sm:flex-wrap max-sm:w-full;
+}
+
+.editing-input {
+  @apply border px-2 py-1 rounded w-full sm:w-auto;
+}
+
+.event-list-editing-buttons-container {
+  @apply flex flex-col gap-5 mt-2 max-sm:flex-row max-sm:mt-5;
+}
+
+.editing-button {
+  @apply px-4 py-2 text-white rounded w-[8rem];
+}
+
+.event-list-name-box {
+  @apply flex items-center justify-center gap-2 relative mb-2;
+}
+
+.event-list-name {
+  @apply font-medium cursor-pointer text-lg sm:text-xl text-start hover:text-blue-500 duration-200 tracking-wide rounded-lg relative;
+}
+
+.event-list-name-box:hover .edit-icon {
+  @apply opacity-100;
+}
+
+.event-list-name-box::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: rgb(97, 96, 96);
+  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+  transform-origin: left;
+}
+
+.event-list-name-box:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
+.edit-icon {
+  @apply opacity-0 duration-500 cursor-pointer;
+}
+
+.event-list-date {
+  @apply text-sm sm:text-base flex items-center gap-2 text-slate-500;
+}
+
+.event-list-added-by {
+  @apply text-sm text-gray-600 mt-1;
+}
+
+.event-list-delete-button {
+  @apply mt-2 px-4 border text-sortify rounded hover:bg-sortify hover:text-white duration-200;
+}
+
+.event-list-no-events-message {
+  @apply text-gray-500 text-center;
+}
+
+.event-form-container {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.event-form-container.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.event-form-container.visible {
+  opacity: 1;
+  pointer-events: all;
+}
