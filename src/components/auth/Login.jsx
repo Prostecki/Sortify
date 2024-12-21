@@ -4,7 +4,7 @@ import { useState } from "react";
 import "./Login.css";
 import { FaBoltLightning } from "react-icons/fa6";
 import { ImConnection } from "react-icons/im";
-import { useUserContext } from "../../context/UserContext";
+import { useUserContext } from "../../context/userContext";
 
 export default function Login() {
   const [errorMessage, setErrorMessage] = useState("");

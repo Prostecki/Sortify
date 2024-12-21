@@ -1,4 +1,4 @@
-import { useUserContext } from "../../context/UserContext";
+import { useUserContext } from "../../context/userContext";
 import { useEventCalendarContext } from "../../context/EventCalendarContext";
 import { useRef } from "react";
 import { BiHide } from "react-icons/bi";

@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc";
-import { useUserContext } from "../../context/UserContext";
+import { useUserContext } from "../../context/userContext";
 
 export default function RegisterButtons() {
   const { handleGoogleRegister, handleRegister } = useUserContext();

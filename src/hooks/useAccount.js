@@ -1,4 +1,4 @@
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../context/userContext";
 
 export const useAccount = (navigate) => {
   const { setIsLoggedIn } = useUserContext();

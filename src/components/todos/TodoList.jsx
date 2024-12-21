@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { CgDetailsMore } from "react-icons/cg";
 import TodoDetail from "./TodoDetail";
 import { useLocalStorage } from "../../hooks/useStorage";
-import { useUserContext } from "../../context/UserContext";
+import { useUserContext } from "../../context/userContext";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo } from "react";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
-import { useUserContext } from "../../context/UserContext";
+import { useUserContext } from "../../context/userContext";
 import { IoCloseOutline } from "react-icons/io5";
 import InputField from "./InputField";
 import CheckboxField from "./CheckboxField";

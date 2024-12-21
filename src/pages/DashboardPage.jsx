@@ -1,6 +1,6 @@
 import Nav from "../layout/Nav";
 import { useEffect, useState, useMemo } from "react";
-import { useUserContext } from "../context/UserContext";
+import { useUserContext } from "../context/userContext";
 import { useEventCalendarContext } from "../context/EventCalendarContext";
 import { useHabitContext } from "../context/habitContext";
 
