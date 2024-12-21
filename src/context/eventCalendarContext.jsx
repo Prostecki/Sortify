@@ -25,7 +25,6 @@ export function EventCalendarProvider({ children }) {
   const [newEnd, setNewEnd] = useState("");
   const [editingEventId, setEditingEventId] = useState(null);
   const [shake, setShake] = useState(true);
-  const [showForm, setShowForm] = useState(false);
 
   const { getItemL, setItemL } = useLocalStorage();
   const allUsers = getItemL("users", []);
@@ -121,10 +120,8 @@ export function EventCalendarProvider({ children }) {
     setStart("");
     setEnd("");
     setError(null);
-
     //Hide form after adding event
     setShowForm(false);
-
     // Show the add event button after adding event
     setShowAddEvent(true);
   };

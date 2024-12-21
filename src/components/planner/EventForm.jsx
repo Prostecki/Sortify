@@ -46,8 +46,8 @@ export default function EventForm({
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="flex gap-5">
-            <div className="w-max">
+          <div className="flex gap-2 max-sm:flex-col max-sm:items-center">
+            <div className="w-full max-sm:flex max-sm:items-center max-sm:justify-between">
               <label htmlFor="start-date" className="event-form-label">
                 Start
               </label>
@@ -60,7 +60,7 @@ export default function EventForm({
                 onChange={(e) => setStart(e.target.value)}
               />
             </div>
-            <div className="w-max">
+            <div className="w-full max-sm:flex max-sm:items-center max-sm:justify-between">
               <label htmlFor="end-date" className="event-form-label">
                 End
               </label>
