@@ -9,6 +9,7 @@ import { useLocalStorage } from "../hooks/useStorage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ImStatsBars } from "react-icons/im";
+import { CiCalendarDate } from "react-icons/ci";
 
 export default function DashboardPage() {
   const { events } = useEventCalendarContext();
@@ -154,7 +155,7 @@ export default function DashboardPage() {
             ) : (
               upcomingEvents.slice(0, 3).map((event) => (
                 <div className="each-event" key={event.id}>
-                  📆 {event.name}
+                  <CiCalendarDate size={25} /> {event.name}
                 </div>
               ))
             )}
