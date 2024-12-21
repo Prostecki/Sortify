@@ -70,7 +70,7 @@ export default function Login() {
           className="login-input"
         />
         <button className="login-button" onClick={handleLogin}>
-          Login
+          Sign in
         </button>
         {errorMessage && (
           <p className={`text-red-500 ${shake ? "shake" : ""}`}>

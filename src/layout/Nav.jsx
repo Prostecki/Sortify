@@ -26,8 +26,8 @@ export default function Nav({ setIsLoggedIn }) {
           </Link>
         </div>
         <div className="nav-right-position">
-          <button onClick={handleLogOut} className="logoutbtn">
-            <MdLogout size={17} className="mr-1" /> Logout
+          <button onClick={handleLogOut} className="logoutbtn text-[15px]">
+            <MdLogout size={22} className="mr-1" /> Sign out
           </button>
           <Link to="/profile">
             <CgUserlane size={35} className="profile-icon" />
