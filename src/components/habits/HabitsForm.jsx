@@ -1,4 +1,4 @@
-import { useHabitContext } from "../../context/habitContext";
+import { useHabitContext } from "../../context/HabitContext";
 import { useThemeContext } from "../../context/ThemeContext";
 import { IoMdClose } from "react-icons/io";
 import { VscDiffAdded } from "react-icons/vsc";

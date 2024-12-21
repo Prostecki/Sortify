@@ -1,5 +1,5 @@
-import { UserProvider } from "./userContext";
-import { HabitProvider } from "./habitContext";
+import { UserProvider } from "./UserContext";
+import { HabitProvider } from "./HabitContext";
 import { EventCalendarProvider } from "./EventCalendarContext";
 import { ThemeProvider } from "./ThemeContext";
 

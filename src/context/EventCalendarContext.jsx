@@ -6,7 +6,7 @@ import {
   useEffect,
   createContext,
 } from "react";
-import { useUserContext } from "./userContext";
+import { useUserContext } from "./UserContext";
 import { useLocalStorage } from "../hooks/useStorage";
 
 const EventCalendarContext = createContext();

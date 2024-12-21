@@ -1,8 +1,8 @@
 import Nav from "../layout/Nav";
 import { useEffect, useState, useMemo } from "react";
-import { useUserContext } from "../context/userContext";
+import { useUserContext } from "../context/UserContext";
 import { useEventCalendarContext } from "../context/EventCalendarContext";
-import { useHabitContext } from "../context/habitContext";
+import { useHabitContext } from "../context/HabitContext";
 
 import { Link } from "react-router-dom";
 import { useLocalStorage } from "../hooks/useStorage";

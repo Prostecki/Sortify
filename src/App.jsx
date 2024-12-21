@@ -7,7 +7,7 @@ import HabitsPage from "./pages/HabitsPage";
 import OnboardingPage from "./pages/OnboardingPage";
 import { useState, useEffect } from "react";
 import "./App.css";
-import { useUserContext } from "./context/userContext";
+import { useUserContext } from "./context/UserContext";
 
 function App() {
   const { isLoggedIn, setIsLoggedIn, user } = useUserContext();

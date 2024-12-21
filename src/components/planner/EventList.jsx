@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEventCalendarContext } from "../../context/EventCalendarContext";
-import { useUserContext } from "../../context/userContext";
+import { useUserContext } from "../../context/UserContext";
 import EventEditionForm from "./EventEditingForm";
 import { MdAccessTime } from "react-icons/md";
 import { FaArrowRotateRight } from "react-icons/fa6";

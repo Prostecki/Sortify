@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { useLocalStorage } from "../hooks/useStorage";
-import { useUserContext } from "./userContext";
+import { useUserContext } from "./UserContext";
 
 const HabitContext = createContext();
 

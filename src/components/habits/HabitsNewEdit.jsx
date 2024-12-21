@@ -1,5 +1,5 @@
 import { MdOutlinePlaylistAdd, MdEditNote } from "react-icons/md";
-import { useHabitContext } from "../../context/habitContext";
+import { useHabitContext } from "../../context/HabitContext";
 import { useThemeContext } from "../../context/ThemeContext";
 
 export function HabitsNew() {

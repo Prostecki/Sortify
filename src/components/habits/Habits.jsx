@@ -1,4 +1,4 @@
-import { useHabitContext } from "../../context/habitContext";
+import { useHabitContext } from "../../context/HabitContext";
 import { useThemeContext } from "../../context/ThemeContext";
 import { motion, AnimatePresence } from "motion/react";
 

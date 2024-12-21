@@ -7,7 +7,7 @@ import TodoList from "../components/todos/TodoList";
 import { useLocalStorage } from "../hooks/useStorage";
 import toast, { Toaster } from "react-hot-toast";
 import { AnimatePresence } from "motion/react";
-import { useUserContext } from "../context/userContext";
+import { useUserContext } from "../context/UserContext";
 
 export default function TasksPage() {
   const { activeUser } = useUserContext();
