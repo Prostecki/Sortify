@@ -4,7 +4,11 @@ import { useRef } from "react";
 import { BiHide } from "react-icons/bi";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdOutlineEmojiEvents } from "react-icons/md";
-export default function EventForm({ handleForm, setShowForm, showAddEvent }) {
+export default function EventForm({
+  handleForm,
+  setShowForm,
+  setShowAddEvent,
+}) {
   const {
     handleSubmit,
     name,
@@ -42,8 +46,8 @@ export default function EventForm({ handleForm, setShowForm, showAddEvent }) {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="flex gap-5">
-            <div className="w-max">
+          <div className="flex gap-2 max-sm:flex-col max-sm:items-center">
+            <div className="w-full max-sm:flex max-sm:items-center max-sm:justify-between">
               <label htmlFor="start-date" className="event-form-label">
                 Start
               </label>
@@ -56,7 +60,7 @@ export default function EventForm({ handleForm, setShowForm, showAddEvent }) {
                 onChange={(e) => setStart(e.target.value)}
               />
             </div>
-            <div className="w-max">
+            <div className="w-full max-sm:flex max-sm:items-center max-sm:justify-between">
               <label htmlFor="end-date" className="event-form-label">
                 End
               </label>

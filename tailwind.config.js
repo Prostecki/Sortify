@@ -5,6 +5,8 @@ export default {
       colors: {
         sortify: "rgb(133, 62, 244);",
         customBlack: "rgb(14, 14, 14)",
+        customGreen: "rgb(75, 192, 33);",
+        customGrey: "rgb(90, 90, 90)",
       },
       backgroundColor: {
         habitWhite: "#F9F9F9",
