@@ -34,13 +34,11 @@ export default function EventForm({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 0.6 } }}
           exit={{ x: 100 }}
-          className="all-task-inputs"
+          className="event-form-inner-form"
+          onSubmit={(e) => handleSubmit(e, setShowForm, setShowAddEvent)}
         >
           {user ? (
-            <form
-              onSubmit={(e) => handleSubmit(e, setShowForm, setShowAddEvent)}
-              className="event-form-inner-form"
-            >
+            <>
               <h2 className="add-new-event-headline">Add a New Event</h2>
               <div className="flex items-center gap-2">
                 <MdOutlineEmojiEvents style={{ opacity: 0.5 }} size={40} />
@@ -93,13 +91,14 @@ export default function EventForm({
               >
                 <BiHide size={25} color="white" />
               </button>
-            </form>
+            </>
           ) : (
             <p className="text-gray-600">
               Please <span className="font-semibold text-blue-600">log in</span>{" "}
               to add events.
             </p>
           )}
+
           {error ? (
             <h1
               className={`text-red-500 text-center mt-5 ${
