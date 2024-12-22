@@ -7,7 +7,7 @@ import websiteLogo from "../assets/logotransparent.png";
 
 export default function OnboardingPage({ setIsLoggedIn }) {
   return (
-    <>
+    <section className="flex flex-col min-h-screen gap-8">
       <div className="onboarding-page">
         <img
           src={websiteLogo}
@@ -80,6 +80,6 @@ export default function OnboardingPage({ setIsLoggedIn }) {
       <div className="login-bg">
         <Login setIsLoggedIn={setIsLoggedIn} />
       </div>
-    </>
+    </section>
   );
 }

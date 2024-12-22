@@ -13,7 +13,7 @@ body,
 }
 
 .register-container {
-  @apply relative max-w-80 min-w-[28rem] min-h-[40rem] bg-white p-5 h-auto flex flex-col justify-center gap-5 items-center rounded-lg drop-shadow-lg;
+  @apply relative max-w-80 min-w-[25rem] min-h-[40rem] bg-white p-5 h-auto flex flex-col justify-center gap-5 items-center rounded-lg drop-shadow-lg;
 }
 
 .register-title {
@@ -88,6 +88,7 @@ body,
 
 .login-input {
   border: 1px solid rgb(187, 187, 187);
+  box-sizing: border-box;
   border-radius: 8px;
   padding: 10px;
   width: 100%;
@@ -95,11 +96,11 @@ body,
 }
 
 .login-input:hover {
-  border: 1.3px solid black;
+  box-shadow: 0 0 0 1.3px black;
 }
 
 .login-input:focus {
-  border: 1.3px solid black;
+  box-shadow: 0 0 0 1.3px black;
 }
 
 .login-form {

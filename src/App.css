@@ -128,6 +128,7 @@
   background-color: rgb(133, 62, 244);
   filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
     drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
+  padding-bottom: 50px;
 }
 
 .onboarding-logo {
@@ -222,6 +223,7 @@
 
 .login-bg {
   background-color: white;
+  flex-grow: 1;
   width: 100%;
 }
 

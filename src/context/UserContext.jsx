@@ -73,6 +73,7 @@ export function UserProvider({ children }) {
   const handleShowRegister = () => {
     window.scrollTo(0, 0);
     setShowRegister(true);
+    setSuccessfulMessage(null);
   };
 
   const closeModal = () => {
