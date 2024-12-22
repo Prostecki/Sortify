@@ -3,13 +3,14 @@ import { SiSimpleanalytics } from "react-icons/si";
 import { IoHeartCircleSharp } from "react-icons/io5";
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { FaStar, FaGithub } from "react-icons/fa";
+import profileIcon from "../assets/profileicon.png";
 
 export default function OnboardingPage({ setIsLoggedIn }) {
   return (
     <>
       <div className="onboarding-page">
         <img
-          src="/src/assets/logotransparent.png"
+          src={profileIcon}
           alt="Website Logo"
           className="onboarding-logo "
         />
