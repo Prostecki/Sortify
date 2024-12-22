@@ -71,15 +71,14 @@ export function UserProvider({ children }) {
   }, [events, user]);
 
   const handleShowRegister = () => {
-    setShowRegister(false);
-    setTimeout(() => {
-      setShowRegister(true);
-    }, 100);
+    window.scrollTo(0, 0);
+    setShowRegister(true);
+    document.body.classList.add("no-scroll");
   };
 
   const closeModal = () => {
     setShowRegister(false);
-    console.log("closed?");
+    document.body.classList.remove("no-scroll");
   };
 
   const handleRegister = () => {
