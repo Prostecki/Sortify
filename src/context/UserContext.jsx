@@ -73,12 +73,10 @@ export function UserProvider({ children }) {
   const handleShowRegister = () => {
     window.scrollTo(0, 0);
     setShowRegister(true);
-    document.body.classList.add("no-scroll");
   };
 
   const closeModal = () => {
     setShowRegister(false);
-    document.body.classList.remove("no-scroll");
   };
 
   const handleRegister = () => {
