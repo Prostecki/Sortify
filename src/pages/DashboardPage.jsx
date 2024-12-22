@@ -83,7 +83,7 @@ export default function DashboardPage() {
         className="flex justify-center text-center items-center cursor-pointer "
       />
       <Nav setIsLoggedIn={setIsLoggedIn} />
-      <section className="dashboard-container mb-[300px]">
+      <section className="dashboard-container mb-[100px]">
         <h1 className="dashboard-title">
           {" "}
           Dashboard <ImStatsBars />{" "}
