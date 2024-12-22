@@ -28,8 +28,8 @@ export default function DashboardPage() {
   );
 
   const upcomingEvents = events.filter((event) => {
-    const eventStart = new Date(event.start);
-    return eventStart >= new Date();
+    const eventEnd = new Date(event.end);
+    return eventEnd >= new Date();
   });
 
   useEffect(() => {

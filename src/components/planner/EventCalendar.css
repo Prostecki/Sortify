@@ -73,7 +73,7 @@
 }
 
 .event-list-element {
-  @apply p-5  max-sm:w-max flex justify-center relative items-center gap-5 bg-white transition-all;
+  @apply p-5 max-sm:w-max flex justify-start relative items-center gap-5 bg-white transition-all;
 }
 
 .event-list-element:not(:last-child)::after {
