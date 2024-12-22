@@ -11,6 +11,10 @@
   user-select: none;
 }
 
+/* #root {
+  height: 100vh;
+} */
+
 /* LOGO */
 
 .logo-container {
@@ -121,11 +125,9 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 100%;
   background-color: rgb(133, 62, 244);
   filter: drop-shadow(0 10px 8px rgba(255, 255, 255, 0.04))
     drop-shadow(0 4px 3px rgba(255, 255, 255, 0.1));
-  gap: 50px;
 }
 
 .onboarding-logo {
@@ -220,9 +222,7 @@
 
 .login-bg {
   background-color: white;
-  height: 100%;
   width: 100%;
-  padding-bottom: 30px;
 }
 
 /* Tasks CSS */

@@ -76,9 +76,9 @@ export default function OnboardingPage({ setIsLoggedIn }) {
             </span>
           </h1>
         </div>
-        <div className="login-bg">
-          <Login setIsLoggedIn={setIsLoggedIn} />
-        </div>
+      </div>
+      <div className="login-bg">
+        <Login setIsLoggedIn={setIsLoggedIn} />
       </div>
     </>
   );
