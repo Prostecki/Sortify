@@ -1,7 +1,6 @@
 # Sortify 🎯
 
 **Your ultimate time tracker and management system for habits, tasks, and events!**  
-*(Add a banner image of your project here for a better visual impact)*
 
 ---
 
